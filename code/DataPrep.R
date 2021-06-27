@@ -8,6 +8,7 @@ library(gdata) # for xls import
 library(tidyr)
 library(dplyr)
 library(lubridate)
+library(rgdal) # for lat-long conversion
 
 ##############################
 ##############################
@@ -20,9 +21,10 @@ abund.raw <- read.xls("../data/orig/NZ-1969_2004-Abunds_orig.xls")
 htimes <-
   read.csv("../data/orig/NZ-HandlingTimes-MRegnCoeff-MeasuredOnly.csv",
            skip = 2) # File copied over from NZ Rscripts folder
+sitecoord <- read.csv("../data/orig/NZ-Access-NZwide-SiteInfo.csv")
 
-fobs <- subset(fobs, ObservationType == 'Systematic Census')
 ###########################
+fobs <- subset(fobs, ObservationType == 'Systematic Census')
 
 abund.raw <-
   abund.raw[, -which(apply(abund.raw, 2, 
@@ -45,6 +47,7 @@ abund$Species <- gsub('([[:punct:]])|\\s+', ' ', abund$Species)
 write.csv(abund, "../data/derived/NZ-1969_2004-Abunds.csv", row.names = FALSE)
 # ---------------
 abund$Dens <- abund$Count / qArea
+
 #####################################
 abund.stats <-
   abund %>% group_by(Site, Zone, Year, Species) %>% 
@@ -94,6 +97,30 @@ Y <-
 
 abund_comp <-
   Y %>% group_by(Site, Year, Species) %>% summarise(N = mean(Dens, na.rm = TRUE))
+
+############################
+# Convert site locations (NZMG) to WGS84
+# https://stackoverflow.com/questions/58585146/convert-nzmg-coordinates-to-lat-long
+
+sitecoord$Site[which(sitecoord$Site == "LeighWaterfallandPenny'sRocks")] <- sites.fcomp[grep('Waterfall', sites.fcomp)]
+sitecoord$Site[which(sitecoord$Site == "RangitotoIslandWhiteBeach")] <- sites.fcomp[grep('Rangitoto', sites.fcomp)]
+sitecoord$Site[which(sitecoord$Site == "RedBeach")] <- sites.fcomp[grep('Red Beach - Whangaparaoa', sites.fcomp)]
+
+dat <- data.frame(id = sitecoord$Site, 
+                  x = sitecoord$NZ.E.coordinate, 
+                  y = sitecoord$NZ.N.coordinate)
+
+dat <- dat[dat$id%in%sites.fcomp,]
+
+sp::coordinates(dat) = ~x+y
+
+proj4string <- "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +towgs84=59.47,-5.04,187.44,0.47,-0.1,1.024,-4.5993 +nadgrids=nzgd2kgrid0005.gsb +no_defs"
+
+sp::proj4string(dat) = sp::CRS(proj4string) 
+data_wgs84 <- sp::spTransform(dat, sp::CRS('+init=epsg:4326'))
+siteInfo <- data.frame(Site = data_wgs84$id,
+                         Lat = coordinates(data_wgs84)[,2],
+                         Lon = coordinates(data_wgs84)[,1])
 
 ################################
 fobs$Temp <-
@@ -360,7 +387,9 @@ write.csv(N_comp_04,
 write.csv(sizes,
           '../data/derived/NZ-1969_2004-tab_Sizes.csv',
           row.names = FALSE)
-
+write.csv(siteInfo,
+          '../data/derived/NZ-1969_2004-Site-LatLon.csv',
+          row.names = FALSE)
 #################################################################################
 #################################################################################
 #################################################################################

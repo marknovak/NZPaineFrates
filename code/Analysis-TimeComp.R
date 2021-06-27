@@ -3,10 +3,15 @@
 ###############################################################################
 rm(list = ls())
 options(stringsAsFactors = F)
-library(sfsmisc)
+library(sfsmisc) # for eaxis
+library(binom) # for confidence intervals
+library(Hmisc) # for LaTeX table export
+  options(xdvicmd='open')
 ############################
 
 # All data at hand
+siteInfo <- read.csv("../data/derived/NZ-1969_2004-Site-LatLon.csv")
+
 sizes <- 
   read.csv("../data/derived/NZ-1969_2004-tab_Sizes.csv")
 
@@ -66,12 +71,12 @@ N_comp_04 <-
                      row.names = 1))
 
 ############################
-# Restrict abundance data to those species that occured in diets
+# Restrict abundance data to those species that occurred in diets
 N_comp_69[is.na(h_comp_69)] <- NA
 N_comp_04[is.na(h_comp_04)] <- NA
 
 ############################
-# Feeding proportion
+# Feeding proportions
 fp_compf_69 <-
   (t(t(n_compf_69) / colSums(n_compf_69, na.rm = TRUE)))[-1, ]
 fp_compf_04 <-
@@ -80,7 +85,7 @@ fp_compf_04 <-
 fp_comp_69 <- (t(t(n_comp_69) / colSums(n_comp_69, na.rm = TRUE)))[-1, ]
 fp_comp_04 <- (t(t(n_comp_04) / colSums(n_comp_04, na.rm = TRUE)))[-1, ]
 
-# feeding rate
+# feeding rates
 # (able to calculate for all species)
 # f_i=n_i/n * 1/h_i
 f_compf_69 <-
@@ -93,7 +98,7 @@ f_comp_69 <-
 f_comp_04 <-
   (t(t(n_comp_04) / colSums(n_comp_04, na.rm = TRUE)) / h_comp_04)[-1, ]
 
-# attack rate
+# attack rates
 # (only able to calculate for species that also showed up in abundance surveys)
 # a_i= n_i/n_0 * 1/(h_i*N_i)
 a_comp_69 <-
@@ -102,8 +107,8 @@ a_comp_04 <-
   (t(t(n_comp_04) / n_comp_04[1, ]) / (h_comp_04 * N_comp_04))[-1, ]
 
 a_comp_04[is.infinite(a_comp_04)] <- NA
-############################
 
+############################
 pdf('../figs/Paine-Comparisons.pdf',
     width = 8,
     height = 4)
@@ -464,6 +469,7 @@ dev.off()
 
 ##############################
 # Pred and prey sizes
+sizes <- sizes[sizes$Site%in%siteInfo$Site,]
 
 preysizes <- sizes[sizes$PreySize > 0 ,]
 breaks = seq(0, max(sizes$PreySize) + 1, 1)
@@ -577,13 +583,103 @@ par(mar = c(3,0,0,1))
   barplot(Pred$counts, axes = FALSE, xlim = c(0, top[2]), space = 0, 
           horiz = TRUE,
           col = 'grey30')
-  axis(1, cex.axis = 0.5, mgp = c(0, 0, 0),
-       at = c(0,200))
+  axis(1, cex.axis = 0.5, mgp = c(0, 0, 0))
   barplot(Pred04$counts, axes = FALSE, xlim = c(0, top[2]), space = 0, 
           horiz = TRUE,
           col = 'grey70', add = TRUE)
   
 dev.off()
+
+#################################
+# Summary table
+###############
+
+# Total count of observations (feeding + not feeding)
+nTot_69 <- apply(n_compf_69, 2, sum, na.rm = TRUE)
+nTot_04 <- apply(n_compf_04, 2, sum, na.rm = TRUE)
+
+ord <- order(names(nTot_69))
+
+
+# Total count of observations (feeding)
+nTotF_69 <- apply(n_compf_69[-1,], 2, sum, na.rm = TRUE)
+nTotF_04 <- apply(n_compf_04[-1,], 2, sum, na.rm = TRUE)
+
+# Fraction feeding overall
+fF_69 <- binom.confint(nTot_69-n_compf_69['Not Feeding',], nTot_69, 
+                       methods = 'wilson')[,-1]
+fF_04 <- binom.confint(nTot_04-n_compf_04['Not Feeding',], nTot_04, 
+                       methods = 'wilson')[,-1]
+
+# Fraction feeding on H. scobina of those observed feeding
+fHs_69 <- binom.confint(n_compf_69['Haustrum scobina',], nTotF_69, 
+                       methods = 'wilson')[,-1]
+n_compf_04['Haustrum scobina',][is.na(n_compf_04['Haustrum scobina',])] <- 0
+fHs_04 <- binom.confint(n_compf_04['Haustrum scobina',], nTotF_04, 
+                       methods = 'wilson')[,-1]
+
+
+
+
+size.stats <- sizes %>% group_by(Site, Year) %>%
+  summarise(mean = round(mean(PredSize, na.rm = TRUE),1),
+            max = max(PredSize, na.rm = TRUE))
+size.stats <- as.data.frame(size.stats)
+size.stats <- size.stats[size.stats$Site%in%siteInfo$Site,]
+
+
+s69 <- data.frame(nT = nTot_69[ord],
+                fF = 100*round(fF_69[,-c(1,2)],3)[ord,],
+                fHs = 100*round(fHs_69[,-c(1,2)],3)[ord,],
+                size.stats[size.stats$Year==1969,-c(1,2)])
+s04 <- data.frame(nT = nTot_04[ord],
+                     fF = 100*round(fF_04[,-c(1,2)],3)[ord,],
+                     fHs = 100*round(fHs_04[,-c(1,2)],3)[ord,],
+                     size.stats[size.stats$Year==2004,-c(1,2)])
+
+mean_fF_69 <- apply(s69, 2, mean)
+mean_fF_04 <- apply(s04, 2, mean)
+
+siteInfo <- siteInfo[order(siteInfo$Lat, decreasing = TRUE),]
+siteInfo[,c(2,3)] <- round(siteInfo[,c(2,3)], 4)
+
+summ <- data.frame(
+   Site = siteInfo[,1],
+   s69$nT,
+   s04$nT,
+   fF69 = paste0(s69$fF.mean,' (',s69$fF.lower,'-',s69$fF.upper,')'),
+   fF04 = paste0(s04$fF.mean,' (',s04$fF.lower,'-',s04$fF.upper,')'),
+   fHs69 = paste0(s69$fHs.mean,' (',s69$fHs.lower,'-',s69$fHs.upper,')'),
+   fHs04 = paste0(s04$fHs.mean,' (',s04$fHs.lower,'-',s04$fHs.upper,')')
+)
+
+summ <- rbind(summ, c('Average',
+                      mean_fF_69['nT'], mean_fF_04['nT'],
+                      mean_fF_69['fF.mean'], mean_fF_04['fF.mean'],
+                      mean_fF_69['fHs.mean'], mean_fF_04['fHs.mean'],
+                      mean_fF_69['mean'], mean_fF_04['mean'],
+                      mean_fF_69['max'], mean_fF_04['max']))
+
+summ$Site[which(summ$Site == "LeighTabletopRocksandBoulders")] <- "Leigh - Tabletop Rocks"
+summ$Site[which(summ$Site == "LeighEchinodermReef")] <- "Leigh - Echinoderm Reef"
+summ$Site[which(summ$Site == "Rangitoto Island - Whites Beach")] <- "Rangitoto Island"
+summ$Site[which(summ$Site == "Red Beach - Whangaparaoa")] <- "Whangaparaoa"
+
+# summ <- as.matrix(t(summ))
+latex(
+  summ,
+  file='../tables/Paine-SiteSumm.tex',
+  cgroup = c('Site', 'Observations', '\\% feeding', 
+             '\\% feeding on \\emph{H. scobina}'),
+  n.cgroup = c(1, 2, 2, 2),
+  colheads = c('','1968-9', '2004','1968-9', '2004','1968-9', '2004'),
+  n.rgroup = c(5,1),
+  rowname = NULL,
+  label = 'tab:summ',
+  center = 'centering',
+  first.hline.double = FALSE,
+  caption="Summary of Paine's 1968-9 and my 2004 feeding observations.  Observerations refers to the total number of whelks inspected. \\% feeding refers to the proportion of observed whelks that were feeding. \\% feeding on \\emph{H. scobina} refers to the proportion of feeding whelks that were feeding on \\emph{Haustrum scobina}.  Parentheticals are the biomial confidence interval (95\\% coverage probability) calculated using the Wilson method.",
+)
 
 ##########################################################################
 ##########################################################################

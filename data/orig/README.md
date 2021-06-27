@@ -1,0 +1,1 @@
+Handling time regression coefficients as published (with data) in [https://doi.org/10.1098/rspb.2013.1415](https://doi.org/10.1098/rspb.2013.1415) and provided in [https://doi:10.5061/dryad.6k144](https://doi:10.5061/dryad.6k144).

@@ -3,6 +3,7 @@
 ###############################################################################
 rm(list = ls())
 options(stringsAsFactors = F)
+library(dplyr)
 library(sfsmisc) # for eaxis
 library(binom) # for confidence intervals
 library(Hmisc) # for LaTeX table export
@@ -126,12 +127,12 @@ par(
 
 # feeding rate - feeding survey only sites
 xylim <- range(c(f_compf_69, f_compf_04), na.rm = TRUE)
-fR2all <-
+f.rho.all <-
   cor(as.vector(f_compf_69), as.vector(f_compf_04),
-      use = 'complete.obs') ^ 2
-flogR2all <-
+      use = 'complete.obs')
+flog.rho.all <-
   cor(log10(as.vector(f_compf_69)), log10(as.vector(f_compf_04)), 
-      use = 'complete.obs') ^ 2
+      use = 'complete.obs')
 matplot(
   f_compf_69,
   f_compf_04,
@@ -163,10 +164,8 @@ legend(
 )
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(R ^ 2 == .(
-    round(fR2all, 2)
-  ))), as.expression(bquote(R[10] ^ 2 == .(
-    round(flogR2all, 2)
+  legend = c(as.expression(bquote(rho == .(round(f.rho.all, 2)
+  ))), as.expression(bquote(rho[10] == .(round(flog.rho.all, 2)
   )))),
   bty = 'n',
   inset = 0.0,
@@ -176,12 +175,12 @@ legend(
 
 # Diet proportion - feeding survey only sites
 xylim <- range(c(fp_compf_69, fp_compf_04), na.rm = TRUE)
-fpR2all <-
+fp.rho.all <-
   cor(as.vector(fp_compf_69), as.vector(fp_compf_04), 
-      use = 'complete.obs') ^ 2
-fplogR2all <-
+      use = 'complete.obs')
+fplog.rho.all <-
   cor(log10(as.vector(fp_compf_69)), log10(as.vector(fp_compf_04)),
-      use = 'complete.obs') ^ 2
+      use = 'complete.obs')
 matplot(
   fp_compf_69,
   fp_compf_04,
@@ -213,8 +212,8 @@ legend(
 )
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(R ^ 2 == .(round(fpR2all, 3)))), 
-             as.expression(bquote(R[10] ^ 2 == .(round(fplogR2all, 2))))),
+  legend = c(as.expression(bquote(rho == .(round(fp.rho.all, 2)))), 
+             as.expression(bquote(rho[10] == .(round(fplog.rho.all, 2))))),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
@@ -223,12 +222,12 @@ legend(
 
 # handling time - feeding survey only sites
 xylim <- range(c(h_compf_69, h_compf_04), na.rm = TRUE)
-hR2all <-
+h.rho.all <-
   cor(as.vector(h_compf_69), as.vector(h_compf_04), 
-      use = 'complete.obs') ^ 2
-hlogR2all <-
+      use = 'complete.obs')
+hlog.rho.all <-
   cor(log10(as.vector(h_compf_69)), log10(as.vector(h_compf_04)), 
-      use = 'complete.obs') ^ 2
+      use = 'complete.obs')
 matplot(
   h_compf_69,
   h_compf_04,
@@ -250,8 +249,8 @@ eaxis(2, at = ats)
 box(lwd = 1)
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(R ^ 2 == .(round(hR2all, 2)))), 
-             as.expression(bquote(R[10] ^ 2 == .(round(hlogR2all, 2))))),
+  legend = c(as.expression(bquote(rho == .(round(h.rho.all, 2)))), 
+             as.expression(bquote(rho[10] == .(round(hlog.rho.all, 2))))),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
@@ -260,12 +259,12 @@ legend(
 
 # feeding rate - feeding and abundance survey sites
 xylim <- range(c(f_comp_69, f_comp_04), na.rm = TRUE)
-fR2 <-
+f.rho <-
   cor(as.vector(f_comp_69), as.vector(f_comp_04), 
-      use = 'complete.obs') ^ 2
-flogR2 <-
+      use = 'complete.obs')
+flog.rho <-
   cor(log10(as.vector(f_comp_69)), log10(as.vector(f_comp_04)), 
-      use = 'complete.obs') ^ 2
+      use = 'complete.obs')
 matplot(
   f_comp_69,
   f_comp_04,
@@ -287,8 +286,8 @@ eaxis(2, at = ats)
 box(lwd = 1)
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(R ^ 2 == .(round(fR2, 2)))), 
-             as.expression(bquote(R[10] ^ 2 == .(round(flogR2, 2))))),
+  legend = c(as.expression(bquote(rho == .(round(f.rho, 2)))), 
+             as.expression(bquote(rho[10] == .(round(flog.rho, 2))))),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
@@ -297,12 +296,12 @@ legend(
 
 # abundance
 xylim <- range(c(N_comp_69, N_comp_04), na.rm = TRUE) + 1E-1
-NR2 <-
+N.rho <-
   cor(as.vector(N_comp_69), as.vector(N_comp_04), 
-      use = 'complete.obs') ^ 2
-NlogR2 <-
+      use = 'complete.obs')
+Nlog.rho <-
   cor(log10(as.vector(N_comp_69)), log10(as.vector(N_comp_04)), 
-      use = 'complete.obs') ^ 2
+      use = 'complete.obs')
 matplot(
   N_comp_69,
   N_comp_04,
@@ -324,9 +323,10 @@ eaxis(2, at = ats)
 box(lwd = 1)
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(R ^ 2 < .(format(round(NR2, 4), 
-                                                    scientific = FALSE)
-  ))), as.expression(bquote(R[10] ^ 2 == .(round(NlogR2, 2))))),
+  legend = 
+    c(as.expression(bquote(rho == .(format(round(N.rho, 2), 
+                                                    scientific = FALSE)))), 
+      as.expression(bquote(rho[10] == .(round(Nlog.rho, 2))))),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
@@ -335,12 +335,12 @@ legend(
 
 # attack rate
 xylim <- range(c(a_comp_69, a_comp_04), na.rm = TRUE)
-aR2 <-
+a.rho <-
   cor(as.vector(a_comp_69), as.vector(a_comp_04), 
-      use = 'complete.obs') ^ 2
-alogR2 <-
+      use = 'complete.obs')
+alog.rho <-
   cor(log10(as.vector(a_comp_69)), log10(as.vector(a_comp_04)), 
-      use = 'complete.obs') ^ 2
+      use = 'complete.obs')
 matplot(
   a_comp_69,
   a_comp_04,
@@ -362,11 +362,11 @@ eaxis(2, at = ats)
 box(lwd = 1)
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(R ^ 2 == .(round(aR2, 3)
+  legend = c(as.expression(bquote(rho == .(round(a.rho, 2)
   ))),
-  as.expression(bquote(R[10] ^ 2 < .(format(round(NR2, 4), 
+  as.expression(bquote(rho[10] == .(format(round(N.rho, 2), 
                                             scientific = FALSE))
-  # as.expression(bquote(R[10] ^ 2 == .(round(alogR2, 2)
+  # as.expression(bquote(R[10] ^ 2 == .(round(alog.rho, 2)
   ))),
   bty = 'n',
   inset = 0.0,
@@ -378,16 +378,7 @@ dev.off()
 
 #########################
 # Compare relationships between feeding rate and abundance
-
-NfR2 <-
-  cor(c(as.vector(N_comp_69[-1, ]), as.vector(N_comp_04[-1, ])), c(as.vector(f_comp_69), as.vector(f_comp_04)), use =
-        'complete.obs') ^ 2
-NflogR2 <-
-  cor(log10(c(
-    as.vector(N_comp_69[-1, ]), as.vector(N_comp_04[-1, ])
-  )), log10(c(
-    as.vector(f_comp_69), as.vector(f_comp_04)
-  )), use = 'complete.obs') ^ 2
+#########################
 
 # Plaxiphora's abundance is 0, so can't log
 N_comp_04[N_comp_04 == 0] <- NA
@@ -434,8 +425,8 @@ par(
        log = 'xy',
        type = 'n',
        axes = FALSE,
-       xlab = expression(paste('Abundance ', (m^{-2}))),
-       ylab = expression(paste('Feeding rate ', (day^{-1}))))
+       xlab = expression(paste('Abundance, ', italic(N[i]))),
+       ylab = expression(paste('Feeding rate, ', italic(f[i]))))
   points(dat$N[dat$Year==1969], dat$f[dat$Year==1969],
          pch = 21,
          bg = 'grey30')
@@ -453,22 +444,24 @@ par(
          inset = 0,
          bty = 'n'
          )
-  fNlogR2 <- round(summary(reg3)$adj.r.squared,2)
-  legend(
-    'bottomright',
-    legend = as.expression(
-      bquote(R[10] ^ 2 == .(round(fNlogR2, 2) ))),
-    bty = 'n',
-    inset = 0.0,
-    y.intersp = 1,
-    cex = 0.7
-  )
+  # fNlog.R2 <- round(summary(reg3)$adj.r.squared,2)
+  # legend(
+  #   'bottomright',
+  #   legend = as.expression(
+  #     bquote(italic(R)[adj] ^ 2 == .(round(fNlog.R2, 2) ))),
+  #   bty = 'n',
+  #   inset = 0.0,
+  #   y.intersp = 1,
+  #   cex = 0.7
+  # )
   clip(xlim[1], xlim[2], ylim[1], ylim[2])
   abline(reg3, untf = F)
 dev.off()
 
 ##############################
 # Pred and prey sizes
+##############################
+# Size distributions
 sizes <- sizes[sizes$Site%in%siteInfo$Site,]
 
 preysizes <- sizes[sizes$PreySize > 0 ,]
@@ -487,7 +480,18 @@ Pred04 <- hist(sizes$PredSize[sizes$Year==2004], breaks = breaks,
 
 top <- c(max(Prey$counts), max(Pred$counts))
 
+# KS tests on distributions
+ks.prey <- ks.test(preysizes$PreySize[preysizes$Year==1969],
+                   preysizes$PreySize[preysizes$Year==2004])
+lapply(list(preysizes$PreySize[preysizes$Year==1969],
+            preysizes$PreySize[preysizes$Year==2004]), mean)
 
+ks.pred <- ks.test(sizes$PredSize[sizes$Year==1969],
+                   sizes$PredSize[sizes$Year==2004])
+lapply(list(sizes$PredSize[sizes$Year==1969],
+            sizes$PredSize[sizes$Year==2004]), mean)
+
+# Pred-prey size selectivity
 regPred <- lm(log(PredSize) ~ Year, data = preysizes)
 summary(regPred)
 regPrey <- lm(log(PreySize) ~ Year, data = preysizes)

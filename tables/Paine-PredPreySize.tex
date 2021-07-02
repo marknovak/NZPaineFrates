@@ -1,0 +1,14 @@
+%latex.default(xtable(summary(regPredPrey)), file = "../tables/Paine-PredPreySize.tex",     rowlabel = "", label = "tab:Size", first.hline.double = FALSE,     caption = "Summary table for the regression of predator size \n  on prey size.",     digits = 3, where = "!htbp")%
+\begin{table}[!htbp]
+\caption{Summary table for the regression of predator size 
+  on prey size.\label{tab:Size}} 
+\begin{center}
+\begin{tabular}{lrrrr}
+\hline
+\multicolumn{1}{l}{}&\multicolumn{1}{c}{Estimate}&\multicolumn{1}{c}{Std. Error}&\multicolumn{1}{c}{t value}&\multicolumn{1}{c}{Pr(\textgreater |t|)}\tabularnewline
+\hline
+(Intercept)&$2.336$&$0.0466$&$50.1$&$9.17e-170$\tabularnewline
+log(PreySize)&$0.456$&$0.0182$&$25.1$&$ 9.61e-83$\tabularnewline
+\hline
+\end{tabular}\end{center}
+\end{table}

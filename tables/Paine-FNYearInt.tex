@@ -1,0 +1,18 @@
+%latex.default(xtable(summary(regFNYearInt)), file = "../tables/Paine-FNYearInt.tex",     rowlabel = "", label = "tab:FNYint", first.hline.double = FALSE,     caption = "Summary table for the regression of prey-specific feeding rate \n  on prey-specific abundance,\n  time period (\\emph{Year}), \n  and their interaction.",     digits = 3, where = "!htbp")%
+\begin{table}[!htbp]
+\caption{Summary table for the regression of prey-specific feeding rate 
+  on prey-specific abundance,
+  time period (\emph{Year}), 
+  and their interaction.\label{tab:FNYint}} 
+\begin{center}
+\begin{tabular}{lrrrr}
+\hline
+\multicolumn{1}{l}{}&\multicolumn{1}{c}{Estimate}&\multicolumn{1}{c}{Std. Error}&\multicolumn{1}{c}{t value}&\multicolumn{1}{c}{Pr(\textgreater |t|)}\tabularnewline
+\hline
+(Intercept)&$-3.348$&$0.220$&$-15.230$&$8.02e-13$\tabularnewline
+log10(N)&$ 0.507$&$0.235$&$  2.156$&$4.28e-02$\tabularnewline
+Year2004&$-0.168$&$0.334$&$ -0.505$&$6.19e-01$\tabularnewline
+log10(N):Year2004&$ 0.116$&$0.355$&$  0.327$&$7.47e-01$\tabularnewline
+\hline
+\end{tabular}\end{center}
+\end{table}

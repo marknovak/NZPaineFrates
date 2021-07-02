@@ -1,0 +1,16 @@
+%latex.default(xtable(summary(regPredPreyYearInt)), file = "../tables/Paine-PredPreySizeYearInt.tex",     rowlabel = "", label = "tab:SizeYint", first.hline.double = FALSE,     caption = "Summary table for the regression of predator size on prey size,\n  time period (\\emph{Year}), and their interaction.",     digits = 3, where = "!htbp")%
+\begin{table}[!htbp]
+\caption{Summary table for the regression of predator size on prey size,
+  time period (\emph{Year}), and their interaction.\label{tab:SizeYint}} 
+\begin{center}
+\begin{tabular}{lrrrr}
+\hline
+\multicolumn{1}{l}{}&\multicolumn{1}{c}{Estimate}&\multicolumn{1}{c}{Std. Error}&\multicolumn{1}{c}{t value}&\multicolumn{1}{c}{Pr(\textgreater |t|)}\tabularnewline
+\hline
+(Intercept)&$ 0.491060$&$5.83524$&$ 0.0842$&$0.933$\tabularnewline
+log(PreySize)&$ 1.357255$&$2.35701$&$ 0.5758$&$0.565$\tabularnewline
+Year&$ 0.000932$&$0.00294$&$ 0.3174$&$0.751$\tabularnewline
+log(PreySize):Year&$-0.000456$&$0.00119$&$-0.3833$&$0.702$\tabularnewline
+\hline
+\end{tabular}\end{center}
+\end{table}

@@ -1,6 +1,6 @@
-###############################################################################
-###############################################################################
-###############################################################################
+#########################################################################
+#########################################################################
+#########################################################################
 rm(list = ls())
 options(stringsAsFactors = F)
 library(dplyr)
@@ -8,10 +8,11 @@ library(sfsmisc) # for eaxis
 library(binom) # for confidence intervals
 library(Hmisc) # for LaTeX table export
   options(xdvicmd='open')
+library(xtable) # for LaTeX summary table export
 ############################
 
 # All data at hand
-siteInfo <- read.csv("../data/derived/NZ-1969_2004-Site-LatLon.csv")
+focalSites <- read.csv("../data/derived/NZ-1969_2004-Site-focal.csv")$x
 
 sizes <- 
   read.csv("../data/derived/NZ-1969_2004-tab_Sizes.csv")
@@ -109,6 +110,19 @@ a_comp_04 <-
 
 a_comp_04[is.infinite(a_comp_04)] <- NA
 
+
+############################
+# Define convenience function to place asterisk(s) for "significance"
+signif <- function(x){
+  p <- x$p.value
+  out <-ifelse(p < 0.001, '***',
+        ifelse(p < 0.01, '**',
+        ifelse(p < 0.05, '*',
+        ifelse(p < 0.1, '',
+                 ' ns'))))
+  return(out)
+}
+
 ############################
 pdf('../figs/Paine-Comparisons.pdf',
     width = 8,
@@ -128,11 +142,14 @@ par(
 # feeding rate - feeding survey only sites
 xylim <- range(c(f_compf_69, f_compf_04), na.rm = TRUE)
 f.rho.all <-
-  cor(as.vector(f_compf_69), as.vector(f_compf_04),
+  cor.test(as.vector(f_compf_69), as.vector(f_compf_04),
       use = 'complete.obs')
 flog.rho.all <-
-  cor(log10(as.vector(f_compf_69)), log10(as.vector(f_compf_04)), 
+  cor.test(log10(as.vector(f_compf_69)), log10(as.vector(f_compf_04)), 
       use = 'complete.obs')
+f.rhos.all <-
+  cor.test(as.vector(f_compf_69), as.vector(f_compf_04),
+      use = 'complete.obs', method = 'spearman')
 matplot(
   f_compf_69,
   f_compf_04,
@@ -164,9 +181,17 @@ legend(
 )
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(rho == .(round(f.rho.all, 2)
-  ))), as.expression(bquote(rho[10] == .(round(flog.rho.all, 2)
-  )))),
+  legend = c(
+    as.expression(bquote(italic(r) == 
+                           paste(.(round(f.rho.all$estimate, 2)), 
+                                 .(signif(f.rho.all))))), 
+    as.expression(bquote(italic(r)[10] == 
+                           paste(.(round(flog.rho.all$estimate, 2)), 
+                                 .(signif(flog.rho.all))))),
+    as.expression(bquote(italic(r)[s] == 
+                           paste(.(round(f.rhos.all$estimate, 2)), 
+                                 .(signif(f.rhos.all)))))
+    ),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
@@ -176,11 +201,14 @@ legend(
 # Diet proportion - feeding survey only sites
 xylim <- range(c(fp_compf_69, fp_compf_04), na.rm = TRUE)
 fp.rho.all <-
-  cor(as.vector(fp_compf_69), as.vector(fp_compf_04), 
+  cor.test(as.vector(fp_compf_69), as.vector(fp_compf_04), 
       use = 'complete.obs')
 fplog.rho.all <-
-  cor(log10(as.vector(fp_compf_69)), log10(as.vector(fp_compf_04)),
+  cor.test(log10(as.vector(fp_compf_69)), log10(as.vector(fp_compf_04)),
       use = 'complete.obs')
+fp.rhos.all <-
+  cor.test(as.vector(fp_compf_69), as.vector(fp_compf_04), 
+      use = 'complete.obs', method = 'spearman')
 matplot(
   fp_compf_69,
   fp_compf_04,
@@ -212,22 +240,34 @@ legend(
 )
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(rho == .(round(fp.rho.all, 2)))), 
-             as.expression(bquote(rho[10] == .(round(fplog.rho.all, 2))))),
+  legend = c(
+    as.expression(bquote(italic(r) == 
+                           paste(.(round(fp.rho.all$estimate, 2)), 
+                                 .(signif(fp.rho.all))))), 
+    as.expression(bquote(italic(r)[10] == 
+                           paste(.(round(fplog.rho.all$estimate, 2)), 
+                                 .(signif(fplog.rho.all))))),
+    as.expression(bquote(italic(r)[s] == 
+                           paste(.(round(fp.rhos.all$estimate, 2)), 
+                                 .(signif(fp.rhos.all)))))
+  ),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
   cex = 0.7
 )
 
-# handling time - feeding survey only sites
+# detection/handling time - feeding survey only sites
 xylim <- range(c(h_compf_69, h_compf_04), na.rm = TRUE)
 h.rho.all <-
-  cor(as.vector(h_compf_69), as.vector(h_compf_04), 
+  cor.test(as.vector(h_compf_69), as.vector(h_compf_04), 
       use = 'complete.obs')
 hlog.rho.all <-
-  cor(log10(as.vector(h_compf_69)), log10(as.vector(h_compf_04)), 
+  cor.test(log10(as.vector(h_compf_69)), log10(as.vector(h_compf_04)), 
       use = 'complete.obs')
+h.rhos.all <-
+  cor.test(as.vector(h_compf_69), as.vector(h_compf_04), 
+      use = 'complete.obs', method = 'spearman')
 matplot(
   h_compf_69,
   h_compf_04,
@@ -236,12 +276,12 @@ matplot(
   bg = 'grey',
   log = 'xy',
   xlab = '',
-  ylab = '2004 handling time',
+  ylab = '2004 detection time',
   axes = FALSE,
   xlim = xylim,
   ylim = xylim
 )
-title(xlab = '1968-9 handling time', line = 1.4)
+title(xlab = '1968-9 detection time', line = 1.4)
 abline(0, 1, lty = 2, col = 'grey70')
 ats <- 10 ^ seq(-1, 4)
 eaxis(1, at = ats)
@@ -249,8 +289,17 @@ eaxis(2, at = ats)
 box(lwd = 1)
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(rho == .(round(h.rho.all, 2)))), 
-             as.expression(bquote(rho[10] == .(round(hlog.rho.all, 2))))),
+  legend = c(
+      as.expression(bquote(italic(r) == 
+                             paste(.(round(h.rho.all$estimate, 2)), 
+                                   .(signif(h.rho.all))))), 
+      as.expression(bquote(italic(r)[10] == 
+                             paste(.(round(hlog.rho.all$estimate, 2)), 
+                                   .(signif(hlog.rho.all))))),
+      as.expression(bquote(italic(r)[s] == 
+                             paste(.(round(h.rhos.all$estimate, 2)), 
+                                   .(signif(h.rhos.all)))))
+    ),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
@@ -260,11 +309,14 @@ legend(
 # feeding rate - feeding and abundance survey sites
 xylim <- range(c(f_comp_69, f_comp_04), na.rm = TRUE)
 f.rho <-
-  cor(as.vector(f_comp_69), as.vector(f_comp_04), 
+  cor.test(as.vector(f_comp_69), as.vector(f_comp_04), 
       use = 'complete.obs')
 flog.rho <-
-  cor(log10(as.vector(f_comp_69)), log10(as.vector(f_comp_04)), 
+  cor.test(log10(as.vector(f_comp_69)), log10(as.vector(f_comp_04)), 
       use = 'complete.obs')
+f.rhos <-
+  cor.test(as.vector(f_comp_69), as.vector(f_comp_04), 
+      use = 'complete.obs', method = 'spearman')
 matplot(
   f_comp_69,
   f_comp_04,
@@ -286,8 +338,17 @@ eaxis(2, at = ats)
 box(lwd = 1)
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(rho == .(round(f.rho, 2)))), 
-             as.expression(bquote(rho[10] == .(round(flog.rho, 2))))),
+  legend = c(
+    as.expression(bquote(italic(r) == 
+                           paste(.(round(f.rho$estimate, 2)), 
+                                 .(signif(f.rho))))), 
+    as.expression(bquote(italic(r)[10] == 
+                           paste(.(round(flog.rho$estimate, 2)), 
+                                 .(signif(flog.rho))))),
+    as.expression(bquote(italic(r)[s] == 
+                           paste(.(round(f.rhos$estimate, 2)), 
+                                 .(signif(f.rhos)))))
+  ),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
@@ -297,11 +358,14 @@ legend(
 # abundance
 xylim <- range(c(N_comp_69, N_comp_04), na.rm = TRUE) + 1E-1
 N.rho <-
-  cor(as.vector(N_comp_69), as.vector(N_comp_04), 
+  cor.test(as.vector(N_comp_69), as.vector(N_comp_04), 
       use = 'complete.obs')
 Nlog.rho <-
-  cor(log10(as.vector(N_comp_69)), log10(as.vector(N_comp_04)), 
+  cor.test(log10(as.vector(N_comp_69)), log10(as.vector(N_comp_04)), 
       use = 'complete.obs')
+N.rhos <-
+  cor.test(as.vector(N_comp_69), as.vector(N_comp_04), 
+      use = 'complete.obs', method = 'spearman')
 matplot(
   N_comp_69,
   N_comp_04,
@@ -323,10 +387,17 @@ eaxis(2, at = ats)
 box(lwd = 1)
 legend(
   'bottomright',
-  legend = 
-    c(as.expression(bquote(rho == .(format(round(N.rho, 2), 
-                                                    scientific = FALSE)))), 
-      as.expression(bquote(rho[10] == .(round(Nlog.rho, 2))))),
+  legend = c(
+    as.expression(bquote(italic(r) == 
+                           paste(.(round(N.rho$estimate, 2)), 
+                                 .(signif(N.rho))))), 
+    as.expression(bquote(italic(r)[10] == 
+                           paste(.(round(Nlog.rho$estimate, 2)), 
+                                 .(signif(Nlog.rho))))),
+    as.expression(bquote(italic(r)[s] == 
+                           paste(.(round(N.rhos$estimate, 2)), 
+                                 .(signif(N.rhos)))))
+  ),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
@@ -336,11 +407,14 @@ legend(
 # attack rate
 xylim <- range(c(a_comp_69, a_comp_04), na.rm = TRUE)
 a.rho <-
-  cor(as.vector(a_comp_69), as.vector(a_comp_04), 
+  cor.test(as.vector(a_comp_69), as.vector(a_comp_04), 
       use = 'complete.obs')
 alog.rho <-
-  cor(log10(as.vector(a_comp_69)), log10(as.vector(a_comp_04)), 
+  cor.test(log10(as.vector(a_comp_69)), log10(as.vector(a_comp_04)), 
       use = 'complete.obs')
+a.rhos <-
+  cor.test(as.vector(a_comp_69), as.vector(a_comp_04), 
+      use = 'complete.obs', method = 'spearman')
 matplot(
   a_comp_69,
   a_comp_04,
@@ -362,12 +436,17 @@ eaxis(2, at = ats)
 box(lwd = 1)
 legend(
   'bottomright',
-  legend = c(as.expression(bquote(rho == .(round(a.rho, 2)
-  ))),
-  as.expression(bquote(rho[10] == .(format(round(N.rho, 2), 
-                                            scientific = FALSE))
-  # as.expression(bquote(R[10] ^ 2 == .(round(alog.rho, 2)
-  ))),
+  legend = c(
+    as.expression(bquote(italic(r) == 
+                           paste(.(round(a.rho$estimate, 2)), 
+                                 .(signif(a.rho))))), 
+    as.expression(bquote(italic(r)[10] == 
+                           paste(.(round(alog.rho$estimate, 2)), 
+                                 .(signif(alog.rho))))),
+    as.expression(bquote(italic(r)[s] == 
+                           paste(.(round(a.rhos$estimate, 2)), 
+                                 .(signif(a.rhos)))))
+  ),
   bty = 'n',
   inset = 0.0,
   y.intersp = 1,
@@ -383,7 +462,7 @@ dev.off()
 # Plaxiphora's abundance is 0, so can't log
 N_comp_04[N_comp_04 == 0] <- NA
 
-# Seperate models
+# Separate models
 reg69 <- lm(log10(as.vector(f_comp_69)) ~ log10(as.vector(N_comp_69[-1, ])))
 reg04 <- lm(log10(as.vector(f_comp_04)) ~ log10(as.vector(N_comp_04[-1, ])))
 
@@ -400,10 +479,54 @@ dat <- data.frame(
 )
 
 
-summary(lm(log10(f) ~ log10(N) * Year, data = dat)) # Year & intxn not signif
-summary(lm(log10(f) ~ log10(N) + Year, data = dat)) # Year not signif
-reg3 <- lm(log10(f) ~ log10(N), data = dat) # Intercept and slope signif
-summary(reg3)
+regFNYearInt <- lm(log10(f) ~ log10(N) * Year, data = dat)
+summary(regFNYearInt) # Year & intxn not signif
+regFNYear <- lm(log10(f) ~ log10(N) + Year, data = dat)
+summary(regFNYear) # Year not signif
+regFN <- lm(log10(f) ~ log10(N), data = dat)
+summary(regFN) # Intercept and slope signif
+
+latex(
+  xtable(summary(regFNYearInt)),
+  file='../tables/Paine-FNYearInt.tex',
+  # rowname = NULL,
+  rowlabel = '',
+  label = 'tab:FNYint',
+  # center = 'centering',
+  first.hline.double = FALSE,
+  caption="Summary table for the regression of prey-specific feeding rate 
+  on prey-specific abundance,
+  time period (\\emph{Year}), 
+  and their interaction.",
+  digits=3,
+  where="!htbp"
+)
+latex(
+  xtable(summary(regFNYear)),
+  file='../tables/Paine-FNYear.tex',
+  # rowname = NULL,
+  rowlabel = '',
+  label = 'tab:FNY',
+  # center = 'centering',
+  first.hline.double = FALSE,
+  caption="Summary table for the regression of prey-specific feeding rate 
+  on prey-specific abundance and time period (\\emph{Year}).",
+  digits=3,
+  where="!htbp"
+)
+latex(
+  xtable(summary(regFN)),
+  file='../tables/Paine-FN.tex',
+  # rowname = NULL,
+  rowlabel = '',
+  label = 'tab:FN',
+  # center = 'centering',
+  first.hline.double = FALSE,
+  caption="Summary table for the regression of prey-specific feeding rate 
+  on prey-specific abundance.",
+  digits=3,
+  where="!htbp"
+)
 
 xlim <- range(dat$N[!is.na(dat$f)], na.rm = TRUE)
 ylim <- range(dat$f, na.rm = TRUE)
@@ -444,25 +567,15 @@ par(
          inset = 0,
          bty = 'n'
          )
-  # fNlog.R2 <- round(summary(reg3)$adj.r.squared,2)
-  # legend(
-  #   'bottomright',
-  #   legend = as.expression(
-  #     bquote(italic(R)[adj] ^ 2 == .(round(fNlog.R2, 2) ))),
-  #   bty = 'n',
-  #   inset = 0.0,
-  #   y.intersp = 1,
-  #   cex = 0.7
-  # )
   clip(xlim[1], xlim[2], ylim[1], ylim[2])
-  abline(reg3, untf = F)
+  abline(regFN, untf = F)
 dev.off()
 
 ##############################
 # Pred and prey sizes
 ##############################
 # Size distributions
-sizes <- sizes[sizes$Site%in%siteInfo$Site,]
+sizes <- sizes[sizes$Site%in%focalSites,]
 
 preysizes <- sizes[sizes$PreySize > 0 ,]
 breaks = seq(0, max(sizes$PreySize) + 1, 1)
@@ -492,14 +605,53 @@ lapply(list(sizes$PredSize[sizes$Year==1969],
             sizes$PredSize[sizes$Year==2004]), mean)
 
 # Pred-prey size selectivity
-regPred <- lm(log(PredSize) ~ Year, data = preysizes)
-summary(regPred)
-regPrey <- lm(log(PreySize) ~ Year, data = preysizes)
-summary(regPrey)
-regPredPrey <- lm(log(PredSize) ~ log(PreySize) * Year, data = preysizes)
+regPredPreyYearInt <- lm(log(PredSize) ~ log(PreySize) * Year, data = preysizes)
+summary(regPredPreyYearInt)
+regPredPreyYear <- lm(log(PredSize) ~ log(PreySize) + Year, data = preysizes)
+summary(regPredPreyYear)
+regPredPrey <- lm(log(PredSize) ~ log(PreySize), data = preysizes)
 summary(regPredPrey)
-regPredPrey <- lm(log(PredSize) ~ log(PreySize) + Year, data = preysizes)
-summary(regPredPrey)
+
+
+latex(
+  xtable(summary(regPredPreyYearInt)),
+  file='../tables/Paine-PredPreySizeYearInt.tex',
+  # rowname = NULL,
+  rowlabel = '',
+  label = 'tab:SizeYint',
+  # center = 'centering',
+  first.hline.double = FALSE,
+  caption="Summary table for the regression of predator size on prey size,
+  time period (\\emph{Year}), and their interaction.",
+  digits = 3,
+  where = "!htbp"
+)
+latex(
+  xtable(summary(regPredPreyYear)),
+  file='../tables/Paine-PredPreySizeYear.tex',
+  # rowname = NULL,
+  rowlabel = '',
+  label = 'tab:SizeY',
+  # center = 'centering',
+  first.hline.double = FALSE,
+  caption="Summary table for the regression of predator size on prey size and 
+  time period (\\emph{Year}).",
+  digits = 3,
+  where = "!htbp"
+)
+latex(
+  xtable(summary(regPredPrey)),
+  file='../tables/Paine-PredPreySize.tex',
+  # rowname = NULL,
+  rowlabel = '',
+  label = 'tab:Size',
+  # center = 'centering',
+  first.hline.double = FALSE,
+  caption="Summary table for the regression of predator size 
+  on prey size.",
+  digits = 3,
+  where = "!htbp"
+)
 
 
 regPredPrey69 <- lm(log(PredSize) ~ log(PreySize), 
@@ -597,13 +749,9 @@ dev.off()
 #################################
 # Summary table
 ###############
-
 # Total count of observations (feeding + not feeding)
 nTot_69 <- apply(n_compf_69, 2, sum, na.rm = TRUE)
 nTot_04 <- apply(n_compf_04, 2, sum, na.rm = TRUE)
-
-ord <- order(names(nTot_69))
-
 
 # Total count of observations (feeding)
 nTotF_69 <- apply(n_compf_69[-1,], 2, sum, na.rm = TRUE)
@@ -614,6 +762,7 @@ fF_69 <- binom.confint(nTot_69-n_compf_69['Not Feeding',], nTot_69,
                        methods = 'wilson')[,-1]
 fF_04 <- binom.confint(nTot_04-n_compf_04['Not Feeding',], nTot_04, 
                        methods = 'wilson')[,-1]
+rownames(fF_69) <- rownames(fF_04) <- names(nTot_69)
 
 # Fraction feeding on H. scobina of those observed feeding
 fHs_69 <- binom.confint(n_compf_69['Haustrum scobina',], nTotF_69, 
@@ -621,34 +770,30 @@ fHs_69 <- binom.confint(n_compf_69['Haustrum scobina',], nTotF_69,
 n_compf_04['Haustrum scobina',][is.na(n_compf_04['Haustrum scobina',])] <- 0
 fHs_04 <- binom.confint(n_compf_04['Haustrum scobina',], nTotF_04, 
                        methods = 'wilson')[,-1]
+rownames(fHs_69) <- rownames(fHs_04) <- names(nTot_69)
 
-
-
+fF_69 <- fF_69[order(rownames(fF_69)),]
+fF_04 <- fF_04[order(rownames(fF_04)),]
+fHs_69 <- fHs_69[order(rownames(fHs_69)),]
+fHs_04 <- fHs_04[order(rownames(fHs_04)),]
 
 size.stats <- sizes %>% group_by(Site, Year) %>%
   summarise(mean = round(mean(PredSize, na.rm = TRUE),1),
             max = max(PredSize, na.rm = TRUE))
 size.stats <- as.data.frame(size.stats)
-size.stats <- size.stats[size.stats$Site%in%siteInfo$Site,]
-
+size.stats <- size.stats[size.stats$Site%in%focalSites,]
 
 s69 <- data.frame(nT = nTot_69[ord],
-                fF = 100*round(fF_69[,-c(1,2)],3)[ord,],
-                fHs = 100*round(fHs_69[,-c(1,2)],3)[ord,],
+                fF = 100*round(fF_69[,-c(1,2)],3),
+                fHs = 100*round(fHs_69[,-c(1,2)],3),
                 size.stats[size.stats$Year==1969,-c(1,2)])
 s04 <- data.frame(nT = nTot_04[ord],
-                     fF = 100*round(fF_04[,-c(1,2)],3)[ord,],
-                     fHs = 100*round(fHs_04[,-c(1,2)],3)[ord,],
+                     fF = 100*round(fF_04[,-c(1,2)],3),
+                     fHs = 100*round(fHs_04[,-c(1,2)],3),
                      size.stats[size.stats$Year==2004,-c(1,2)])
 
-mean_fF_69 <- apply(s69, 2, mean)
-mean_fF_04 <- apply(s04, 2, mean)
-
-siteInfo <- siteInfo[order(siteInfo$Lat, decreasing = TRUE),]
-siteInfo[,c(2,3)] <- round(siteInfo[,c(2,3)], 4)
-
 summ <- data.frame(
-   Site = siteInfo[,1],
+   Site = rownames(s04),
    s69$nT,
    s04$nT,
    fF69 = paste0(s69$fF.mean,' (',s69$fF.lower,'-',s69$fF.upper,')'),
@@ -657,26 +802,34 @@ summ <- data.frame(
    fHs04 = paste0(s04$fHs.mean,' (',s04$fHs.lower,'-',s04$fHs.upper,')')
 )
 
-summ <- rbind(summ, c('Average',
-                      mean_fF_69['nT'], mean_fF_04['nT'],
+sum_fF_69 <- apply(s69, 2, sum)
+sum_fF_04 <- apply(s04, 2, sum)
+mean_fF_69 <- apply(s69, 2, mean)
+mean_fF_04 <- apply(s04, 2, mean)
+
+summ <- rbind(summ, c('Sum/Average',
+                      sum_fF_69['nT'], sum_fF_04['nT'],
                       mean_fF_69['fF.mean'], mean_fF_04['fF.mean'],
                       mean_fF_69['fHs.mean'], mean_fF_04['fHs.mean'],
                       mean_fF_69['mean'], mean_fF_04['mean'],
                       mean_fF_69['max'], mean_fF_04['max']))
 
+summ$Site[which(summ$Site == "Leigh...Waterfall.Rocks")] <- "Leigh - Waterfall Rocks"
 summ$Site[which(summ$Site == "LeighTabletopRocksandBoulders")] <- "Leigh - Tabletop Rocks"
 summ$Site[which(summ$Site == "LeighEchinodermReef")] <- "Leigh - Echinoderm Reef"
-summ$Site[which(summ$Site == "Rangitoto Island - Whites Beach")] <- "Rangitoto Island"
-summ$Site[which(summ$Site == "Red Beach - Whangaparaoa")] <- "Whangaparaoa"
+summ$Site[which(summ$Site == "Rangitoto.Island...Whites.Beach")] <- "Rangitoto Island - Whites Beach"
+summ$Site[which(summ$Site == "Red.Beach...Whangaparaoa")] <- "Red Beach - Whangaparaoa"
 
-# summ <- as.matrix(t(summ))
 latex(
   summ,
   file='../tables/Paine-SiteSumm.tex',
-  cgroup = c('Site', 'Observations', '\\% feeding', 
+  cgroup = c('', 'Observations', '\\% feeding', 
              '\\% feeding on \\emph{H. scobina}'),
   n.cgroup = c(1, 2, 2, 2),
-  colheads = c('','1968-9', '2004','1968-9', '2004','1968-9', '2004'),
+  colheads = c('Site',
+               '1968-9', '2004',
+               '1968-9', '2004',
+               '1968-9', '2004'),
   n.rgroup = c(5,1),
   rowname = NULL,
   label = 'tab:summ',
@@ -685,7 +838,6 @@ latex(
   caption="Summary of Paine's 1968-9 and my 2004 feeding observations.  Observerations refers to the total number of whelks inspected. \\% feeding refers to the proportion of observed whelks that were feeding. \\% feeding on \\emph{H. scobina} refers to the proportion of feeding whelks that were feeding on \\emph{Haustrum scobina}.  Parentheticals are the biomial confidence interval (95\\% coverage probability) calculated using the Wilson method.",
 )
 
-##########################################################################
-##########################################################################
-##########################################################################
-
+#########################################################################
+#########################################################################
+#########################################################################

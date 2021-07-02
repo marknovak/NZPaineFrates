@@ -1,6 +1,6 @@
-###############################################################################
-###############################################################################
-###############################################################################
+###################################################################
+###################################################################
+###################################################################
 rm(list = ls())
 options(stringsAsFactors = F)
 
@@ -9,6 +9,8 @@ library(tidyr)
 library(dplyr)
 library(lubridate)
 library(rgdal) # for lat-long conversion
+library(Hmisc) # for LaTeX table export
+  options(xdvicmd='open')
 
 ##############################
 ##############################
@@ -26,6 +28,29 @@ sitecoord <- read.csv("../data/orig/NZ-Access-NZwide-SiteInfo.csv")
 ###########################
 fobs <- subset(fobs, ObservationType == 'Systematic Census')
 
+############################
+# Convert site locations (NZMG) to WGS84
+# https://stackoverflow.com/questions/58585146/convert-nzmg-coordinates-to-lat-long
+
+dat <- data.frame(id = sitecoord$Site, 
+                  x = sitecoord$NZ.E.coordinate, 
+                  y = sitecoord$NZ.N.coordinate)
+
+# dat <- dat[dat$id%in%sites.fcomp,]
+dat <- dat[dat$id%in%fobs$Site,]
+dat <- subset(dat, !is.na(x))
+
+sp::coordinates(dat) = ~x+y
+
+proj4string <- "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +towgs84=59.47,-5.04,187.44,0.47,-0.1,1.024,-4.5993 +nadgrids=nzgd2kgrid0005.gsb +no_defs"
+
+sp::proj4string(dat) = sp::CRS(proj4string) 
+data_wgs84 <- sp::spTransform(dat, sp::CRS('+init=epsg:4326'))
+siteInfo <- data.frame(Site = data_wgs84$id,
+                         Lat = round(coordinates(data_wgs84)[,2], 4),
+                         Lon = round(coordinates(data_wgs84)[,1], 4))
+
+#############################
 abund.raw <-
   abund.raw[, -which(apply(abund.raw, 2, 
                            function(x) { all(is.na(x)) }))]
@@ -64,8 +89,6 @@ fobs$Site[which(fobs$Site == "RangitotoIslandWhiteBeach")] <-
   unique(abund$Site[grep('Rangitoto', abund$Site)])
 fobs$Site[which(fobs$Site == "RedBeach")] <-
   unique(abund$Site[grep('Red Beach - Whangaparaoa', abund$Site)])
-fobs$Site[which(fobs$Site == "WhangareiBaptistCamp")] <-
-  unique(abund$Site[grep('Whangarei', abund$Site)])
 
 tab.fobs <- table(unique(fobs[, c('Site', 'Year')]))
 tab.abund <- table(unique(abund[, c('Site', 'Year')]))
@@ -98,43 +121,19 @@ Y <-
 abund_comp <-
   Y %>% group_by(Site, Year, Species) %>% summarise(N = mean(Dens, na.rm = TRUE))
 
-############################
-# Convert site locations (NZMG) to WGS84
-# https://stackoverflow.com/questions/58585146/convert-nzmg-coordinates-to-lat-long
-
-sitecoord$Site[which(sitecoord$Site == "LeighWaterfallandPenny'sRocks")] <- sites.fcomp[grep('Waterfall', sites.fcomp)]
-sitecoord$Site[which(sitecoord$Site == "RangitotoIslandWhiteBeach")] <- sites.fcomp[grep('Rangitoto', sites.fcomp)]
-sitecoord$Site[which(sitecoord$Site == "RedBeach")] <- sites.fcomp[grep('Red Beach - Whangaparaoa', sites.fcomp)]
-
-dat <- data.frame(id = sitecoord$Site, 
-                  x = sitecoord$NZ.E.coordinate, 
-                  y = sitecoord$NZ.N.coordinate)
-
-dat <- dat[dat$id%in%sites.fcomp,]
-
-sp::coordinates(dat) = ~x+y
-
-proj4string <- "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +towgs84=59.47,-5.04,187.44,0.47,-0.1,1.024,-4.5993 +nadgrids=nzgd2kgrid0005.gsb +no_defs"
-
-sp::proj4string(dat) = sp::CRS(proj4string) 
-data_wgs84 <- sp::spTransform(dat, sp::CRS('+init=epsg:4326'))
-siteInfo <- data.frame(Site = data_wgs84$id,
-                         Lat = coordinates(data_wgs84)[,2],
-                         Lon = coordinates(data_wgs84)[,1])
-
 ################################
-fobs$Temp <-
-  assu.Temp  # Should probably break up by site (latitude and island side)
+fobs$Temp <- assu.Temp 
 fobs$Year[which(fobs$Year == 1968)] <- 1969 # For convenience
 
 fobs$Counter[!grepl("Novak", fobs$Counter)] <- 'Paine'
 table(fobs$Site, fobs$Counter)
-# nPaine<-length(grep("Novak",fobs$Counter,invert=TRUE))
-# nMe<-length(grep("Novak",fobs$Counter))
-# nPaineF<-length(grep("Novak",fobs$Counter[which(fobs$Prey!='Not Feeding')],invert=TRUE))
-# nMeF<-length(grep("Novak",fobs$Counter[which(fobs$Prey!='Not Feeding')]))
-# c(Paine=nPaine,Me=nMe,Total=nrow(fobs))
-# c(PaineFracFeed=nPaineF/nPaine,MeFracFeed=nMeF/nMe,Total=nrow(subset(fobs,Prey!='Not Feeding'))/nrow(fobs))
+
+nPaine<-length(grep("Novak",fobs$Counter,invert=TRUE))
+nMe<-length(grep("Novak",fobs$Counter))
+nPaineF<-length(grep("Novak",fobs$Counter[which(fobs$Prey!='Not Feeding')],invert=TRUE))
+nMeF<-length(grep("Novak",fobs$Counter[which(fobs$Prey!='Not Feeding')]))
+c(Paine=nPaine,Me=nMe,Total=nrow(fobs))
+c(PaineFracFeed=nPaineF/nPaine,MeFracFeed=nMeF/nMe,Total=nrow(subset(fobs,Prey!='Not Feeding'))/nrow(fobs))
 
 prey <- sort(unique(fobs$Prey[fobs$Prey != "Not Feeding"]))
 
@@ -146,7 +145,23 @@ match <- data.frame(match, MatchToPred = NA, MatchToPrey = NA)
 write.csv(match,
           '../data/derived/NZ-HandlingTimes-Paine-Prey2match.csv',
           row.names = FALSE)
+
 Match <- read.csv('../data/orig/NZ-HandlingTimes-Paine-PreyMatch.csv')
+
+rem <- which(Match$Pred == Match$MatchToPred 
+             & Match$Prey == Match$MatchToPrey)
+latex(
+  Match[-rem,],
+  file='../tables/Paine-PredPreyMatches.tex',
+  cgroup = c('Unmeasured','Matched to measured'),
+  n.cgroup = c(2, 2),
+  colheads = c('Predator','Prey','Predator','Prey'),
+  rowname = NULL,
+  label = 'tab:matches',
+  first.hline.double = FALSE,
+  caption="Prey for which detection times had not been measured in the laboratory experiments of Novak (2013) were assigned the regression coefficients of prey species for which they had been measured.",
+  where = "!htbp"
+)
 
 # drop unidentified prey
 fobs <- subset(fobs, Prey != 'UNID')
@@ -330,6 +345,33 @@ N_comp_04 <- N_comp_04[c(nf, seq(1, nrow(N_comp_04))[-nf]), ]
 sizes <- fobs[,c('Pred','Year','Site','Area','PredSize','Prey','PreySize')]
 
 ############################
+# Site information
+fobs.SiteYr <- as.matrix(table(fobs$Site, fobs$Year))
+fobs.SiteYr[fobs.SiteYr > 0] <- 'x'
+fobs.SiteYr[fobs.SiteYr == 0] <- ''
+fobs.SiteYr <- data.frame(Site = rownames(fobs.SiteYr),
+                     'F1968.9' = fobs.SiteYr[,1],
+                     'F2004' = fobs.SiteYr[,2]  )
+
+abund.SiteYr <- as.matrix(table(abund$Site, abund$Year))
+abund.SiteYr[abund.SiteYr > 0] <- 'x'
+abund.SiteYr[abund.SiteYr == 0] <- ''
+abund.SiteYr <- data.frame(Site = rownames(abund.SiteYr),
+                     'A1968-9' = abund.SiteYr[,1],
+                     'A2004' = abund.SiteYr[,2]  )
+
+SiteYr <- merge(fobs.SiteYr, abund.SiteYr, all = TRUE)
+SiteYr[is.na(SiteYr)] <- ''
+
+siteInfo$Site[which(siteInfo$Site == "LeighWaterfallandPenny'sRocks")] <- sites.fcomp[grep('Waterfall', sites.fcomp)]
+siteInfo$Site[which(siteInfo$Site == "RangitotoIslandWhiteBeach")] <- sites.fcomp[grep('Rangitoto', sites.fcomp)]
+siteInfo$Site[which(siteInfo$Site == "RedBeach")] <- sites.fcomp[grep('Red Beach - Whangaparaoa', sites.fcomp)]
+
+siteInfo <- merge(siteInfo, SiteYr, all.y = TRUE)
+# siteInfo[is.na(siteInfo)] <- ''
+siteInfo <- siteInfo[order(-xtfrm(siteInfo$F1968.9),-siteInfo$Lat),]
+
+############################
 write.csv(h_all_69,
           "../data/derived/NZ-1969_2004-tab_Htime_all_69.csv",
           row.names = FALSE)
@@ -387,10 +429,28 @@ write.csv(N_comp_04,
 write.csv(sizes,
           '../data/derived/NZ-1969_2004-tab_Sizes.csv',
           row.names = FALSE)
+
 write.csv(siteInfo,
           '../data/derived/NZ-1969_2004-Site-LatLon.csv',
           row.names = FALSE)
-#################################################################################
-#################################################################################
-#################################################################################
 
+write.csv(sites.fcomp,
+          '../data/derived/NZ-1969_2004-Site-focal.csv',
+          row.names = FALSE)
+
+latex(
+  siteInfo,
+  file='../tables/Paine-Sites.tex',
+  cgroup = c('', '', '','Feeding', 'Abundance'),
+  n.cgroup = c(1, 1, 1, 2, 2),
+  colheads = c('Site','Latitude','Longitude',
+               '1968-9', '2004','1968-9', '2004'),
+  rowname = NULL,
+  label = 'tab:sites',
+  first.hline.double = FALSE,
+  caption="The locations where Paine and I surveyed \\emph{Haustrum haustorium}'s diet and the abundances of its prey in 1968-9 and 2004 for which data are posted to the public repositories indicated in the main text.  Missing coordinates are unknown.",
+  where = "!htbp"
+)
+###################################################################
+###################################################################
+###################################################################

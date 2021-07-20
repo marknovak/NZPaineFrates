@@ -48,7 +48,6 @@ legend('topright',
        col = c('green','red'),
        lty = 1)
 
-# Conclusion: Pearson's approximation is spot-on 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Apply to feeding-rate-like variables
@@ -56,7 +55,7 @@ legend('topright',
 # independent numerators (proportions observed feeding)
 # but correlated denominators (detection times)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set.seed(2)
+# set.seed(2)
 
 S <- 100 # Sample size
 
@@ -93,11 +92,9 @@ out <- cor.test.ratios(xn, xd, yn, yd)
 hist(out$stat.vals$stat.vals, breaks = 200)
 abline(v = out$summary$statistic.mean, col='green', lwd = 8)
 abline(v = out$summary$statistic.PearsonApprox, col='red', lwd = 5)
-legend('topright', 
+legend('topleft', 
        legend = c('Mean', "Pearson's approximation"),
        col = c('green','red'),
        lty = 1)
-
-# Conclusion: Pearson's approximation performs more poorly.
 
 ####################################

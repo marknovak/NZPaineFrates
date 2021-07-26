@@ -3,7 +3,7 @@
 # Spurious versus non-spurious ratio correlations
 #################################################
 #################################################
-library(MASS) # for mvrnorm
+require(MASS) # for mvrnorm
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Multivariate-normal random variables
 # independent numerators 
@@ -33,10 +33,12 @@ num.sim <- 9999 # number of permutations
 
 # It's a spurious correlation when drawing inference about the numerators
 cor.spur <- replicate(num.sim, cor(sample(xn) / xd, 
-                                         (yn) / yd))
+                                         (yn) / yd,
+                                   method = 'pearson'))
 # But *not* a spurious correlation when drawing inference about the ratios
 cor.nonspur <- replicate(num.sim, cor(sample(xn/xd), 
-                                             yn/yd))
+                                             yn/yd,
+                                      method = 'pearson'))
 
 cor.obs
 mean(cor.spur)

@@ -4,7 +4,7 @@
 # to permutation-based estimates
 ####################################
 ####################################
-library(MASS) # for mvrnorm
+require(MASS) # for mvrnorm
 source('PearsonApprox.R') # load functions
 
 set.seed(2)

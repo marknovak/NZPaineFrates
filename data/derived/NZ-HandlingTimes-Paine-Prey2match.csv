@@ -5,8 +5,8 @@ NA,"Atalacmea fragilis",NA,NA
 "Haustrum haustorium","Cellana ornata",NA,NA
 "Haustrum haustorium","Cellana radians",NA,NA
 NA,"Chamaesipho columna",NA,NA
-"Haustrum scobina","Chamaesipho spp",NA,NA
 "Haustrum haustorium","Chamaesipho spp",NA,NA
+"Haustrum scobina","Chamaesipho spp",NA,NA
 NA,"Cominella adspersa",NA,NA
 NA,"Crassostrea gigas",NA,NA
 NA,"Dicathais orbita",NA,NA
@@ -18,6 +18,7 @@ NA,"Fossarina rimata",NA,NA
 "Haustrum haustorium","Haustrum scobina",NA,NA
 "Haustrum scobina","Mytilus galloprovincialis",NA,NA
 NA,"Nerita atramentosa",NA,NA
+NA,"Not Feeding",NA,NA
 NA,"Notoacmea parviconoidea",NA,NA
 NA,"Paratrophon patens",NA,NA
 "Haustrum haustorium","Patelloida corticata",NA,NA

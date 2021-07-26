@@ -4,7 +4,7 @@
 # to calculate correlations of ratios
 ######################################
 ######################################
-library(MASS) # for mvrnorm
+require(MASS) # for mvrnorm
 
 #~~~~~~~~~~~~~~~~~~~~~~~~
 # Pearson's approximation 
@@ -41,7 +41,6 @@ PearsonApprox <- function(xn, xd,
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Permutation-based correlation
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# (rather than using asymptotic estimator)
 # Adapted from perm.cor.test of jmuOutlier package
 # https://rdrr.io/cran/jmuOutlier/src/R/perm.cor.test.R
 

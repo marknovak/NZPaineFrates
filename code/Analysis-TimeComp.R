@@ -8,10 +8,14 @@
 #########################################################################
 rm(list = ls())
 options(stringsAsFactors = F)
-library(dplyr)
-library(sfsmisc) # for eaxis
-############################
 
+library(MASS)
+source('PearsonApprox.R') # load PearsonApprox() & cor.test.ratio()
+library(sfsmisc) # for eaxis
+library(dplyr)
+library(tidyr)
+
+############################
 dat <- read.csv('../data/derived/NZ-1969_2004-tab_Summarized.csv')
 
 ############################
@@ -37,7 +41,7 @@ dat <- pivot_wider(data = dat,
        drop_na('fi_1969', 'fi_2004')
 
 ############################
-# Define convenience function to place asterisk(s) for "significance"
+# Define function to place asterisk(s) for "significance"
 signif <- function(x){
   p <- x$p.value
   out <-ifelse(p < 0.001, '***',
@@ -48,6 +52,19 @@ signif <- function(x){
   return(out)
 }
 
+# Define function to calculate Mean Deviation and Mean Absolute Deviation
+# as well as overall variable mean
+# (on both natural and log10 scale)
+deviation <- function(x, y){
+  out <- list(MD = mean(x - y),
+              MAD = mean(abs(x - y)),
+              mean = mean(c(x, y)),
+              MD.log10 = mean(log10(x) - log10(y)),
+              MAD.log10 = mean(abs(log10(x) - log10(y))),
+              mean.log10 = mean(log10(c(x, y))))
+  print(out)
+  return(out)
+}
 ############################
 pdf('../figs/Paine-Comparisons.pdf',
     width = 8,
@@ -68,20 +85,23 @@ par(
 # All feeding survey sites
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~
-xymag <- c(0.5, 1.5)
+xymag <- c(0.5, 1.5) # reduce/increase xylims
 #~~~~~~~~~~~~~~
 # Feeding rates
 #~~~~~~~~~~~~~~
+f.r <- cor.test.ratios(dat$pi_1969, dat$h.mean_1969,
+                       dat$pi_2004, dat$h.mean_2004)
+flog.r <- cor.test.ratios(dat$pi_1969, dat$h.mean_1969,
+                          dat$pi_2004, dat$h.mean_2004,
+                          log10.transf = TRUE)
+f.rs <- cor.test.ratios(dat$pi_1969, dat$h.mean_1969,
+                        dat$pi_2004, dat$h.mean_2004,
+                        method = 'spearman')
+
+f.dev = deviation(dat$fi_1969, dat$fi_2004)
+
 xylim <- range(c(dat$fi_1969, dat$fi_2004), na.rm = TRUE) * xymag
-f.rho.all <-
-  cor.test(dat$fi_1969, dat$fi_2004,
-      use = 'complete.obs')
-flog.rho.all <-
-  cor.test(log10(dat$fi_1969), log10(dat$fi_2004), 
-      use = 'complete.obs')
-f.rhos.all <-
-  cor.test(dat$fi_1969, dat$fi_2004,
-      use = 'complete.obs', method = 'spearman')
+
 matplot(
   spread(select(dat, Site, Prey, fi_1969), Site, fi_1969)[,-1],
   spread(select(dat, Site, Prey, fi_2004), Site, fi_2004)[,-1],
@@ -115,14 +135,14 @@ legend(
   'bottomright',
   legend = c(
     as.expression(bquote(italic(r) == 
-                           paste(.(round(f.rho.all$estimate, 2)), 
-                                 .(signif(f.rho.all))))), 
+                           paste(.(round(f.r$analytic$estimate, 2)), 
+                                 .(signif(f.r$analytic))))), 
     as.expression(bquote(italic(r)[10] == 
-                           paste(.(round(flog.rho.all$estimate, 2)), 
-                                 .(signif(flog.rho.all))))),
+                           paste(.(round(flog.r$analytic$estimate, 2)), 
+                                 .(signif(flog.r$analytic))))),
     as.expression(bquote(italic(r)[s] == 
-                           paste(.(round(f.rhos.all$estimate, 2)), 
-                                 .(signif(f.rhos.all)))))
+                           paste(.(round(f.rs$analytic$estimate, 2)), 
+                                 .(signif(f.rs$analytic)))))
     ),
   bty = 'n',
   inset = 0.0,
@@ -133,16 +153,17 @@ legend(
 #~~~~~~~~~~~~~~~~~
 # Diet proportions
 #~~~~~~~~~~~~~~~~~
+fp.r <- cor.test(dat$pi_1969, dat$pi_2004, 
+                     use = 'complete.obs')
+fplog.r <- cor.test(log10(dat$pi_1969), log10(dat$pi_2004),
+                        use = 'complete.obs')
+fp.rs <- cor.test(dat$pi_1969, dat$pi_2004, 
+                       use = 'complete.obs', method = 'spearman')
+
+p.dev = deviation(dat$pi_1969, dat$pi_2004)
+
 xylim <- range(c(dat$pi_1969, dat$pi_2004), na.rm = TRUE) * xymag
-fp.rho.all <-
-  cor.test(dat$pi_1969, dat$pi_2004, 
-      use = 'complete.obs')
-fplog.rho.all <-
-  cor.test(log10(dat$pi_1969), log10(dat$pi_2004),
-      use = 'complete.obs')
-fp.rhos.all <-
-  cor.test(dat$pi_1969, dat$pi_2004, 
-      use = 'complete.obs', method = 'spearman')
+
 matplot(
   spread(select(dat, Site, Prey, pi_1969), Site, pi_1969)[,-1],
   spread(select(dat, Site, Prey, pi_2004), Site, pi_2004)[,-1],
@@ -176,14 +197,14 @@ legend(
   'bottomright',
   legend = c(
     as.expression(bquote(italic(r) == 
-                           paste(.(round(fp.rho.all$estimate, 2)), 
-                                 .(signif(fp.rho.all))))), 
+                           paste(.(round(fp.r$estimate, 2)), 
+                                 .(signif(fp.r))))), 
     as.expression(bquote(italic(r)[10] == 
-                           paste(.(round(fplog.rho.all$estimate, 2)), 
-                                 .(signif(fplog.rho.all))))),
+                           paste(.(round(fplog.r$estimate, 2)), 
+                                 .(signif(fplog.r))))),
     as.expression(bquote(italic(r)[s] == 
-                           paste(.(round(fp.rhos.all$estimate, 2)), 
-                                 .(signif(fp.rhos.all)))))
+                           paste(.(round(fp.rs$estimate, 2)), 
+                                 .(signif(fp.rs)))))
   ),
   bty = 'n',
   inset = 0.0,
@@ -194,16 +215,17 @@ legend(
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 # Detection/handling times
 #~~~~~~~~~~~~~~~~~~~~~~~~~
+h.r <- cor.test(dat$h.mean_1969, dat$h.mean_2004, 
+           use = 'complete.obs')
+hlog.r <- cor.test(log10(dat$h.mean_1969), log10(dat$h.mean_2004), 
+                       use = 'complete.obs')
+h.rs <- cor.test(dat$h.mean_1969, dat$h.mean_2004, 
+                      use = 'complete.obs', method = 'spearman')
+
+h.dev = deviation(dat$h.mean_1969, dat$h.mean_2004)
+
 xylim <- range(c(dat$h.mean_1969, dat$h.mean_2004), na.rm = TRUE) * xymag
-h.rho.all <-
-  cor.test(dat$h.mean_1969, dat$h.mean_2004, 
-      use = 'complete.obs')
-hlog.rho.all <-
-  cor.test(log10(dat$h.mean_1969), log10(dat$h.mean_2004), 
-      use = 'complete.obs')
-h.rhos.all <-
-  cor.test(dat$h.mean_1969, dat$h.mean_2004, 
-      use = 'complete.obs', method = 'spearman')
+
 matplot(
   spread(select(dat, Site, Prey, h.mean_1969), Site, h.mean_1969)[,-1],
   spread(select(dat, Site, Prey, h.mean_2004), Site, h.mean_2004)[,-1],
@@ -227,14 +249,14 @@ legend(
   'bottomright',
   legend = c(
       as.expression(bquote(italic(r) == 
-                             paste(.(round(h.rho.all$estimate, 2)), 
-                                   .(signif(h.rho.all))))), 
+                             paste(.(round(h.r$estimate, 2)), 
+                                   .(signif(h.r))))), 
       as.expression(bquote(italic(r)[10] == 
-                             paste(.(round(hlog.rho.all$estimate, 2)), 
-                                   .(signif(hlog.rho.all))))),
+                             paste(.(round(hlog.r$estimate, 2)), 
+                                   .(signif(hlog.r))))),
       as.expression(bquote(italic(r)[s] == 
-                             paste(.(round(h.rhos.all$estimate, 2)), 
-                                   .(signif(h.rhos.all)))))
+                             paste(.(round(h.rs$estimate, 2)), 
+                                   .(signif(h.rs)))))
     ),
   bty = 'n',
   inset = 0.0,
@@ -252,16 +274,19 @@ datsub <- dat %>%  drop_na('N.mean_1969', 'N.mean_2004')
 #~~~~~~~~~~~~~~
 # Feeding rates
 #~~~~~~~~~~~~~~
+f.r.sub <- cor.test.ratios(datsub$pi_1969, datsub$h.mean_1969,
+                           datsub$pi_2004, datsub$h.mean_2004)
+flog.r.sub <- cor.test.ratios(datsub$pi_1969, datsub$h.mean_1969,
+                              datsub$pi_2004, datsub$h.mean_2004,
+                              log10.transf = TRUE)
+f.rs.sub <- cor.test.ratios(datsub$pi_1969, datsub$h.mean_1969,
+                            datsub$pi_2004, datsub$h.mean_2004,
+                            method = 'spearman')
+
+f.dev.sub = deviation(datsub$fi_1969, datsub$fi_2004)
+
 xylim <- range(c(datsub$fi_1969, datsub$fi_2004), na.rm = TRUE) * xymag
-f.rho <-
-  cor.test(datsub$fi_1969, datsub$fi_2004, 
-      use = 'complete.obs')
-flog.rho <-
-  cor.test(log10(datsub$fi_1969), log10(datsub$fi_2004),
-      use = 'complete.obs')
-f.rhos <-
-  cor.test(datsub$fi_1969, datsub$fi_2004, 
-      use = 'complete.obs', method = 'spearman')
+
 matplot(
   spread(select(datsub, Site, Prey, fi_1969), Site, fi_1969)[,-1],
   spread(select(datsub, Site, Prey, fi_2004), Site, fi_2004)[,-1],
@@ -285,14 +310,14 @@ legend(
   'bottomright',
   legend = c(
     as.expression(bquote(italic(r) == 
-                           paste(.(round(f.rho$estimate, 2)), 
-                                 .(signif(f.rho))))), 
+                           paste(.(round(f.r.sub$analytic$estimate, 2)), 
+                                 .(signif(f.r.sub$analytic))))), 
     as.expression(bquote(italic(r)[10] == 
-                           paste(.(round(flog.rho$estimate, 2)), 
-                                 .(signif(flog.rho))))),
+                           paste(.(round(flog.r.sub$analytic$estimate, 2)), 
+                                 .(signif(flog.r.sub$analytic))))),
     as.expression(bquote(italic(r)[s] == 
-                           paste(.(round(f.rhos$estimate, 2)), 
-                                 .(signif(f.rhos)))))
+                           paste(.(round(f.rs.sub$analytic$estimate, 2)), 
+                                 .(signif(f.rs.sub$analytic)))))
   ),
   bty = 'n',
   inset = 0.0,
@@ -303,17 +328,17 @@ legend(
 #~~~~~~~~~~~
 # Abundances
 #~~~~~~~~~~~
-xylim <- range(c(datsub$N.mean_1969, datsub$N.mean_2004), 
-               na.rm = TRUE)  * xymag
-N.rho <-
-  cor.test(datsub$N.mean_1969, datsub$N.mean_2004, 
-      use = 'complete.obs')
-Nlog.rho <-
-  cor.test(log10(datsub$N.mean_1969), log10(datsub$N.mean_2004),
-      use = 'complete.obs')
-N.rhos <-
-  cor.test(datsub$N.mean_1969, datsub$N.mean_2004,
-      use = 'complete.obs', method = 'spearman')
+N.r.sub <-  cor.test(datsub$N.mean_1969, datsub$N.mean_2004,
+                 use = 'complete.obs')
+Nlog.r.sub <- cor.test(log10(datsub$N.mean_1969), log10(datsub$N.mean_2004),
+                   use = 'complete.obs')
+N.rs.sub <- cor.test(datsub$N.mean_1969, datsub$N.mean_2004,
+                 use = 'complete.obs', method = 'spearman')
+
+N.dev.sub = deviation(datsub$N.mean_1969, datsub$N.mean_2004)
+
+xylim <- range(c(datsub$N.mean_1969, datsub$N.mean_2004), na.rm = TRUE) * xymag
+
 matplot(
   spread(select(datsub, Site, Prey, N.mean_1969), Site, N.mean_1969)[,-1],
   spread(select(datsub, Site, Prey, N.mean_2004), Site, N.mean_2004)[,-1],
@@ -337,14 +362,14 @@ legend(
   'bottomright',
   legend = c(
     as.expression(bquote(italic(r) == 
-                           paste(.(round(N.rho$estimate, 2)), 
-                                 .(signif(N.rho))))), 
+                           paste(.(round(N.r.sub$estimate, 2)), 
+                                 .(signif(N.r.sub))))), 
     as.expression(bquote(italic(r)[10] == 
-                           paste(.(round(Nlog.rho$estimate, 2)), 
-                                 .(signif(Nlog.rho))))),
+                           paste(.(round(Nlog.r.sub$estimate, 2)), 
+                                 .(signif(Nlog.r.sub))))),
     as.expression(bquote(italic(r)[s] == 
-                           paste(.(round(N.rhos$estimate, 2)), 
-                                 .(signif(N.rhos)))))
+                           paste(.(round(N.rs.sub$estimate, 2)), 
+                                 .(signif(N.rs.sub)))))
   ),
   bty = 'n',
   inset = 0.0,
@@ -355,16 +380,17 @@ legend(
 #~~~~~~~~~~~~~
 # Attack rates
 #~~~~~~~~~~~~~
+a.r.sub <- cor.test(datsub$ai_1969, datsub$ai_2004,
+                use = 'complete.obs')
+alog.r.sub <- cor.test(log10(datsub$ai_1969), log10(datsub$ai_2004), 
+           use = 'complete.obs')
+a.rs.sub <- cor.test(datsub$ai_1969, datsub$ai_2004, 
+                 use = 'complete.obs', method = 'spearman')
+
+a.dev.sub = deviation(datsub$ai_1969, datsub$ai_2004)
+
 xylim <- range(c(datsub$ai_1969, datsub$ai_2004), na.rm = TRUE) * xymag
-a.rho <-
-  cor.test(datsub$ai_1969, datsub$ai_2004,
-      use = 'complete.obs')
-alog.rho <-
-  cor.test(log10(datsub$ai_1969), log10(datsub$ai_2004), 
-      use = 'complete.obs')
-a.rhos <-
-  cor.test(datsub$ai_1969, datsub$ai_2004, 
-      use = 'complete.obs', method = 'spearman')
+
 matplot(
   spread(select(datsub, Site, Prey, ai_1969), Site, ai_1969)[,-1],
   spread(select(datsub, Site, Prey, ai_2004), Site, ai_2004)[,-1],
@@ -388,14 +414,14 @@ legend(
   'bottomright',
   legend = c(
     as.expression(bquote(italic(r) == 
-                           paste(.(round(a.rho$estimate, 2)), 
-                                 .(signif(a.rho))))), 
+                           paste(.(round(a.r.sub$estimate, 2)), 
+                                 .(signif(a.r.sub))))), 
     as.expression(bquote(italic(r)[10] == 
-                           paste(.(round(alog.rho$estimate, 2)), 
-                                 .(signif(alog.rho))))),
+                           paste(.(round(alog.r.sub$estimate, 2)), 
+                                 .(signif(alog.r.sub))))),
     as.expression(bquote(italic(r)[s] == 
-                           paste(.(round(a.rhos$estimate, 2)), 
-                                 .(signif(a.rhos)))))
+                           paste(.(round(a.rs.sub$estimate, 2)), 
+                                 .(signif(a.rs.sub)))))
   ),
   bty = 'n',
   inset = 0.0,
@@ -404,6 +430,7 @@ legend(
 )
 
 dev.off()
+
 
 
 

@@ -521,7 +521,7 @@ par(
        log = 'xy',
        type = 'n',
        axes = FALSE,
-       xlab = expression(paste('Abundance, ', italic(N[i]))),
+       xlab = expression(paste('Prey abundance, ', italic(N[i]))),
        ylab = expression(paste('Feeding rate, ', italic(f[i]))))
   points(datr$N[datr$Year==1969], datr$f[datr$Year==1969],
          pch = 21,

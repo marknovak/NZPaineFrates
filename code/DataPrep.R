@@ -22,7 +22,7 @@ htimes <-
 sitecoord <- read.csv("../data/orig/NZ-Access-NZwide-SiteInfo.csv")
 
 ##############################
-# Quad-size in database is incorrect!
+# Quad-size in database is incorrect!?!
 qArea <- 0.3 * 0.3 # quadrat area (m^2) (30 by 30 cm)
 abund.raw$Quad_Size <- qArea
 assu.Temp <- 14 # assumed temperature

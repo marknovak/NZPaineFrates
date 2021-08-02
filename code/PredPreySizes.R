@@ -12,11 +12,10 @@ library(Hmisc) # for LaTeX table export
 options(xdvicmd='open')
 library(xtable) # for LaTeX summary table export
 ############################
-
 focalSites <- read.csv("../data/derived/NZ-1969_2004-Site-focal.csv")$x
 sizes <- read.csv("../data/derived/NZ-1969_2004-tab_Sizes.csv")
 
-
+############################
 sizes <- sizes[sizes$Site%in%focalSites,]
 sizes <- sizes[!is.na(sizes$PredSize),]
 
@@ -111,6 +110,12 @@ regPredPrey04 <- lm(log(PredSize) ~ log(PreySize),
 summary(regPredPrey04)
 rng04 <- range(preysizes[preysizes$Year==2004,]$PreySize)
 
+
+# To visualize non-feeding predators by year
+sizes$PreySize[sizes$Prey=="Not Feeding" & sizes$Year==2004] <- 0.25
+sizes$PreySize[sizes$Prey=="Not Feeding" & sizes$Year==1969] <- -0.25
+
+
 pdf('../figs/Paine-Sizes.pdf',
     width = 4,
     height = 3)
@@ -133,8 +138,8 @@ nf <- layout(matrix(c(2,0,1,3),
 par(mar = c(3,3,0,0))
 plot(sizes$PreySize, sizes$PredSize,
      type = 'n',
-     xlab = 'Prey size (mm)',
-     ylab = 'Predator size (mm)',
+     xlab = expression(paste('Prey size (',italic(mm),')')),
+     ylab = expression(paste('Predator size (',italic(mm),')')),
      xlim = xlims, 
      ylim = ylims
 )

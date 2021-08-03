@@ -37,7 +37,10 @@ sum(!is.na(dat$ai))
 dat <- pivot_wider(data = dat, 
             id_cols = c('Site','Prey'),
             names_from = 'Year',
-            values_from = c('n.obs','h.mean','pi','pi0','N.mean','fi','ai')) %>%
+            values_from = c('n.obs','h.mean',
+                            'pi','pi0',
+                            'N.mean',
+                            'fi','ai')) %>%
        drop_na('fi_1969', 'fi_2004')
 
 ############################
@@ -65,6 +68,7 @@ deviation <- function(x, y){
   print(out)
   return(out)
 }
+
 ############################
 pdf('../figs/Paine-Comparisons.pdf',
     width = 8,
@@ -98,13 +102,13 @@ f.rs <- cor.test.ratios(dat$pi_1969, dat$h.mean_1969,
                         dat$pi_2004, dat$h.mean_2004,
                         method = 'spearman')
 
-f.dev = deviation(dat$fi_1969, dat$fi_2004)
+f.dev <- deviation(dat$fi_1969, dat$fi_2004)
 
 xylim <- range(c(dat$fi_1969, dat$fi_2004), na.rm = TRUE) * xymag
 
 matplot(
-  spread(select(dat, Site, Prey, fi_1969), Site, fi_1969)[,-1],
-  spread(select(dat, Site, Prey, fi_2004), Site, fi_2004)[,-1],
+  spread(dplyr::select(dat, Site, Prey, fi_1969), Site, fi_1969)[,-1],
+  spread(dplyr::select(dat, Site, Prey, fi_2004), Site, fi_2004)[,-1],
   pch = 25:21,
   col = 'black',
   bg = 'grey',
@@ -165,8 +169,8 @@ p.dev = deviation(dat$pi_1969, dat$pi_2004)
 xylim <- range(c(dat$pi_1969, dat$pi_2004), na.rm = TRUE) * xymag
 
 matplot(
-  spread(select(dat, Site, Prey, pi_1969), Site, pi_1969)[,-1],
-  spread(select(dat, Site, Prey, pi_2004), Site, pi_2004)[,-1],
+  spread(dplyr::select(dat, Site, Prey, pi_1969), Site, pi_1969)[,-1],
+  spread(dplyr::select(dat, Site, Prey, pi_2004), Site, pi_2004)[,-1],
   pch = 25:21,
   col = 'black',
   bg = 'grey',
@@ -227,8 +231,8 @@ h.dev = deviation(dat$h.mean_1969, dat$h.mean_2004)
 xylim <- range(c(dat$h.mean_1969, dat$h.mean_2004), na.rm = TRUE) * xymag
 
 matplot(
-  spread(select(dat, Site, Prey, h.mean_1969), Site, h.mean_1969)[,-1],
-  spread(select(dat, Site, Prey, h.mean_2004), Site, h.mean_2004)[,-1],
+  spread(dplyr::select(dat, Site, Prey, h.mean_1969), Site, h.mean_1969)[,-1],
+  spread(dplyr::select(dat, Site, Prey, h.mean_2004), Site, h.mean_2004)[,-1],
   pch = 25:21,
   col = 'black',
   bg = 'grey',
@@ -288,8 +292,8 @@ f.dev.sub = deviation(datsub$fi_1969, datsub$fi_2004)
 xylim <- range(c(datsub$fi_1969, datsub$fi_2004), na.rm = TRUE) * xymag
 
 matplot(
-  spread(select(datsub, Site, Prey, fi_1969), Site, fi_1969)[,-1],
-  spread(select(datsub, Site, Prey, fi_2004), Site, fi_2004)[,-1],
+  spread(dplyr::select(datsub, Site, Prey, fi_1969), Site, fi_1969)[,-1],
+  spread(dplyr::select(datsub, Site, Prey, fi_2004), Site, fi_2004)[,-1],
   pch = 23:21,
   col = 'black',
   bg = 'grey',
@@ -340,8 +344,8 @@ N.dev.sub = deviation(datsub$N.mean_1969, datsub$N.mean_2004)
 xylim <- range(c(datsub$N.mean_1969, datsub$N.mean_2004), na.rm = TRUE) * xymag
 
 matplot(
-  spread(select(datsub, Site, Prey, N.mean_1969), Site, N.mean_1969)[,-1],
-  spread(select(datsub, Site, Prey, N.mean_2004), Site, N.mean_2004)[,-1],
+  spread(dplyr::select(datsub, Site, Prey, N.mean_1969), Site, N.mean_1969)[,-1],
+  spread(dplyr::select(datsub, Site, Prey, N.mean_2004), Site, N.mean_2004)[,-1],
   pch = 23:21,
   col = 'black',
   bg = 'grey',
@@ -392,8 +396,8 @@ a.dev.sub = deviation(datsub$ai_1969, datsub$ai_2004)
 xylim <- range(c(datsub$ai_1969, datsub$ai_2004), na.rm = TRUE) * xymag
 
 matplot(
-  spread(select(datsub, Site, Prey, ai_1969), Site, ai_1969)[,-1],
-  spread(select(datsub, Site, Prey, ai_2004), Site, ai_2004)[,-1],
+  spread(dplyr::select(datsub, Site, Prey, ai_1969), Site, ai_1969)[,-1],
+  spread(dplyr::select(datsub, Site, Prey, ai_2004), Site, ai_2004)[,-1],
   pch = 23:21,
   col = 'black',
   bg = 'grey',

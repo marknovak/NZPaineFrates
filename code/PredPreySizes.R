@@ -67,10 +67,12 @@ latex(
   label = 'tab:SizeYint',
   # center = 'centering',
   first.hline.double = FALSE,
-  caption="Summary table for the regression of predator size on prey size,
-  time period (\\emph{Year}), and their interaction.",
   digits = 3,
-  where = "!htbp"
+  where = "!htbp",
+  caption="Summary table for the regression of predator 
+  size on prey size,
+  time period (\\textit{Year}), 
+  and their interaction."
 )
 latex(
   xtable(summary(regPredPreyYear)),
@@ -80,10 +82,11 @@ latex(
   label = 'tab:SizeY',
   # center = 'centering',
   first.hline.double = FALSE,
-  caption="Summary table for the regression of predator size on prey size and 
-  time period (\\emph{Year}).",
+  where = "!htbp",
   digits = 3,
-  where = "!htbp"
+  caption="Summary table for the regression of predator size 
+  on prey size and 
+  time period (\\textit{Year})."
 )
 latex(
   xtable(summary(regPredPrey)),
@@ -93,10 +96,10 @@ latex(
   label = 'tab:Size',
   # center = 'centering',
   first.hline.double = FALSE,
-  caption="Summary table for the regression of predator size 
-  on prey size.",
   digits = 3,
-  where = "!htbp"
+  where = "!htbp",
+  caption="Summary table for the regression of predator size 
+  on prey size."
 )
 
 
@@ -198,3 +201,6 @@ barplot(Pred04$counts, axes = FALSE, xlim = c(0, top[2]), space = 0,
 
 dev.off()
 
+#######################################################################
+#######################################################################
+#######################################################################

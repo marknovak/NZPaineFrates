@@ -1,8 +1,11 @@
 library(vegan)
 library(lubridate)
+library(dplyr)
 
+##############################
 abund.raw <- read.csv("../data/orig/NZ-1969_2004-Abunds_orig.csv")
 
+##############################
 abund <- subset(
   abund.raw,
   Site == 'Leigh - Waterfall Rocks' & grepl('Transect#2', Zone) |
@@ -13,19 +16,23 @@ abund <- subset(
 )
 
 
-dat <- abund %>% select(-one_of(c('Date','Site','Zone','Quad_Size','Quad'))) 
+dat <- abund %>% dplyr::select(-one_of(c('Date','Site','Zone',
+                                  'Quad_Size','Quad'))) 
 dat <- dat[, -which(apply(dat, 2, sum, na.rm = TRUE)==0)]
 dat[is.na(dat)] <- 0
 mat <- as.matrix(dat)
 
 row.names(mat) <- paste0(abbreviate(abund$Site),'-',year(dmy(abund$Date)))
 
-              
+######################################            
 # Non-metric Multi-dimensional Scaling
 nmds <- metaMDS(mat, 
                 distance = "bray",
+                k = 2,
                 maxit = 999, 
                 trymax = 500)
+
+######################################  
 
 site.pch <- c(23,22,21)
 year.bg <- c('grey30','grey90')

@@ -54,12 +54,14 @@ latex(
   file='../tables/Paine-Jacc-nobsabund.tex',
   cgroup = c('', 'Feeding observations', 'Prey abundances'),
   n.cgroup = c(1, 3, 3),
-  colheads = c('Site','$J_{class}$', '$J_{abd}$','$J_{est}$',
-                      '$J_{class}$', '$J_{abd}$','$J_{est}$'),
+  colheads = c('Site','$J_{class}$', '$J_{abd}$','$\\hat{J}_{abd}$',
+                      '$J_{class}$', '$J_{abd}$','$\\hat{J}_{abd}$'),
   rowname = NULL,
   label = 'tab:Jnobsabund',
   center = 'centering',
   first.hline.double = FALSE,
+  where = "!htbp",
+  digits = 2,
   caption="The between time period similarity of
   \\textit{Haustrum haustorium}'s apparent diet 
   -- at the sites where Paine and I performed either feeding surveys only
@@ -67,19 +69,13 @@ latex(
   as quantified by 
   the incidence-based Jaccard index ($J_{class}$), as well as
   the abundance-based Jaccard index ($J_{abd}$) and
-  the estimator for the abundace-based Jaccard index ($J_{est}$) 
-  of \\citet{Chao:2005tf}.
-  Unlike the correlation and distance-based comparisons of the main text which
-  included only prey species which both Paine and I observed 
-  \\textit{H. haustorium} feeding on at a given site,
-  the feeding observation comparisons include prey species which only one of us observed
-  and the abundance surveys include prey species which only one of us observed as well 
-  as additional (non-prey) mobile species which Paine or I observed."
+  the estimator for the abundace-based Jaccard index ($\\hat{J}_{abd}$). 
+  "
 )
 
 
-##############################################################################
-##############################################################################
-##############################################################################
+##########################################################################
+##########################################################################
+##########################################################################
 
 

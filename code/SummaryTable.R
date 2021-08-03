@@ -75,7 +75,9 @@ latex(
   label = 'tab:summ',
   center = 'centering',
   first.hline.double = FALSE,
+  where = "!htbp",
   caption="Summary of Paine's 1968-9 and my 2004 feeding observations.  Observerations refers to the total number of whelks inspected. \\% feeding refers to the proportion of observed whelks that were feeding. \\% feeding on \\emph{H. scobina} refers to the proportion of feeding whelks that were feeding on \\emph{Haustrum scobina}.  Parentheticals are the biomial confidence interval (95\\% coverage probability) calculated using the Wilson method."
+  
 )
 #########################################################################
 #########################################################################

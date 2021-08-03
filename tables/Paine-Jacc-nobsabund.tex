@@ -1,5 +1,5 @@
-%latex.default(J.nobs.abund, file = "../tables/Paine-Jacc-nobsabund.tex",     cgroup = c("", "Feeding observations", "Prey abundances"),     n.cgroup = c(1, 3, 3), colheads = c("Site", "$J_{class}$",         "$J_{abd}$", "$J_{est}$", "$J_{class}$", "$J_{abd}$",         "$J_{est}$"), rowname = NULL, label = "tab:Jnobsabund",     center = "centering", first.hline.double = FALSE, caption = "The between time period similarity of\n  \\textit{Haustrum haustorium}'s apparent diet \n  -- at the sites where Paine and I performed either feeding surveys only\n  or both feeding and abundance surveys --\n  as quantified by \n  the incidence-based Jaccard index ($J_{class}$), as well as\n  the abundance-based Jaccard index ($J_{abd}$) and\n  the estimator for the abundace-based Jaccard index ($J_{est}$) \n  of \\citet{Chao:2005tf}.\n  Unlike the correlation and distance-based comparisons of the main text which\n  included only prey species which both Paine and I observed \n  \\textit{H. haustorium} feeding on at a given site,\n  the feeding observation comparisons include prey species which only one of us observed\n  and the abundance surveys include prey species which only one of us observed as well \n  as additional (non-prey) mobile species which Paine or I observed.")%
-\begin{table}[!tbp]
+%latex.default(J.nobs.abund, file = "../tables/Paine-Jacc-nobsabund.tex",     cgroup = c("", "Feeding observations", "Prey abundances"),     n.cgroup = c(1, 3, 3), colheads = c("Site", "$J_{class}$",         "$J_{abd}$", "$\\hat{J}_{abd}$", "$J_{class}$", "$J_{abd}$",         "$\\hat{J}_{abd}$"), rowname = NULL, label = "tab:Jnobsabund",     center = "centering", first.hline.double = FALSE, where = "!htbp",     digits = 2, caption = "The between time period similarity of\n  \\textit{Haustrum haustorium}'s apparent diet \n  -- at the sites where Paine and I performed either feeding surveys only\n  or both feeding and abundance surveys --\n  as quantified by \n  the incidence-based Jaccard index ($J_{class}$), as well as\n  the abundance-based Jaccard index ($J_{abd}$) and\n  the estimator for the abundace-based Jaccard index ($\\hat{J}_{abd}$). \n  ")%
+\begin{table}[!htbp]
 \caption{The between time period similarity of
   \textit{Haustrum haustorium}'s apparent diet 
   -- at the sites where Paine and I performed either feeding surveys only
@@ -7,20 +7,14 @@
   as quantified by 
   the incidence-based Jaccard index ($J_{class}$), as well as
   the abundance-based Jaccard index ($J_{abd}$) and
-  the estimator for the abundace-based Jaccard index ($J_{est}$) 
-  of \citet{Chao:2005tf}.
-  Unlike the correlation and distance-based comparisons of the main text which
-  included only prey species which both Paine and I observed 
-  \textit{H. haustorium} feeding on at a given site,
-  the feeding observation comparisons include prey species which only one of us observed
-  and the abundance surveys include prey species which only one of us observed as well 
-  as additional (non-prey) mobile species which Paine or I observed.\label{tab:Jnobsabund}} 
+  the estimator for the abundace-based Jaccard index ($\hat{J}_{abd}$). 
+  \label{tab:Jnobsabund}} 
 {\centering
 \begin{tabular}{lcrrrclll}
 \hline
 \multicolumn{1}{c}{\bfseries }&\multicolumn{1}{c}{\bfseries }&\multicolumn{3}{c}{\bfseries Feeding observations}&\multicolumn{1}{c}{\bfseries }&\multicolumn{3}{c}{\bfseries Prey abundances}\tabularnewline
 \cline{3-5} \cline{7-9}
-\multicolumn{1}{c}{Site}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{$J_{class}$}&\multicolumn{1}{c}{$J_{abd}$}&\multicolumn{1}{c}{$J_{est}$}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{$J_{class}$}&\multicolumn{1}{c}{$J_{abd}$}&\multicolumn{1}{c}{$J_{est}$}\tabularnewline
+\multicolumn{1}{c}{Site}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{$J_{class}$}&\multicolumn{1}{c}{$J_{abd}$}&\multicolumn{1}{c}{$\hat{J}_{abd}$}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{$J_{class}$}&\multicolumn{1}{c}{$J_{abd}$}&\multicolumn{1}{c}{$\hat{J}_{abd}$}\tabularnewline
 \hline
 Leigh - Echinoderm Reef&&$0.50$&$0.78$&$0.80$&&-&-&-\tabularnewline
 Leigh - Tabletop Rocks and Boulders&&$0.38$&$0.30$&$0.32$&&-&-&-\tabularnewline

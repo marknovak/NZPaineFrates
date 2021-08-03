@@ -20,12 +20,12 @@ htimes <-
   read.csv("../data/orig/NZ-HandlingTimes-MRegnCoeff-MeasuredOnly.csv",
            skip = 2)
 sitecoord <- read.csv("../data/orig/NZ-Access-NZwide-SiteInfo.csv")
+leightemps <- read.csv("../data/orig/LeighTemps/data/1-data/SEATEMPW7-monthly_means.csv")[,1:3]
 
 ##############################
 # Quad-size in database is incorrect!?!
 qArea <- 0.3 * 0.3 # quadrat area (m^2) (30 by 30 cm)
 abund.raw$Quad_Size <- qArea
-assu.Temp <- 14 # assumed temperature
 
 ###########################
 # Remove anecdotal observations
@@ -126,11 +126,17 @@ abund <-
             N.n = n())
 abund$N.mean[is.na(abund$N.mean)] <- 0
 
-
 ################################
 # Feeding observations
 ################################
-fobs$Temp <- assu.Temp 
+# Add Year-Month mean temperatures
+fobs$Month <- month(mdy(fobs$Date))
+colnames(leightemps)[1] <- 'Temp'
+fobs <- merge(fobs, leightemps,
+              by.x = c('Year','Month'),
+              by.y = c('year','month'),
+              all.x = TRUE)
+
 fobs$Year[which(fobs$Year == 1968)] <- 1969 # For convenience
 Sites <- sort(unique(fobs$Site))
 
@@ -164,8 +170,8 @@ latex(
   rowname = NULL,
   label = 'tab:matches',
   first.hline.double = FALSE,
-  caption="Prey for which detection times had not been measured in the laboratory experiments of Novak (2013) were assigned the regression coefficients of prey species for which they had been measured.",
-  where = "!htbp"
+  where = "!htbp",
+  caption="Prey for which detection times had not been measured in the laboratory experiments of \\citep{Novak:2013qg} were assigned the regression coefficients of prey species for which they had been measured."
 )
 
 # Observations with unmeasured pred or prey sizes get NA
@@ -268,8 +274,8 @@ latex(
   rowname = NULL,
   label = 'tab:sites',
   first.hline.double = FALSE,
-  caption="The locations where Paine and I surveyed \\emph{Haustrum haustorium}'s diet and the abundances of its prey in 1968-9 and 2004 for which data are posted to the public repositories indicated in the main text.  Missing coordinates are unknown.",
-  where = "!htbp"
+  where = "!htbp",
+  caption="The locations where Paine and I surveyed \\emph{Haustrum haustorium}'s diet and the abundances of its prey in 1968-9 and 2004 for which data are posted to the public repositories indicated in the main text.  Missing coordinates are unknown."
 )
 
 ############################

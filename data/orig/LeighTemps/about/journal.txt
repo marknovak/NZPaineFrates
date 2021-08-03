@@ -1,0 +1,60 @@
+*****************************************************************
+Journal for accession number: 0127323
+Created on:                   2015-04-09 09:56:42 UTC
+By:                           Thomas Ryan, NCEI
+
+Source: These sea surface temperature data were submitted to NCEI by Mark
+J. Costello, Institute of Marine Science, Leigh Marine Laboratory, University
+of Auckland by providing link to data,
+http://hdl.handle.net/2292/20612.
+
+Actions: Data were downloaded and copied to the 0-data/ directory.
+A Comma-separated-value (CSV) transform of SEATEMPW.xls was created and
+copied to the 1-data/ directory. 
+
+
+Files:
+about/
+This directory contains files created by NCEI staff, email correspondence,
+and other 'negotiable' information between NCEI staff and the data provider.
+
+0127323_lonlat.txt - 
+  Contains sample locations for these data.  Each row contains the geographical
+  position where these data were collected (longitude in the left column and
+  latitude in the right column, both in degrees).  NCEI may have corrected 
+  geographic positions that seemed to be in error when generating this file.  
+  However, NCEI did not change the original data files under the directory 
+  data/0-data/.
+
+0127323_map.jpg - 
+  Sample location map for these data.
+
+0127323-email.txt - 
+  E-mail Dr Mark J. Costello, Associate Professor, Institute of Marine Science, Leigh
+  Marine Laboratory, University of Auckland. notifying NCEI that the sea surface temperature
+  data were ready to be downloaded from: http://hdl.handle.net/2292/20612.
+
+  IMPORTANT NOTE;  This email covers 2 submission, the 1967 - 2011 archived in this accession
+  and the 2011 - present data archived in accession 0127341. 
+
+data/0-data/
+This directory contains the data files as submitted to NCEI.
+
+Daily_SEATEMPWwithmetadata.csv -
+  Daily surface seawater data with temperature at 9AM in degrees Celsius, date, year, 
+  location, coordinates, title and author.
+
+SEATEMPW.xls -
+  Mulit-sheet Microsoft Excel workbook containing daily (daily temperature), 7-day means, monthly means,
+  mm table (monthly mean table) and ref (references),
+
+data/1-data/
+This directory contains files that were converted by NCEI from their
+originally submitted format under the 0-data/ directory to an archival
+format.
+
+*.csv - 
+  Comma-separated-value (CSV) files that NCEI converted from Microsoft 
+  Excel files in 0-data/.  There is one CSV file for each Excel spreadsheet. 
+  For multi-spreadsheet files, the sheet name is appended to the file basename,
+  separated by an dash (-). 

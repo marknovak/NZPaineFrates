@@ -1,1 +1,4 @@
 Handling time regression coefficients as published (with data) in [https://doi.org/10.1098/rspb.2013.1415](https://doi.org/10.1098/rspb.2013.1415) and provided in [https://doi:10.5061/dryad.6k144](https://doi:10.5061/dryad.6k144).
+
+Leigh temperature data from:
+Costello, Mark J.; University of Auckland/Institute of Marine Sciences > Leigh Marine Laboratory (2015). Daily surface water temperature data collected from bucket casts from pier at Leigh Marine Laboratory, Auckland, New Zealand from 1967-01-01 to 2011-04-30 (NCEI Accession 0127323). NOAA National Centers for Environmental Information. Dataset. [https://www.ncei.noaa.gov/archive/accession/0127323](https://www.ncei.noaa.gov/archive/accession/0127323). Accessed 2021-08-02

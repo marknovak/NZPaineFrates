@@ -1,0 +1,51 @@
+From: Mark J Costello <m.costello@auckland.ac.nz>
+Date: Thu, Apr 9, 2015 at 9:54 PM
+Subject: coastal seawater temperature series data
+To: "nodc.dataofficer@noaa.gov" <nodc.dataofficer@noaa.gov>
+Cc: Thomas Ryan - NOAA Federal <thomas.ryan@noaa.gov>
+
+Dear NODC
+
+We’d be pleased if you could include our laboratory 40+ year sea temperature 
+dataset and future updates in your data centre. We have published this online 
+through our university repository to maximise its use.
+
+Evans, J., & Atkins, J. (2013). Seawater temperature dataset at Goat Island, 
+Leigh New Zealand from 1967 to 2011. University of Auckland Dataset: 
+http://hdl.handle.net/2292/20612
+
+And
+
+Atkins, J. (2014) Seawater Temperature dataset at Goat Island, Leigh New 
+Zealand from October 2011 to present
+https://researchspace.auckland.ac.nz/handle/2292/21850
+
+The pre 2011 measurements were mostly taken by Jo Evans, the laboratory 
+technician now retired, and are now managed by John Atkins. The published 
+measurements were taken from a bucket lowered into the surface water using a 
+calibrated mercury thermometer at about 9am each day. From 2013 they moved to a 
+more frequent digital measurement in the lab seawater intake. A calibration was 
+done and the difference was negligible.
+
+Yours sincerely
+Mark
+
+><>  ><>  ><>  ><>  ><>  ><>  ><>  ><>  ><> ><>
+Dr Mark J. Costello, Associate Professor,
+Institute of Marine Science, Leigh Marine Laboratory, University of Auckland.
+Skype: markcostello.
+Email m.costello@auckland.ac.nz
+
+Websites
+www.marine.auckland.ac.nz/uoa/mark-costello  
+Publications http://scholar.google.com/citations?hl=en&user=vZue3Y4AAAAJ  
+World Register of Marine Species www.marinespecies.org. 
+International Association of Biological Oceanography www.iabo.org. 
+Global Biodiversity Information Facility Science Committee.
+Society for the Management of Electronic Biodiversity Data www.smebd.eu.
+Marine and Freshwater Editor of the journal Biological Conservation, and 
+Editor-in-Chief of Marine Biodiversity Records'.
+Scientific Committee for Ocean Research (SCOR), GEO BON Marine Working Group, 
+DIVERSITAS bioDiscovery Scientific Committee, and Species 2000
+Manager of Marine Research Information (email) NEtwork on biodiversity; 
+MaRINe-B archives at https://listserv.heanet.ie/marine-b.html. 

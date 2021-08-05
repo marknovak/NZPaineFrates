@@ -102,7 +102,8 @@ tab.fobs <- table(unique(fobs[, c('Site', 'Year')]))
   tab.fobs
 tab.abund <- table(unique(abund[, c('Site', 'Year')]))
   tab.abund
-sites.fcomp <- names(which(apply(tab.fobs, 1, sum) > 1 & tab.fobs[, 3] == 1))
+sites.fcomp <- names(which(apply(tab.fobs, 1, sum) > 1 
+                           & tab.fobs[, 3] == 1))
 
 # Pick sites that have both feeding obs and abundance surveys
 # and select abundance transects to compare
@@ -112,11 +113,16 @@ x
 
 abund <- subset(
             abund,
-            Site == 'Leigh - Waterfall Rocks' & grepl('Transect#2', abund$Zone) |
-            Site == 'Leigh - Waterfall Rocks' & Year == 2004 |
-            Site == 'Rangitoto Island - Whites Beach' & Zone == 'Oyster Zone' |
-            Site == 'Rangitoto Island - Whites Beach' & Year == 2004 |
-            Site == 'Red Beach - Whangaparaoa' & grepl('Oyster', abund$Zone)
+            Site == 'Leigh - Waterfall Rocks' 
+              & grepl('Transect#2', abund$Zone) |
+            Site == 'Leigh - Waterfall Rocks' 
+              & Year == 2004 |
+            Site == 'Rangitoto Island - Whites Beach' 
+              & Zone == 'Oyster Zone' |
+            Site == 'Rangitoto Island - Whites Beach' 
+              & Year == 2004 |
+            Site == 'Red Beach - Whangaparaoa' 
+              & grepl('Oyster', abund$Zone)
             )
 
 abund <-

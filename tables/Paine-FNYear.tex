@@ -1,15 +1,16 @@
-%latex.default(xtable(summary(regFNYear)), file = "../tables/Paine-FNYear.tex",     rowlabel = "", label = "tab:FNY", first.hline.double = FALSE,     caption = "Summary table for the regression of prey-specific feeding rate \n  on prey-specific abundance and time period (\\emph{Year}).",     digits = 3, where = "!htbp")%
+%latex.default(xtable(summary(regFNYear)), file = "../tables/Paine-FNYear.tex",     rowlabel = "", label = "tab:FNY", first.hline.double = FALSE,     caption = "Summary table for the regression of \n  prey-specific feeding rate \n  on prey-specific abundance and time period (\\emph{Year}).",     digits = 3, where = "!htbp")%
 \begin{table}[!htbp]
-\caption{Summary table for the regression of prey-specific feeding rate 
+\caption{Summary table for the regression of 
+  prey-specific feeding rate 
   on prey-specific abundance and time period (\emph{Year}).\label{tab:FNY}} 
 \begin{center}
 \begin{tabular}{lrrrr}
 \hline
 \multicolumn{1}{l}{}&\multicolumn{1}{c}{Estimate}&\multicolumn{1}{c}{Std. Error}&\multicolumn{1}{c}{t value}&\multicolumn{1}{c}{Pr(\textgreater |t|)}\tabularnewline
 \hline
-(Intercept)&$-3.519$&$0.269$&$-13.07$&$2.71e-10$\tabularnewline
-log10(N)&$ 0.540$&$0.178$&$  3.03$&$7.59e-03$\tabularnewline
-Year2004&$-0.248$&$0.241$&$ -1.03$&$3.18e-01$\tabularnewline
+(Intercept)&$ 0.80246$&$13.03154$&$ 0.0616$&$0.95145$\tabularnewline
+log10(N.mean)&$ 0.52616$&$ 0.18387$&$ 2.8616$&$0.00907$\tabularnewline
+Year&$-0.00224$&$ 0.00657$&$-0.3408$&$0.73652$\tabularnewline
 \hline
 \end{tabular}\end{center}
 \end{table}

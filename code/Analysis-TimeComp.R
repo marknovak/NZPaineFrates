@@ -16,32 +16,32 @@ library(dplyr)
 library(tidyr)
 
 ############################
-dat <- read.csv('../data/derived/NZ-1969_2004-tab_Summarized.csv')
+data <- read.csv('../data/derived/NZ-1969_2004-tab_Summarized.csv')
 
 ############################
 # Feeding rates
 # f_i=n_i/n * 1/h_i
-dat$fi <- dat$pi /dat$h.mean
+data$fi <- data$pi /data$h.mean
 
 # Attack rates
 # (only able to calculate for species that also showed up in abundance surveys)
 # a_i= n_i/n_0 * 1/(h_i*N_i)
-dat$ai <- dat$pi0 / (dat$h.mean * dat$N.mean)
+data$ai <- data$pi0 / (data$h.mean * data$N.mean)
 
-sum(!is.na(dat$fi))
-sum(!is.na(dat$ai))
+sum(!is.na(data$fi))
+sum(!is.na(data$ai))
 
 ############################
 # Time-periods side-by-side and drop rows without feeding rate estimates
 # (including Not Feeding)
-dat <- pivot_wider(data = dat, 
-            id_cols = c('Site','Prey'),
-            names_from = 'Year',
-            values_from = c('n.obs','h.mean',
-                            'pi','pi0',
-                            'N.mean',
-                            'fi','ai')) %>%
-       drop_na('fi_1969', 'fi_2004')
+dat <- data %>%
+  pivot_wider(id_cols = c('Site','Prey'),
+              names_from = 'Year',
+              values_from = c('n.obs','h.mean',
+                              'pi','pi0',
+                              'N.mean',
+                              'fi','ai')) %>%
+  drop_na('fi_1969', 'fi_2004')
 
 ############################
 # Define function to place asterisk(s) for "significance"
@@ -432,36 +432,24 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-
 dev.off()
-
-
 
 
 ##########################################################
 # Compare relationships between feeding rate and abundance
 ##########################################################
+datFN <- data %>%
+  drop_na(N.mean, fi)
+# These data include 5 unpaired observations
+# (i.e. where only one of us observed a given prey species)
 
-# Separate models
-reg69 <- lm(log10(datsub$fi_1969) ~ log10(datsub$N.mean_1969))
-reg04 <- lm(log10(datsub$fi_2004) ~ log10(datsub$N.mean_2004))
+regFNYearInt <- lm(log10(fi) ~ log10(N.mean) * Year, data = datFN)
+  summary(regFNYearInt) # Year & intxn not signif
+regFNYear <- lm(log10(fi) ~ log10(N.mean) + Year, data = datFN)
+  summary(regFNYear) # Year not signif
+regFN <- lm(log10(fi) ~ log10(N.mean), data = datFN)
+  summary(regFN) # Intercept and slope signif
 
-# Single model
-datr <- data.frame(
-  f = c(datsub$fi_1969, datsub$fi_2004),
-  N = c(datsub$N.mean_1969, datsub$N.mean_2004),
-  Year = rep.int(c('1969', '2004'), 
-                 c(nrow(datsub), nrow(datsub))),
-  Prey = datsub$Prey
-)
-
-
-regFNYearInt <- lm(log10(f) ~ log10(N) * Year, data = datr)
-summary(regFNYearInt) # Year & intxn not signif
-regFNYear <- lm(log10(f) ~ log10(N) + Year, data = datr)
-summary(regFNYear) # Year not signif
-regFN <- lm(log10(f) ~ log10(N), data = datr)
-summary(regFN) # Intercept and slope signif
 
 latex(
   xtable(summary(regFNYearInt)),
@@ -471,7 +459,8 @@ latex(
   label = 'tab:FNYint',
   # center = 'centering',
   first.hline.double = FALSE,
-  caption="Summary table for the regression of prey-specific feeding rate 
+  caption="Summary table for the regression of 
+  prey-specific feeding rate 
   on prey-specific abundance,
   time period (\\emph{Year}), 
   and their interaction.",
@@ -486,7 +475,8 @@ latex(
   label = 'tab:FNY',
   # center = 'centering',
   first.hline.double = FALSE,
-  caption="Summary table for the regression of prey-specific feeding rate 
+  caption="Summary table for the regression of 
+  prey-specific feeding rate 
   on prey-specific abundance and time period (\\emph{Year}).",
   digits=3,
   where="!htbp"
@@ -499,14 +489,15 @@ latex(
   label = 'tab:FN',
   # center = 'centering',
   first.hline.double = FALSE,
-  caption="Summary table for the regression of prey-specific feeding rate 
+  caption="Summary table for the regression of 
+  prey-specific feeding rate 
   on prey-specific abundance.",
   digits=3,
   where="!htbp"
 )
 
-xlim <- range(datr$N[!is.na(datr$f)], na.rm = TRUE)
-ylim <- range(datr$f, na.rm = TRUE)
+xlim <- range(datFN$N[!is.na(datFN$fi)], na.rm = TRUE)
+ylim <- range(datFN$fi, na.rm = TRUE)
 
 pdf('../figs/Paine-FuncResp.pdf',
     width = 4,
@@ -521,16 +512,16 @@ par(
   las = 1
 )
 
-  plot(datr$N, datr$f,
+  plot(datFN$N.mean, datFN$fi,
        log = 'xy',
        type = 'n',
        axes = FALSE,
        xlab = expression(paste('Prey abundance, ', italic(N[i]))),
        ylab = expression(paste('Feeding rate, ', italic(f[i]))))
-  points(datr$N[datr$Year==1969], datr$f[datr$Year==1969],
+  points(datFN$N[datFN$Year==1969], datFN$f[datFN$Year==1969],
          pch = 21,
          bg = 'grey30')
-  points(datr$N[datr$Year==2004], datr$f[datr$Year==2004],
+  points(datFN$N[datFN$Year==2004], datFN$f[datFN$Year==2004],
          pch = 23,
          bg = 'grey70')
   ats <- 10 ^ seq(-6, 5)

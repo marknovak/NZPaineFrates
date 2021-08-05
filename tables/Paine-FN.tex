@@ -1,14 +1,15 @@
-%latex.default(xtable(summary(regFN)), file = "../tables/Paine-FN.tex",     rowlabel = "", label = "tab:FN", first.hline.double = FALSE,     caption = "Summary table for the regression of prey-specific feeding rate \n  on prey-specific abundance.",     digits = 3, where = "!htbp")%
+%latex.default(xtable(summary(regFN)), file = "../tables/Paine-FN.tex",     rowlabel = "", label = "tab:FN", first.hline.double = FALSE,     caption = "Summary table for the regression of \n  prey-specific feeding rate \n  on prey-specific abundance.",     digits = 3, where = "!htbp")%
 \begin{table}[!htbp]
-\caption{Summary table for the regression of prey-specific feeding rate 
+\caption{Summary table for the regression of 
+  prey-specific feeding rate 
   on prey-specific abundance.\label{tab:FN}} 
 \begin{center}
 \begin{tabular}{lrrrr}
 \hline
 \multicolumn{1}{l}{}&\multicolumn{1}{c}{Estimate}&\multicolumn{1}{c}{Std. Error}&\multicolumn{1}{c}{t value}&\multicolumn{1}{c}{Pr(\textgreater |t|)}\tabularnewline
 \hline
-(Intercept)&$-3.612$&$0.254$&$-14.22$&$3.15e-11$\tabularnewline
-log10(N)&$ 0.516$&$0.177$&$  2.91$&$9.29e-03$\tabularnewline
+(Intercept)&$-3.637$&$0.254$&$-14.3$&$5.97e-13$\tabularnewline
+log10(N.mean)&$ 0.521$&$0.180$&$  2.9$&$8.08e-03$\tabularnewline
 \hline
 \end{tabular}\end{center}
 \end{table}

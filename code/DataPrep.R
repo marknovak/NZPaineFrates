@@ -27,37 +27,9 @@ leightemps <- read.csv("../data/orig/LeighTemps/data/1-data/SEATEMPW7-monthly_me
 qArea <- 0.3 * 0.3 # quadrat area (m^2) (30 by 30 cm)
 abund.raw$Quad_Size <- qArea
 
-###########################
-# Remove anecdotal observations
-fobs <- subset(fobs, ObservationType == 'Systematic Census')
-
-############################
-# Convert site locations (NZMG) to WGS84
-############################
-# https://stackoverflow.com/questions/58585146/convert-nzmg-coordinates-to-lat-long
-
-dat <- data.frame(id = sitecoord$Site, 
-                  x = sitecoord$NZ.E.coordinate, 
-                  y = sitecoord$NZ.N.coordinate)
-
-# dat <- dat[dat$id%in%sites.fcomp,]
-dat <- dat[dat$id%in%fobs$Site,]
-dat <- subset(dat, !is.na(x))
-
-sp::coordinates(dat) = ~x+y
-
-proj4string <- "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +towgs84=59.47,-5.04,187.44,0.47,-0.1,1.024,-4.5993 +nadgrids=nzgd2kgrid0005.gsb +no_defs"
-
-sp::proj4string(dat) = sp::CRS(proj4string) 
-data_wgs84 <- sp::spTransform(dat, sp::CRS('+init=epsg:4326'))
-siteInfo <- data.frame(Site = data_wgs84$id,
-                         Lat = round(coordinates(data_wgs84)[,2], 4),
-                         Lon = round(coordinates(data_wgs84)[,1], 4))
-
 #############################
 # Abundance surveys
 #############################
-
 # Reorganize abundance data
 abund <-
   gather(
@@ -82,21 +54,67 @@ write.csv(abund,
 
 colnames(abund)[colnames(abund)=='Species'] <- 'Prey'
 
-###################################
-# Align and rename abundance and feeding-obs site names
-fobs$Site[which(fobs$Site == "LeighWaterfallandPenny'sRocks")] <-
+#######################
+# Feeding surveys
+#######################
+
+# Remove anecdotal observations
+fobs <- subset(fobs, ObservationType == 'Systematic Census')
+
+############################
+# Convert site locations (NZMG) to WGS84
+############################
+# https://stackoverflow.com/questions/58585146/convert-nzmg-coordinates-to-lat-long
+
+dat <- data.frame(id = sitecoord$Site, 
+                  x = sitecoord$NZ.E.coordinate, 
+                  y = sitecoord$NZ.N.coordinate)
+
+dat <- dat[dat$id%in%fobs$Site,]
+dat <- subset(dat, !is.na(x))
+
+sp::coordinates(dat) = ~x+y
+
+proj4string <- "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +towgs84=59.47,-5.04,187.44,0.47,-0.1,1.024,-4.5993 +nadgrids=nzgd2kgrid0005.gsb +no_defs"
+
+sp::proj4string(dat) = sp::CRS(proj4string) 
+data_wgs84 <- sp::spTransform(dat, sp::CRS('+init=epsg:4326'))
+siteInfo <- data.frame(Site = data_wgs84$id,
+                       Lat = round(coordinates(data_wgs84)[,2], 4),
+                       Lon = round(coordinates(data_wgs84)[,1], 4))
+
+#############################
+siteInfo$Site <- gsub("([[:lower:]])([[:upper:]])", "\\1 \\2", siteInfo$Site)
+fobs$Site <- gsub("([[:lower:]])([[:upper:]])", "\\1 \\2", fobs$Site)
+
+# Align feeding-obs site names with Abund survey names
+fobs$Site[which(fobs$Site == "Leigh Waterfalland Penny's Rocks")] <-
   unique(abund$Site[grep('Waterfall', abund$Site)])
-fobs$Site[which(fobs$Site == "LeighEchinodermReef")] <-
+fobs$Site[which(fobs$Site == "Leigh Echinoderm Reef")] <-
   'Leigh - Echinoderm Reef'
-fobs$Site[which(fobs$Site == "LeighTabletopRocksandBoulders")] <-
+fobs$Site[which(fobs$Site == "Leigh Tabletop Rocksand Boulders")] <-
   'Leigh - Tabletop Rocks and Boulders'
-fobs$Site[which(fobs$Site == "RangitotoIslandWhiteBeach")] <-
+fobs$Site[which(fobs$Site == "Rangitoto Island White Beach")] <-
   unique(abund$Site[grep('Rangitoto', abund$Site)])
-fobs$Site[which(fobs$Site == "RedBeach")] <-
+fobs$Site[which(fobs$Site == "Red Beach")] <-
   unique(abund$Site[grep('Red Beach - Whangaparaoa', abund$Site)])
-fobs$Site[which(fobs$Site == "WhangareiBaptistCamp")] <-
+fobs$Site[which(fobs$Site == "Whangarei Baptist Camp")] <-
   'Whangarei'
 
+siteInfo$Site[which(siteInfo$Site == "Leigh Waterfalland Penny's Rocks")] <-
+  unique(abund$Site[grep('Waterfall', abund$Site)])
+siteInfo$Site[which(siteInfo$Site == "Leigh Echinoderm Reef")] <-
+  'Leigh - Echinoderm Reef'
+siteInfo$Site[which(siteInfo$Site == "Leigh Tabletop Rocksand Boulders")] <-
+  'Leigh - Tabletop Rocks and Boulders'
+siteInfo$Site[which(siteInfo$Site == "Rangitoto Island White Beach")] <-
+  unique(abund$Site[grep('Rangitoto', abund$Site)])
+siteInfo$Site[which(siteInfo$Site == "Red Beach")] <-
+  unique(abund$Site[grep('Red Beach - Whangaparaoa', abund$Site)])
+siteInfo$Site[which(siteInfo$Site == "Whangarei Baptist Camp")] <-
+  'Whangarei'
+
+#############################
 # Which sites can be compared
 tab.fobs <- table(unique(fobs[, c('Site', 'Year')]))
   tab.fobs

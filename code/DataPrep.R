@@ -219,6 +219,9 @@ fobs$htime <-
     + fobs$logTempC * log(fobs$Temp)
   )
 
+# Divide by 24 hours to convert to days
+fobs$htime <- fobs$htime/24
+
 # Look for problems
 subset(fobs, is.na(htime) & Prey != 'Not Feeding')
 

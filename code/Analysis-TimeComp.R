@@ -66,7 +66,9 @@ deviation <- function(x, y){
               MAD = mean(abs(x - y)),
               mean.log10 = mean(log10(c(x,y))),
               MLD = mean(log10(x/y)),
-              MALD = mean(abs(log10(x/y))))
+              MALD = mean(abs(log10(x/y))),
+              tenMLD = 10^mean(log10(x/y)),
+              tenMALD = 10^mean(abs(log10(x/y))))
   print(out)
   return(out)
 }
@@ -296,8 +298,6 @@ f.rs.sub <- cor.test.ratios(datsub$pi_1969, datsub$h.mean_1969,
 f.dev.sub <- deviation(datsub$fi_1969, datsub$fi_2004)
 
 f.range.sub <- range(c(datsub$fi_1969, datsub$fi_2004), na.rm = TRUE)
-f.range.sub
-
 xylim <- f.range.sub * xymag
 
 matplot(
@@ -339,6 +339,35 @@ legend(
 )
 
 #~~~~~~~~~~~
+# Proportions
+#~~~~~~~~~~~
+fp.r.sub <- cor.test(datsub$pi_1969, datsub$pi_2004, 
+                 use = 'complete.obs')
+fplog.r.sub <- cor.test(log10(datsub$pi_1969), log10(datsub$pi_2004),
+                    use = 'complete.obs')
+fp.rs.sub <- cor.test(datsub$pi_1969, datsub$pi_2004, 
+                  use = 'complete.obs', method = 'spearman')
+
+fp.dev.sub <- deviation(datsub$pi_1969, datsub$pi_2004)
+
+fp.range.sub <- range(c(datsub$pi_1969, datsub$pi_2004), na.rm = TRUE)
+
+#~~~~~~~~~~~
+# Detection times
+#~~~~~~~~~~~
+h.r.sub <- cor.test(datsub$h.mean_1969, datsub$h.mean_2004, 
+                use = 'complete.obs')
+hlog.r.sub <- cor.test(log10(datsub$h.mean_1969), log10(datsub$h.mean_2004), 
+                   use = 'complete.obs')
+h.rs.sub <- cor.test(datsub$h.mean_1969, datsub$h.mean_2004, 
+                 use = 'complete.obs', method = 'spearman')
+
+h.dev.sub <- deviation(datsub$h.mean_1969, datsub$h.mean_2004)
+
+h.range.sub <- range(c(datsub$h.mean_1969, datsub$h.mean_2004), na.rm = TRUE)
+
+
+#~~~~~~~~~~~
 # Abundances
 #~~~~~~~~~~~
 N.r.sub <-  cor.test(datsub$N.mean_1969, datsub$N.mean_2004,
@@ -351,7 +380,6 @@ N.rs.sub <- cor.test(datsub$N.mean_1969, datsub$N.mean_2004,
 N.dev.sub <- deviation(datsub$N.mean_1969, datsub$N.mean_2004)
 
 N.range.sub <- range(c(datsub$N.mean_1969, datsub$N.mean_2004), na.rm = TRUE)
-N.range.sub
 
 xylim <- N.range.sub * xymag
 

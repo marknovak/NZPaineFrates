@@ -185,8 +185,17 @@ Match <- read.csv('../data/orig/NZ-HandlingTimes-Paine-PreyMatch.csv')
 
 rem <- which(Match$Pred == Match$MatchToPred 
              & Match$Prey == Match$MatchToPrey)
+
+Match$Pred[Match$Pred=='Haustrum haustorium'] <- 'H. haustorium'
+Match$Pred[Match$Pred=='Haustrum scobina'] <- 'H. scobina'
+Match$MatchToPred[Match$MatchToPred=='Haustrum haustorium'] <- 'H. haustorium'
+Match$MatchToPred[Match$MatchToPred=='Haustrum scobina'] <- 'H. scobina'
+
+Match <- Match[-rem,]
+cellTex <- matrix(rep('\\textit',prod(dim(Match))), nrow(Match))
+
 latex(
-  Match[-rem,],
+  Match,
   file='../tables/Paine-PredPreyMatches.tex',
   cgroup = c('Unmeasured','Matched to measured'),
   n.cgroup = c(2, 2),
@@ -195,7 +204,8 @@ latex(
   label = 'tab:matches',
   first.hline.double = FALSE,
   where = "!htbp",
-  caption="Prey for which detection times had not been measured in the laboratory experiments of \\citep{Novak:2013qg} were assigned the regression coefficients of prey species for which they had been measured."
+  # cellTexCmds = cellTex,
+  caption="Prey for which \\textit{Haustrum haustorium}'s prey-specific detection times had not been measured in the laboratory experiments of \\citet{Novak:2013qg} were assigned the regression coefficients of prey species for which they had been measured."
 )
 
 # Observations with unmeasured pred or prey sizes get NA

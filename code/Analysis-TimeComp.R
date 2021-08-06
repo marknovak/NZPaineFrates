@@ -43,6 +43,8 @@ dat <- data %>%
                               'fi','ai')) %>%
   drop_na('fi_1969', 'fi_2004')
 
+nrow(dat)
+unique(dat$Prey)
 ############################
 # Define function to place asterisk(s) for "significance"
 signif <- function(x){
@@ -59,12 +61,12 @@ signif <- function(x){
 # as well as overall variable mean
 # (on both natural and log10 scale)
 deviation <- function(x, y){
-  out <- list(MD = mean(x - y),
+  out <- list(mean = mean(c(x, y)),
+              MD = mean(x - y),
               MAD = mean(abs(x - y)),
-              mean = mean(c(x, y)),
-              MD.log10 = mean(log10(x) - log10(y)),
-              MAD.log10 = mean(abs(log10(x) - log10(y))),
-              mean.log10 = mean(log10(c(x, y))))
+              mean.log10 = mean(log10(c(x,y))),
+              MLD = mean(log10(x/y)),
+              MALD = mean(abs(log10(x/y))))
   print(out)
   return(out)
 }
@@ -104,7 +106,8 @@ f.rs <- cor.test.ratios(dat$pi_1969, dat$h.mean_1969,
 
 f.dev <- deviation(dat$fi_1969, dat$fi_2004)
 
-xylim <- range(c(dat$fi_1969, dat$fi_2004), na.rm = TRUE) * xymag
+f.range <- range(c(dat$fi_1969, dat$fi_2004), na.rm = TRUE)
+xylim <-  f.range * xymag
 
 matplot(
   spread(dplyr::select(dat, Site, Prey, fi_1969), Site, fi_1969)[,-1],
@@ -164,9 +167,10 @@ fplog.r <- cor.test(log10(dat$pi_1969), log10(dat$pi_2004),
 fp.rs <- cor.test(dat$pi_1969, dat$pi_2004, 
                        use = 'complete.obs', method = 'spearman')
 
-p.dev = deviation(dat$pi_1969, dat$pi_2004)
+fp.dev <- deviation(dat$pi_1969, dat$pi_2004)
 
-xylim <- range(c(dat$pi_1969, dat$pi_2004), na.rm = TRUE) * xymag
+fp.range <- range(c(dat$pi_1969, dat$pi_2004), na.rm = TRUE)
+xylim <-  fp.range * xymag
 
 matplot(
   spread(dplyr::select(dat, Site, Prey, pi_1969), Site, pi_1969)[,-1],
@@ -226,9 +230,11 @@ hlog.r <- cor.test(log10(dat$h.mean_1969), log10(dat$h.mean_2004),
 h.rs <- cor.test(dat$h.mean_1969, dat$h.mean_2004, 
                       use = 'complete.obs', method = 'spearman')
 
-h.dev = deviation(dat$h.mean_1969, dat$h.mean_2004)
+h.dev <- deviation(dat$h.mean_1969, dat$h.mean_2004)
 
-xylim <- range(c(dat$h.mean_1969, dat$h.mean_2004), na.rm = TRUE) * xymag
+h.range <- range(c(dat$h.mean_1969, dat$h.mean_2004), na.rm = TRUE)
+
+xylim <- h.range * xymag
 
 matplot(
   spread(dplyr::select(dat, Site, Prey, h.mean_1969), Site, h.mean_1969)[,-1],
@@ -287,9 +293,12 @@ f.rs.sub <- cor.test.ratios(datsub$pi_1969, datsub$h.mean_1969,
                             datsub$pi_2004, datsub$h.mean_2004,
                             method = 'spearman')
 
-f.dev.sub = deviation(datsub$fi_1969, datsub$fi_2004)
+f.dev.sub <- deviation(datsub$fi_1969, datsub$fi_2004)
 
-xylim <- range(c(datsub$fi_1969, datsub$fi_2004), na.rm = TRUE) * xymag
+f.range.sub <- range(c(datsub$fi_1969, datsub$fi_2004), na.rm = TRUE)
+f.range.sub
+
+xylim <- f.range.sub * xymag
 
 matplot(
   spread(dplyr::select(datsub, Site, Prey, fi_1969), Site, fi_1969)[,-1],
@@ -339,9 +348,12 @@ Nlog.r.sub <- cor.test(log10(datsub$N.mean_1969), log10(datsub$N.mean_2004),
 N.rs.sub <- cor.test(datsub$N.mean_1969, datsub$N.mean_2004,
                  use = 'complete.obs', method = 'spearman')
 
-N.dev.sub = deviation(datsub$N.mean_1969, datsub$N.mean_2004)
+N.dev.sub <- deviation(datsub$N.mean_1969, datsub$N.mean_2004)
 
-xylim <- range(c(datsub$N.mean_1969, datsub$N.mean_2004), na.rm = TRUE) * xymag
+N.range.sub <- range(c(datsub$N.mean_1969, datsub$N.mean_2004), na.rm = TRUE)
+N.range.sub
+
+xylim <- N.range.sub * xymag
 
 matplot(
   spread(dplyr::select(datsub, Site, Prey, N.mean_1969), Site, N.mean_1969)[,-1],
@@ -391,9 +403,10 @@ alog.r.sub <- cor.test(log10(datsub$ai_1969), log10(datsub$ai_2004),
 a.rs.sub <- cor.test(datsub$ai_1969, datsub$ai_2004, 
                  use = 'complete.obs', method = 'spearman')
 
-a.dev.sub = deviation(datsub$ai_1969, datsub$ai_2004)
+a.dev.sub <- deviation(datsub$ai_1969, datsub$ai_2004)
 
-xylim <- range(c(datsub$ai_1969, datsub$ai_2004), na.rm = TRUE) * xymag
+a.range.sub <- range(c(datsub$ai_1969, datsub$ai_2004), na.rm = TRUE)
+xylim <- a.range.sub * xymag
 
 matplot(
   spread(dplyr::select(datsub, Site, Prey, ai_1969), Site, ai_1969)[,-1],

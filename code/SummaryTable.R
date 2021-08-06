@@ -22,9 +22,22 @@ sizes <- read.csv("../data/derived/NZ-1969_2004-tab_Sizes.csv")
 # Total count of observations (feeding + not feeding)
 dat$n.obs[is.na(dat$n.obs) & dat$Site == 'Red Beach - Whangaparaoa'
           & dat$Year == 2004 & dat$Prey =='Haustrum scobina'] <- 0
-summ <-
-  dat %>% 
-  filter(Site%in%focalSites) %>%
+
+dat <- dat %>% 
+  filter(Site%in%focalSites)
+
+obs <- dat %>%
+  group_by(Prey, Year) %>%
+  summarise(tot.n.obs = sum(n.obs, na.rm = TRUE)) %>%
+  pivot_wider(id_cols = Prey,
+                       names_from = Year,
+                       values_from = tot.n.obs) %>%
+  data.frame()
+obs[order(apply(obs[,-1], 1, sum, na.rm = TRUE), decreasing = TRUE),]
+
+
+
+summ <- dat %>%
   group_by(Site, Year) %>%
   summarise(tot.obs = sum(n.obs, na.rm = TRUE),
             feed.obs = sum(n.obs[Prey != "Not Feeding"], na.rm = TRUE),

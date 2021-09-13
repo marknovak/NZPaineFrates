@@ -186,28 +186,6 @@ Match <- read.csv('../data/orig/NZ-HandlingTimes-Paine-PreyMatch.csv')
 rem <- which(Match$Pred == Match$MatchToPred 
              & Match$Prey == Match$MatchToPrey)
 
-Match$Pred[Match$Pred=='Haustrum haustorium'] <- 'H. haustorium'
-Match$Pred[Match$Pred=='Haustrum scobina'] <- 'H. scobina'
-Match$MatchToPred[Match$MatchToPred=='Haustrum haustorium'] <- 'H. haustorium'
-Match$MatchToPred[Match$MatchToPred=='Haustrum scobina'] <- 'H. scobina'
-
-Match <- Match[-rem,]
-cellTex <- matrix(rep('\\textit',prod(dim(Match))), nrow(Match))
-
-latex(
-  Match,
-  file='../tables/Paine-PredPreyMatches.tex',
-  cgroup = c('Unmeasured','Matched to measured'),
-  n.cgroup = c(2, 2),
-  colheads = c('Predator','Prey','Predator','Prey'),
-  rowname = NULL,
-  label = 'tab:matches',
-  first.hline.double = FALSE,
-  where = "!htbp",
-  # cellTexCmds = cellTex,
-  caption="Prey for which \\textit{Haustrum haustorium}'s prey-specific detection times had not been measured in the laboratory experiments of \\citet{Novak:2013qg} were assigned the regression coefficients of prey species for which they had been measured."
-)
-
 # Observations with unmeasured pred or prey sizes get NA
 fobs$PredSize[fobs$PredSize <= 0] <- NA
 fobs$PreySize[fobs$PreySize <= 0] <- NA
@@ -249,6 +227,30 @@ for (i in 1:length(prey)) {
   fobs$htime[which(fobs$Prey == prey[i] &
                      is.na(fobs$htime) == TRUE)] <- mn
 }
+
+###########################
+# Export h-time matchings to LaTeX table
+Match$Pred[Match$Pred=='Haustrum haustorium'] <- 'H. haustorium'
+Match$Pred[Match$Pred=='Haustrum scobina'] <- 'H. scobina'
+Match$MatchToPred[Match$MatchToPred=='Haustrum haustorium'] <- 'H. haustorium'
+Match$MatchToPred[Match$MatchToPred=='Haustrum scobina'] <- 'H. scobina'
+
+Match <- Match[-rem,]
+cellTex <- matrix(rep('\\textit',prod(dim(Match))), nrow(Match))
+
+latex(
+  Match,
+  file='../tables/Paine-PredPreyMatches.tex',
+  cgroup = c('Unmeasured','Matched to measured'),
+  n.cgroup = c(2, 2),
+  colheads = c('Predator','Prey','Predator','Prey'),
+  rowname = NULL,
+  label = 'tab:matches',
+  first.hline.double = FALSE,
+  where = "!htbp",
+  # cellTexCmds = cellTex,
+  caption="Prey for which \\textit{Haustrum haustorium}'s prey-specific detection times had not been measured in the laboratory experiments of \\citet{Novak:2013qg} were assigned the regression coefficients of prey species for which they had been measured."
+)
 
 ###########################
 

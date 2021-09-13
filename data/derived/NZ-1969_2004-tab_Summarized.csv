@@ -1,71 +1,71 @@
 "Site","Prey","Year","n.obs","h.mean","pi","pi0","N.mean"
 "Avoca Point North","Not Feeding",2004,49,NA,0.924528301886792,1,NA
-"Avoca Point North","Siphonaria australis",2004,2,NA,0.0377358490566038,0.0408163265306122,NA
-"Avoca Point North","Turbo smaragdus",2004,2,NA,0.0377358490566038,0.0408163265306122,NA
-"Cape Foulwind","Cantharidella tesselata",2004,1,NA,0.00537634408602151,0.00546448087431694,NA
-"Cape Foulwind","Haustrum scobina",2004,1,NA,0.00537634408602151,0.00546448087431694,NA
+"Avoca Point North","Siphonaria australis",2004,2,0.222306783389491,0.0377358490566038,0.0408163265306122,NA
+"Avoca Point North","Turbo smaragdus",2004,2,4.03224069432228,0.0377358490566038,0.0408163265306122,NA
+"Cape Foulwind","Cantharidella tesselata",2004,1,0.303020661285864,0.00537634408602151,0.00546448087431694,NA
+"Cape Foulwind","Haustrum scobina",2004,1,2.58897442284034,0.00537634408602151,0.00546448087431694,NA
 "Cape Foulwind","Not Feeding",2004,183,NA,0.983870967741935,1,NA
-"Cape Foulwind","Turbo smaragdus",2004,1,NA,0.00537634408602151,0.00546448087431694,NA
+"Cape Foulwind","Turbo smaragdus",2004,1,3.49244469475575,0.00537634408602151,0.00546448087431694,NA
 "Cape Foulwind NWPlatform","Not Feeding",2004,27,NA,1,1,NA
-"Castle Point Boulders","Diloma aethiops",2004,2,NA,0.0363636363636364,0.0408163265306122,NA
+"Castle Point Boulders","Diloma aethiops",2004,2,0.460767940686552,0.0363636363636364,0.0408163265306122,NA
 "Castle Point Boulders","Not Feeding",2004,49,NA,0.890909090909091,1,NA
-"Castle Point Boulders","Patelloida corticata",2004,1,NA,0.0181818181818182,0.0204081632653061,NA
-"Castle Point Boulders","Siphonaria australis",2004,2,NA,0.0363636363636364,0.0408163265306122,NA
+"Castle Point Boulders","Patelloida corticata",2004,1,0.290390206689214,0.0181818181818182,0.0204081632653061,NA
+"Castle Point Boulders","Siphonaria australis",2004,2,0.0416586659787562,0.0363636363636364,0.0408163265306122,NA
 "Castle Point Boulders","UNID",2004,1,NA,0.0181818181818182,0.0204081632653061,NA
-"Castle Point Cave","Cantharidella tesselata",2004,6,NA,0.0275229357798165,0.0294117647058824,NA
-"Castle Point Cave","Cellana radians",2004,1,NA,0.00458715596330275,0.00490196078431373,NA
-"Castle Point Cave","Haustrum scobina",2004,2,NA,0.00917431192660551,0.00980392156862745,NA
+"Castle Point Cave","Cantharidella tesselata",2004,6,0.321737411285659,0.0275229357798165,0.0294117647058824,NA
+"Castle Point Cave","Cellana radians",2004,1,0.117517252404168,0.00458715596330275,0.00490196078431373,NA
+"Castle Point Cave","Haustrum scobina",2004,2,2.67215043939883,0.00917431192660551,0.00980392156862745,NA
 "Castle Point Cave","Not Feeding",2004,204,NA,0.935779816513762,1,NA
-"Castle Point Cave","Notoacmea parviconoidea",2004,1,NA,0.00458715596330275,0.00490196078431373,NA
-"Castle Point Cave","Siphonaria australis",2004,2,NA,0.00917431192660551,0.00980392156862745,NA
-"Castle Point Cave","Sypharochiton pelliserpentis",2004,2,NA,0.00917431192660551,0.00980392156862745,NA
-"Charleston Joyce Bay","Cellana ornata",2004,1,NA,0.00952380952380952,0.0099009900990099,NA
+"Castle Point Cave","Notoacmea parviconoidea",2004,1,0.129120671353465,0.00458715596330275,0.00490196078431373,NA
+"Castle Point Cave","Siphonaria australis",2004,2,0.184054002230466,0.00917431192660551,0.00980392156862745,NA
+"Castle Point Cave","Sypharochiton pelliserpentis",2004,2,1.90056493948948,0.00917431192660551,0.00980392156862745,NA
+"Charleston Joyce Bay","Cellana ornata",2004,1,0.292625320313598,0.00952380952380952,0.0099009900990099,NA
 "Charleston Joyce Bay","Not Feeding",2004,101,NA,0.961904761904762,1,NA
-"Charleston Joyce Bay","Paratrophon patens",2004,1,NA,0.00952380952380952,0.0099009900990099,NA
-"Charleston Joyce Bay","Patelloida corticata",2004,1,NA,0.00952380952380952,0.0099009900990099,NA
-"Charleston Joyce Bay","Plaxiphora caelata",2004,1,NA,0.00952380952380952,0.0099009900990099,NA
-"First Bay","Cantharidella tesselata",2004,1,NA,0.00492610837438424,0.00520833333333333,NA
-"First Bay","Cellana ornata",2004,2,NA,0.00985221674876847,0.0104166666666667,NA
+"Charleston Joyce Bay","Paratrophon patens",2004,1,3.08283457240697,0.00952380952380952,0.0099009900990099,NA
+"Charleston Joyce Bay","Patelloida corticata",2004,1,0.677304004072023,0.00952380952380952,0.0099009900990099,NA
+"Charleston Joyce Bay","Plaxiphora caelata",2004,1,4.26578994176584,0.00952380952380952,0.0099009900990099,NA
+"First Bay","Cantharidella tesselata",2004,1,0.76856890149933,0.00492610837438424,0.00520833333333333,NA
+"First Bay","Cellana ornata",2004,2,0.605787406156555,0.00985221674876847,0.0104166666666667,NA
 "First Bay","Not Feeding",2004,192,NA,0.945812807881773,1,NA
-"First Bay","Patelloida corticata",2004,2,NA,0.00985221674876847,0.0104166666666667,NA
-"First Bay","Plaxiphora caelata",2004,1,NA,0.00492610837438424,0.00520833333333333,NA
-"First Bay","Risellopsis varia",2004,1,NA,0.00492610837438424,0.00520833333333333,NA
-"First Bay","Siphonaria australis",2004,1,NA,0.00492610837438424,0.00520833333333333,NA
-"First Bay","Sypharochiton pelliserpentis",2004,3,NA,0.0147783251231527,0.015625,NA
-"Island Bay Lab Rocks","Cellana denticulata",2004,1,NA,0.0256410256410256,0.03125,NA
-"Island Bay Lab Rocks","Cellana radians",2004,1,NA,0.0256410256410256,0.03125,NA
+"First Bay","Patelloida corticata",2004,2,0.297123797683798,0.00985221674876847,0.0104166666666667,NA
+"First Bay","Plaxiphora caelata",2004,1,0.90995584199851,0.00492610837438424,0.00520833333333333,NA
+"First Bay","Risellopsis varia",2004,1,0.934484010218393,0.00492610837438424,0.00520833333333333,NA
+"First Bay","Siphonaria australis",2004,1,0.431797161136736,0.00492610837438424,0.00520833333333333,NA
+"First Bay","Sypharochiton pelliserpentis",2004,3,1.90057170754588,0.0147783251231527,0.015625,NA
+"Island Bay Lab Rocks","Cellana denticulata",2004,1,0.198364992567839,0.0256410256410256,0.03125,NA
+"Island Bay Lab Rocks","Cellana radians",2004,1,1.77115415683693,0.0256410256410256,0.03125,NA
 "Island Bay Lab Rocks","Not Feeding",2004,32,NA,0.82051282051282,1,NA
-"Island Bay Lab Rocks","Siphonaria australis",2004,4,NA,0.102564102564103,0.125,NA
-"Island Bay Lab Rocks","UNID Limpet",2004,1,NA,0.0256410256410256,0.03125,NA
-"Kaikoura Paine's","Cellana denticulata",1969,5,NA,0.0746268656716418,0.0980392156862745,NA
-"Kaikoura Paine's","Cellana ornata",1969,6,NA,0.0895522388059701,0.117647058823529,NA
-"Kaikoura Paine's","Cellana radians",1969,3,NA,0.0447761194029851,0.0588235294117647,NA
-"Kaikoura Paine's","Diloma aethiops",1969,2,NA,0.0298507462686567,0.0392156862745098,NA
+"Island Bay Lab Rocks","Siphonaria australis",2004,4,0.561406893706552,0.102564102564103,0.125,NA
+"Island Bay Lab Rocks","UNID Limpet",2004,1,0.217191450785911,0.0256410256410256,0.03125,NA
+"Kaikoura Paine's","Cellana denticulata",1969,5,0.310821876359013,0.0746268656716418,0.0980392156862745,NA
+"Kaikoura Paine's","Cellana ornata",1969,6,0.270578133698298,0.0895522388059701,0.117647058823529,NA
+"Kaikoura Paine's","Cellana radians",1969,3,0.349830639935145,0.0447761194029851,0.0588235294117647,NA
+"Kaikoura Paine's","Diloma aethiops",1969,2,1.37076792084491,0.0298507462686567,0.0392156862745098,NA
 "Kaikoura Paine's","Not Feeding",1969,51,NA,0.761194029850746,1,NA
-"Leigh - Echinoderm Reef","Fossarina rimata",1969,1,NA,0.0043859649122807,0.0050761421319797,NA
-"Leigh - Echinoderm Reef","Haustrum scobina",1969,8,NA,0.0350877192982456,0.0406091370558376,NA
-"Leigh - Echinoderm Reef","Haustrum scobina",2004,1,NA,0.0138888888888889,0.0161290322580645,NA
+"Leigh - Echinoderm Reef","Fossarina rimata",1969,1,0.319081090449772,0.0043859649122807,0.0050761421319797,NA
+"Leigh - Echinoderm Reef","Haustrum scobina",1969,8,0.827557082227219,0.0350877192982456,0.0406091370558376,NA
+"Leigh - Echinoderm Reef","Haustrum scobina",2004,1,1.28754638096089,0.0138888888888889,0.0161290322580645,NA
 "Leigh - Echinoderm Reef","Not Feeding",1969,197,NA,0.864035087719298,1,NA
 "Leigh - Echinoderm Reef","Not Feeding",2004,62,NA,0.861111111111111,1,NA
-"Leigh - Echinoderm Reef","Notoacmea parviconoidea",2004,1,NA,0.0138888888888889,0.0161290322580645,NA
-"Leigh - Echinoderm Reef","Plaxiphora caelata",2004,1,NA,0.0138888888888889,0.0161290322580645,NA
-"Leigh - Echinoderm Reef","Siphonaria australis",1969,4,NA,0.0175438596491228,0.0203045685279188,NA
-"Leigh - Echinoderm Reef","Siphonaria australis",2004,2,NA,0.0277777777777778,0.032258064516129,NA
-"Leigh - Echinoderm Reef","Turbo smaragdus",1969,18,NA,0.0789473684210526,0.0913705583756345,NA
-"Leigh - Echinoderm Reef","Turbo smaragdus",2004,5,NA,0.0694444444444444,0.0806451612903226,NA
-"Leigh - Tabletop Rocks and Boulders","Cellana radians",1969,15,NA,0.340909090909091,1,NA
-"Leigh - Tabletop Rocks and Boulders","Diloma aethiops",1969,3,NA,0.0681818181818182,0.2,NA
-"Leigh - Tabletop Rocks and Boulders","Diloma nigerrima",2004,1,NA,0.00373134328358209,0.00393700787401575,NA
-"Leigh - Tabletop Rocks and Boulders","Haustrum scobina",1969,4,NA,0.0909090909090909,0.266666666666667,NA
-"Leigh - Tabletop Rocks and Boulders","Haustrum scobina",2004,3,NA,0.0111940298507463,0.0118110236220472,NA
+"Leigh - Echinoderm Reef","Notoacmea parviconoidea",2004,1,0.16927397601743,0.0138888888888889,0.0161290322580645,NA
+"Leigh - Echinoderm Reef","Plaxiphora caelata",2004,1,1.50343966044793,0.0138888888888889,0.0161290322580645,NA
+"Leigh - Echinoderm Reef","Siphonaria australis",1969,4,0.066684822086346,0.0175438596491228,0.0203045685279188,NA
+"Leigh - Echinoderm Reef","Siphonaria australis",2004,2,0.0703909694918166,0.0277777777777778,0.032258064516129,NA
+"Leigh - Echinoderm Reef","Turbo smaragdus",1969,18,3.02591164212979,0.0789473684210526,0.0913705583756345,NA
+"Leigh - Echinoderm Reef","Turbo smaragdus",2004,5,1.98071250329782,0.0694444444444444,0.0806451612903226,NA
+"Leigh - Tabletop Rocks and Boulders","Cellana radians",1969,15,0.314058931701123,0.340909090909091,1,NA
+"Leigh - Tabletop Rocks and Boulders","Diloma aethiops",1969,3,0.444920562999808,0.0681818181818182,0.2,NA
+"Leigh - Tabletop Rocks and Boulders","Diloma nigerrima",2004,1,0.111340663629883,0.00373134328358209,0.00393700787401575,NA
+"Leigh - Tabletop Rocks and Boulders","Haustrum scobina",1969,4,1.34735214074969,0.0909090909090909,0.266666666666667,NA
+"Leigh - Tabletop Rocks and Boulders","Haustrum scobina",2004,3,1.63239102015402,0.0111940298507463,0.0118110236220472,NA
 "Leigh - Tabletop Rocks and Boulders","Not Feeding",1969,15,NA,0.340909090909091,1,NA
 "Leigh - Tabletop Rocks and Boulders","Not Feeding",2004,254,NA,0.947761194029851,1,NA
-"Leigh - Tabletop Rocks and Boulders","Patelloida corticata",1969,5,NA,0.113636363636364,0.333333333333333,NA
-"Leigh - Tabletop Rocks and Boulders","Patelloida corticata",2004,4,NA,0.0149253731343284,0.015748031496063,NA
-"Leigh - Tabletop Rocks and Boulders","Plaxiphora caelata",2004,3,NA,0.0111940298507463,0.0118110236220472,NA
-"Leigh - Tabletop Rocks and Boulders","Siphonaria australis",1969,1,NA,0.0227272727272727,0.0666666666666667,NA
-"Leigh - Tabletop Rocks and Boulders","Siphonaria australis",2004,3,NA,0.0111940298507463,0.0118110236220472,NA
-"Leigh - Tabletop Rocks and Boulders","Turbo smaragdus",1969,1,NA,0.0227272727272727,0.0666666666666667,NA
+"Leigh - Tabletop Rocks and Boulders","Patelloida corticata",1969,5,0.339454925856679,0.113636363636364,0.333333333333333,NA
+"Leigh - Tabletop Rocks and Boulders","Patelloida corticata",2004,4,0.163128551294637,0.0149253731343284,0.015748031496063,NA
+"Leigh - Tabletop Rocks and Boulders","Plaxiphora caelata",2004,3,1.50173715969152,0.0111940298507463,0.0118110236220472,NA
+"Leigh - Tabletop Rocks and Boulders","Siphonaria australis",1969,1,0.194427296336879,0.0227272727272727,0.0666666666666667,NA
+"Leigh - Tabletop Rocks and Boulders","Siphonaria australis",2004,3,0.159631551243402,0.0111940298507463,0.0118110236220472,NA
+"Leigh - Tabletop Rocks and Boulders","Turbo smaragdus",1969,1,4.98375700689648,0.0227272727272727,0.0666666666666667,NA
 "Leigh - Waterfall Rocks","Atalacmea fragilis",1969,NA,NA,NA,NA,NA
 "Leigh - Waterfall Rocks","Atalacmea fragilis",2004,NA,NA,NA,NA,NA
 "Leigh - Waterfall Rocks","Buccinulum sp",1969,NA,NA,NA,NA,NA
@@ -74,20 +74,20 @@
 "Leigh - Waterfall Rocks","Calliostoma punctulatum",2004,NA,NA,NA,NA,NA
 "Leigh - Waterfall Rocks","Cellana ornata",1969,NA,NA,NA,NA,1.48148148148148
 "Leigh - Waterfall Rocks","Cellana ornata",2004,NA,NA,NA,NA,3.7037037037037
-"Leigh - Waterfall Rocks","Cellana radians",1969,30,NA,0.109090909090909,0.13215859030837,169.62962962963
-"Leigh - Waterfall Rocks","Cellana radians",2004,30,NA,0.0283018867924528,0.0314795383001049,71.1111111111111
+"Leigh - Waterfall Rocks","Cellana radians",1969,30,0.214569615007584,0.109090909090909,0.13215859030837,169.62962962963
+"Leigh - Waterfall Rocks","Cellana radians",2004,30,0.215288540016051,0.0283018867924528,0.0314795383001049,71.1111111111111
 "Leigh - Waterfall Rocks","Cominella maculosa",1969,NA,NA,NA,NA,NA
 "Leigh - Waterfall Rocks","Cominella maculosa",2004,NA,NA,NA,NA,NA
 "Leigh - Waterfall Rocks","Cominella virgata",1969,NA,NA,NA,NA,NA
 "Leigh - Waterfall Rocks","Cominella virgata",2004,NA,NA,NA,NA,NA
-"Leigh - Waterfall Rocks","Dicathais orbita",2004,1,NA,0.000943396226415094,0.00104931794333683,NA
-"Leigh - Waterfall Rocks","Diloma aethiops",1969,4,NA,0.0145454545454545,0.0176211453744493,15.5555555555556
-"Leigh - Waterfall Rocks","Diloma aethiops",2004,3,NA,0.00283018867924528,0.00314795383001049,5.18518518518519
-"Leigh - Waterfall Rocks","Fossarina rimata",2004,1,NA,0.000943396226415094,0.00104931794333683,NA
+"Leigh - Waterfall Rocks","Dicathais orbita",2004,1,1.94677101346902,0.000943396226415094,0.00104931794333683,NA
+"Leigh - Waterfall Rocks","Diloma aethiops",1969,4,0.585172520916111,0.0145454545454545,0.0176211453744493,15.5555555555556
+"Leigh - Waterfall Rocks","Diloma aethiops",2004,3,0.43908456802227,0.00283018867924528,0.00314795383001049,5.18518518518519
+"Leigh - Waterfall Rocks","Fossarina rimata",2004,1,0.569008619688991,0.000943396226415094,0.00104931794333683,NA
 "Leigh - Waterfall Rocks","Haustrum haustorium",1969,NA,NA,NA,NA,5.18518518518519
 "Leigh - Waterfall Rocks","Haustrum haustorium",2004,NA,NA,NA,NA,2.96296296296296
-"Leigh - Waterfall Rocks","Haustrum scobina",1969,5,NA,0.0181818181818182,0.0220264317180617,29.6296296296296
-"Leigh - Waterfall Rocks","Haustrum scobina",2004,8,NA,0.00754716981132075,0.00839454354669465,2.96296296296296
+"Leigh - Waterfall Rocks","Haustrum scobina",1969,5,1.22584145422587,0.0181818181818182,0.0220264317180617,29.6296296296296
+"Leigh - Waterfall Rocks","Haustrum scobina",2004,8,1.34074171922035,0.00754716981132075,0.00839454354669465,2.96296296296296
 "Leigh - Waterfall Rocks","Neothais scalaris",1969,NA,NA,NA,NA,1.48148148148148
 "Leigh - Waterfall Rocks","Neothais scalaris",2004,NA,NA,NA,NA,0.740740740740741
 "Leigh - Waterfall Rocks","Nerita atramentosa",1969,NA,NA,NA,NA,NA
@@ -95,78 +95,78 @@
 "Leigh - Waterfall Rocks","Not Feeding",1969,227,NA,0.825454545454545,1,NA
 "Leigh - Waterfall Rocks","Not Feeding",2004,953,NA,0.899056603773585,1,NA
 "Leigh - Waterfall Rocks","Notoacmea parviconoidea",1969,NA,NA,NA,NA,NA
-"Leigh - Waterfall Rocks","Notoacmea parviconoidea",2004,3,NA,0.00283018867924528,0.00314795383001049,19.2592592592593
+"Leigh - Waterfall Rocks","Notoacmea parviconoidea",2004,3,0.124547108291951,0.00283018867924528,0.00314795383001049,19.2592592592593
 "Leigh - Waterfall Rocks","Onchidella nigricans",1969,NA,NA,NA,NA,NA
 "Leigh - Waterfall Rocks","Onchidella nigricans",2004,NA,NA,NA,NA,NA
-"Leigh - Waterfall Rocks","Patelloida corticata",1969,1,NA,0.00363636363636364,0.00440528634361234,90.3703703703704
-"Leigh - Waterfall Rocks","Patelloida corticata",2004,24,NA,0.0226415094339623,0.0251836306400839,39.2592592592593
+"Leigh - Waterfall Rocks","Patelloida corticata",1969,1,0.155567293570041,0.00363636363636364,0.00440528634361234,90.3703703703704
+"Leigh - Waterfall Rocks","Patelloida corticata",2004,24,0.386243647651458,0.0226415094339623,0.0251836306400839,39.2592592592593
 "Leigh - Waterfall Rocks","Plaxiphora caelata",1969,NA,NA,NA,NA,NA
-"Leigh - Waterfall Rocks","Plaxiphora caelata",2004,6,NA,0.00566037735849057,0.00629590766002099,NA
+"Leigh - Waterfall Rocks","Plaxiphora caelata",2004,6,0.807213009680356,0.00566037735849057,0.00629590766002099,NA
 "Leigh - Waterfall Rocks","Risellopsis varia",1969,NA,NA,NA,NA,NA
 "Leigh - Waterfall Rocks","Risellopsis varia",2004,NA,NA,NA,NA,22.2222222222222
-"Leigh - Waterfall Rocks","Siphonaria australis",1969,4,NA,0.0145454545454545,0.0176211453744493,5.18518518518519
-"Leigh - Waterfall Rocks","Siphonaria australis",2004,24,NA,0.0226415094339623,0.0251836306400839,351.111111111111
-"Leigh - Waterfall Rocks","Sypharochiton pelliserpentis",1969,1,NA,0.00363636363636364,0.00440528634361234,7.40740740740741
+"Leigh - Waterfall Rocks","Siphonaria australis",1969,4,0.102451074809368,0.0145454545454545,0.0176211453744493,5.18518518518519
+"Leigh - Waterfall Rocks","Siphonaria australis",2004,24,0.161531249395648,0.0226415094339623,0.0251836306400839,351.111111111111
+"Leigh - Waterfall Rocks","Sypharochiton pelliserpentis",1969,1,1.44219973023803,0.00363636363636364,0.00440528634361234,7.40740740740741
 "Leigh - Waterfall Rocks","Sypharochiton pelliserpentis",2004,NA,NA,NA,NA,15.5555555555556
 "Leigh - Waterfall Rocks","Taron dubius",1969,NA,NA,NA,NA,NA
 "Leigh - Waterfall Rocks","Taron dubius",2004,NA,NA,NA,NA,NA
-"Leigh - Waterfall Rocks","Turbo smaragdus",1969,3,NA,0.0109090909090909,0.013215859030837,2.22222222222222
-"Leigh - Waterfall Rocks","Turbo smaragdus",2004,6,NA,0.00566037735849057,0.00629590766002099,11.8518518518519
-"Leigh - Waterfall Rocks","UNID Limpet",2004,1,NA,0.000943396226415094,0.00104931794333683,NA
-"Leigh Goat Island Reserve","Cellana radians",1969,9,NA,0.0410958904109589,0.045,NA
-"Leigh Goat Island Reserve","Diloma aethiops",1969,1,NA,0.0045662100456621,0.005,NA
-"Leigh Goat Island Reserve","Haustrum scobina",1969,2,NA,0.0091324200913242,0.01,NA
+"Leigh - Waterfall Rocks","Turbo smaragdus",1969,3,4.13914814241772,0.0109090909090909,0.013215859030837,2.22222222222222
+"Leigh - Waterfall Rocks","Turbo smaragdus",2004,6,3.3090191749498,0.00566037735849057,0.00629590766002099,11.8518518518519
+"Leigh - Waterfall Rocks","UNID Limpet",2004,1,0.100023479960944,0.000943396226415094,0.00104931794333683,NA
+"Leigh Goat Island Reserve","Cellana radians",1969,9,0.266048741673476,0.0410958904109589,0.045,NA
+"Leigh Goat Island Reserve","Diloma aethiops",1969,1,0.725432059631489,0.0045662100456621,0.005,NA
+"Leigh Goat Island Reserve","Haustrum scobina",1969,2,1.58757827488734,0.0091324200913242,0.01,NA
 "Leigh Goat Island Reserve","Not Feeding",1969,200,NA,0.91324200913242,1,NA
-"Leigh Goat Island Reserve","Patelloida corticata",1969,1,NA,0.0045662100456621,0.005,NA
-"Leigh Goat Island Reserve","Siphonaria australis",1969,1,NA,0.0045662100456621,0.005,NA
-"Leigh Goat Island Reserve","Turbo smaragdus",1969,5,NA,0.0228310502283105,0.025,NA
-"Leigh Harbour","Diloma aethiops",1969,2,NA,0.00760456273764259,0.00869565217391304,NA
-"Leigh Harbour","Haustrum scobina",1969,2,NA,0.00760456273764259,0.00869565217391304,NA
-"Leigh Harbour","Nerita atramentosa",1969,19,NA,0.0722433460076046,0.0826086956521739,NA
+"Leigh Goat Island Reserve","Patelloida corticata",1969,1,0.339454925856679,0.0045662100456621,0.005,NA
+"Leigh Goat Island Reserve","Siphonaria australis",1969,1,0.194427296336879,0.0045662100456621,0.005,NA
+"Leigh Goat Island Reserve","Turbo smaragdus",1969,5,4.56178174113021,0.0228310502283105,0.025,NA
+"Leigh Harbour","Diloma aethiops",1969,2,0.744495079968009,0.00760456273764259,0.00869565217391304,NA
+"Leigh Harbour","Haustrum scobina",1969,2,2.04569624095655,0.00760456273764259,0.00869565217391304,NA
+"Leigh Harbour","Nerita atramentosa",1969,19,0.956445460070486,0.0722433460076046,0.0826086956521739,NA
 "Leigh Harbour","Not Feeding",1969,230,NA,0.874524714828897,1,NA
-"Leigh Harbour","Turbo smaragdus",1969,10,NA,0.0380228136882129,0.0434782608695652,NA
-"Leigh Shadow Rocks","Cellana radians",2004,4,NA,0.0444444444444444,0.0533333333333333,NA
-"Leigh Shadow Rocks","Haustrum scobina",2004,4,NA,0.0444444444444444,0.0533333333333333,NA
+"Leigh Harbour","Turbo smaragdus",1969,10,4.72952433906196,0.0380228136882129,0.0434782608695652,NA
+"Leigh Shadow Rocks","Cellana radians",2004,4,0.233587274780122,0.0444444444444444,0.0533333333333333,NA
+"Leigh Shadow Rocks","Haustrum scobina",2004,4,1.35090071124754,0.0444444444444444,0.0533333333333333,NA
 "Leigh Shadow Rocks","Not Feeding",2004,75,NA,0.833333333333333,1,NA
-"Leigh Shadow Rocks","Patelloida corticata",2004,4,NA,0.0444444444444444,0.0533333333333333,NA
-"Leigh Shadow Rocks","Plaxiphora caelata",2004,2,NA,0.0222222222222222,0.0266666666666667,NA
-"Leigh Shadow Rocks","UNID Limpet",2004,1,NA,0.0111111111111111,0.0133333333333333,NA
+"Leigh Shadow Rocks","Patelloida corticata",2004,4,0.191005076583505,0.0444444444444444,0.0533333333333333,NA
+"Leigh Shadow Rocks","Plaxiphora caelata",2004,2,0.966339275999235,0.0222222222222222,0.0266666666666667,NA
+"Leigh Shadow Rocks","UNID Limpet",2004,1,0.0788684914690214,0.0111111111111111,0.0133333333333333,NA
 "Lighthouse Reef","Not Feeding",2004,3,NA,1,1,NA
-"Limestone Bay Point","Chamaesipho spp",2004,2,NA,0.00649350649350649,0.00664451827242525,NA
+"Limestone Bay Point","Chamaesipho spp",2004,2,0.636212015035325,0.00649350649350649,0.00664451827242525,NA
 "Limestone Bay Point","Not Feeding",2004,301,NA,0.977272727272727,1,NA
-"Limestone Bay Point","Plaxiphora caelata",2004,1,NA,0.00324675324675325,0.00332225913621262,NA
-"Limestone Bay Point","Siphonaria australis",2004,2,NA,0.00649350649350649,0.00664451827242525,NA
-"Limestone Bay Point","Sypharochiton pelliserpentis",2004,1,NA,0.00324675324675325,0.00332225913621262,NA
-"Limestone Bay Point","Zeacumantus subcarinatus",2004,1,NA,0.00324675324675325,0.00332225913621262,NA
-"Matakitakiakupe Cape Palliser","Cellana denticulata",2004,2,NA,0.0150375939849624,0.0166666666666667,NA
-"Matakitakiakupe Cape Palliser","Cellana radians",2004,5,NA,0.037593984962406,0.0416666666666667,NA
-"Matakitakiakupe Cape Palliser","Diloma aethiops",2004,1,NA,0.0075187969924812,0.00833333333333333,NA
-"Matakitakiakupe Cape Palliser","Diloma zelandica",2004,2,NA,0.0150375939849624,0.0166666666666667,NA
+"Limestone Bay Point","Plaxiphora caelata",2004,1,1.46991584845605,0.00324675324675325,0.00332225913621262,NA
+"Limestone Bay Point","Siphonaria australis",2004,2,0.162146854178131,0.00649350649350649,0.00664451827242525,NA
+"Limestone Bay Point","Sypharochiton pelliserpentis",2004,1,2.19376477700944,0.00324675324675325,0.00332225913621262,NA
+"Limestone Bay Point","Zeacumantus subcarinatus",2004,1,0.485254428048965,0.00324675324675325,0.00332225913621262,NA
+"Matakitakiakupe Cape Palliser","Cellana denticulata",2004,2,0.1792216610951,0.0150375939849624,0.0166666666666667,NA
+"Matakitakiakupe Cape Palliser","Cellana radians",2004,5,0.378505558338405,0.037593984962406,0.0416666666666667,NA
+"Matakitakiakupe Cape Palliser","Diloma aethiops",2004,1,0.918258937243737,0.0075187969924812,0.00833333333333333,NA
+"Matakitakiakupe Cape Palliser","Diloma zelandica",2004,2,0.189694827593628,0.0150375939849624,0.0166666666666667,NA
 "Matakitakiakupe Cape Palliser","Not Feeding",2004,120,NA,0.902255639097744,1,NA
-"Matakitakiakupe Cape Palliser","Notoacmea parviconoidea",2004,1,NA,0.0075187969924812,0.00833333333333333,NA
-"Matakitakiakupe Cape Palliser","Plaxiphora caelata",2004,1,NA,0.0075187969924812,0.00833333333333333,NA
-"Matakitakiakupe Cape Palliser","UNID Diloma",2004,1,NA,0.0075187969924812,0.00833333333333333,NA
-"Memorial Garden Rocks","Cantharidella tesselata",2004,1,NA,0.00192307692307692,0.0019723865877712,NA
-"Memorial Garden Rocks","Diloma aethiops",2004,4,NA,0.00769230769230769,0.00788954635108481,NA
+"Matakitakiakupe Cape Palliser","Notoacmea parviconoidea",2004,1,0.340404713631697,0.0075187969924812,0.00833333333333333,NA
+"Matakitakiakupe Cape Palliser","Plaxiphora caelata",2004,1,7.2027500033586,0.0075187969924812,0.00833333333333333,NA
+"Matakitakiakupe Cape Palliser","UNID Diloma",2004,1,0.111340663629883,0.0075187969924812,0.00833333333333333,NA
+"Memorial Garden Rocks","Cantharidella tesselata",2004,1,0.609401977718855,0.00192307692307692,0.0019723865877712,NA
+"Memorial Garden Rocks","Diloma aethiops",2004,4,0.789928160533223,0.00769230769230769,0.00788954635108481,NA
 "Memorial Garden Rocks","Not Feeding",2004,507,NA,0.975,1,NA
-"Memorial Garden Rocks","Siphonaria australis",2004,5,NA,0.00961538461538462,0.00986193293885602,NA
-"Memorial Garden Rocks","Sypharochiton pelliserpentis",2004,2,NA,0.00384615384615385,0.00394477317554241,NA
-"Memorial Garden Rocks","Zeacumantus subcarinatus",2004,1,NA,0.00192307692307692,0.0019723865877712,NA
-"Oaro South","Cellana ornata",2004,1,NA,0.0175438596491228,0.0178571428571429,NA
+"Memorial Garden Rocks","Siphonaria australis",2004,5,0.277478012944134,0.00961538461538462,0.00986193293885602,NA
+"Memorial Garden Rocks","Sypharochiton pelliserpentis",2004,2,1.72592119487023,0.00384615384615385,0.00394477317554241,NA
+"Memorial Garden Rocks","Zeacumantus subcarinatus",2004,1,0.429029906786658,0.00192307692307692,0.0019723865877712,NA
+"Oaro South","Cellana ornata",2004,1,0.355647745911233,0.0175438596491228,0.0178571428571429,NA
 "Oaro South","Not Feeding",2004,56,NA,0.982456140350877,1,NA
-"Opunake","Atalacmea fragilis",2004,1,NA,0.0217391304347826,0.0256410256410256,NA
-"Opunake","Cellana radians",2004,1,NA,0.0217391304347826,0.0256410256410256,NA
-"Opunake","Haustrum scobina",2004,1,NA,0.0217391304347826,0.0256410256410256,NA
+"Opunake","Atalacmea fragilis",2004,1,0.13064294561493,0.0217391304347826,0.0256410256410256,NA
+"Opunake","Cellana radians",2004,1,0.240525606902601,0.0217391304347826,0.0256410256410256,NA
+"Opunake","Haustrum scobina",2004,1,1.73960798384425,0.0217391304347826,0.0256410256410256,NA
 "Opunake","Not Feeding",2004,39,NA,0.847826086956522,1,NA
-"Opunake","Patelloida corticata",2004,1,NA,0.0217391304347826,0.0256410256410256,NA
-"Opunake","Siphonaria australis",2004,2,NA,0.0434782608695652,0.0512820512820513,NA
+"Opunake","Patelloida corticata",2004,1,0.518673012586682,0.0217391304347826,0.0256410256410256,NA
+"Opunake","Siphonaria australis",2004,2,0.208824253360543,0.0434782608695652,0.0512820512820513,NA
 "Opunake","UNID",2004,1,NA,0.0217391304347826,0.0256410256410256,NA
-"Pourere Tuingara Point","Chamaesipho columna",2004,10,NA,0.0471698113207547,0.0526315789473684,NA
+"Pourere Tuingara Point","Chamaesipho columna",2004,10,0.708154698690348,0.0471698113207547,0.0526315789473684,NA
 "Pourere Tuingara Point","Not Feeding",2004,190,NA,0.89622641509434,1,NA
-"Pourere Tuingara Point","Notoacmea parviconoidea",2004,1,NA,0.00471698113207547,0.00526315789473684,NA
-"Pourere Tuingara Point","Risellopsis varia",2004,4,NA,0.0188679245283019,0.0210526315789474,NA
-"Pourere Tuingara Point","Siphonaria australis",2004,6,NA,0.0283018867924528,0.0315789473684211,NA
-"Pourere Tuingara Point","Turbo smaragdus",2004,1,NA,0.00471698113207547,0.00526315789473684,NA
+"Pourere Tuingara Point","Notoacmea parviconoidea",2004,1,0.307634793951835,0.00471698113207547,0.00526315789473684,NA
+"Pourere Tuingara Point","Risellopsis varia",2004,4,0.799794863185781,0.0188679245283019,0.0210526315789474,NA
+"Pourere Tuingara Point","Siphonaria australis",2004,6,0.277597113874161,0.0283018867924528,0.0315789473684211,NA
+"Pourere Tuingara Point","Turbo smaragdus",2004,1,5.40375460494506,0.00471698113207547,0.00526315789473684,NA
 "Rangitoto Island - Whites Beach","Atalacmea fragilis",1969,NA,NA,NA,NA,NA
 "Rangitoto Island - Whites Beach","Atalacmea fragilis",2004,NA,NA,NA,NA,0.740740740740741
 "Rangitoto Island - Whites Beach","Buccinulum sp",1969,NA,NA,NA,NA,NA
@@ -181,14 +181,14 @@
 "Rangitoto Island - Whites Beach","Cominella maculosa",2004,NA,NA,NA,NA,NA
 "Rangitoto Island - Whites Beach","Cominella virgata",1969,NA,NA,NA,NA,NA
 "Rangitoto Island - Whites Beach","Cominella virgata",2004,NA,NA,NA,NA,3.7037037037037
-"Rangitoto Island - Whites Beach","Crassostrea gigas",1969,1,NA,0.010752688172043,0.0121951219512195,NA
-"Rangitoto Island - Whites Beach","Crassostrea gigas",2004,1,NA,0.00769230769230769,0.00970873786407767,NA
-"Rangitoto Island - Whites Beach","Diloma aethiops",1969,1,NA,0.010752688172043,0.0121951219512195,16.2962962962963
-"Rangitoto Island - Whites Beach","Diloma aethiops",2004,1,NA,0.00769230769230769,0.00970873786407767,12.5925925925926
+"Rangitoto Island - Whites Beach","Crassostrea gigas",1969,1,2.79329091497343,0.010752688172043,0.0121951219512195,NA
+"Rangitoto Island - Whites Beach","Crassostrea gigas",2004,1,3.01782017835562,0.00769230769230769,0.00970873786407767,NA
+"Rangitoto Island - Whites Beach","Diloma aethiops",1969,1,0.40709623570878,0.010752688172043,0.0121951219512195,16.2962962962963
+"Rangitoto Island - Whites Beach","Diloma aethiops",2004,1,0.159443139566515,0.00769230769230769,0.00970873786407767,12.5925925925926
 "Rangitoto Island - Whites Beach","Haustrum haustorium",1969,NA,NA,NA,NA,2.96296296296296
 "Rangitoto Island - Whites Beach","Haustrum haustorium",2004,NA,NA,NA,NA,5.92592592592593
-"Rangitoto Island - Whites Beach","Haustrum scobina",1969,3,NA,0.032258064516129,0.0365853658536585,0.740740740740741
-"Rangitoto Island - Whites Beach","Haustrum scobina",2004,14,NA,0.107692307692308,0.135922330097087,25.9259259259259
+"Rangitoto Island - Whites Beach","Haustrum scobina",1969,3,1.33848537292557,0.032258064516129,0.0365853658536585,0.740740740740741
+"Rangitoto Island - Whites Beach","Haustrum scobina",2004,14,1.14228268234845,0.107692307692308,0.135922330097087,25.9259259259259
 "Rangitoto Island - Whites Beach","Neothais scalaris",1969,NA,NA,NA,NA,NA
 "Rangitoto Island - Whites Beach","Neothais scalaris",2004,NA,NA,NA,NA,NA
 "Rangitoto Island - Whites Beach","Nerita atramentosa",1969,NA,NA,NA,NA,20.7407407407407
@@ -204,17 +204,17 @@
 "Rangitoto Island - Whites Beach","Plaxiphora caelata",1969,NA,NA,NA,NA,NA
 "Rangitoto Island - Whites Beach","Plaxiphora caelata",2004,NA,NA,NA,NA,28.1481481481481
 "Rangitoto Island - Whites Beach","Risellopsis varia",1969,NA,NA,NA,NA,NA
-"Rangitoto Island - Whites Beach","Risellopsis varia",2004,1,NA,0.00769230769230769,0.00970873786407767,16.2962962962963
+"Rangitoto Island - Whites Beach","Risellopsis varia",2004,1,0.992133525570159,0.00769230769230769,0.00970873786407767,16.2962962962963
 "Rangitoto Island - Whites Beach","Siphonaria australis",1969,NA,NA,NA,NA,NA
-"Rangitoto Island - Whites Beach","Siphonaria australis",2004,4,NA,0.0307692307692308,0.0388349514563107,11.8518518518519
+"Rangitoto Island - Whites Beach","Siphonaria australis",2004,4,0.122900485945277,0.0307692307692308,0.0388349514563107,11.8518518518519
 "Rangitoto Island - Whites Beach","Sypharochiton pelliserpentis",1969,NA,NA,NA,NA,NA
 "Rangitoto Island - Whites Beach","Sypharochiton pelliserpentis",2004,NA,NA,NA,NA,142.222222222222
 "Rangitoto Island - Whites Beach","Taron dubius",1969,NA,NA,NA,NA,NA
 "Rangitoto Island - Whites Beach","Taron dubius",2004,NA,NA,NA,NA,1.48148148148148
-"Rangitoto Island - Whites Beach","Turbo smaragdus",1969,6,NA,0.0645161290322581,0.0731707317073171,10.3703703703704
-"Rangitoto Island - Whites Beach","Turbo smaragdus",2004,4,NA,0.0307692307692308,0.0388349514563107,4.44444444444444
+"Rangitoto Island - Whites Beach","Turbo smaragdus",1969,6,3.405801637655,0.0645161290322581,0.0731707317073171,10.3703703703704
+"Rangitoto Island - Whites Beach","Turbo smaragdus",2004,4,5.45100922175929,0.0307692307692308,0.0388349514563107,4.44444444444444
 "Rangitoto Island - Whites Beach","UNID",2004,1,NA,0.00769230769230769,0.00970873786407767,NA
-"Rangitoto Island - Whites Beach","Zeacumantus subcarinatus",2004,1,NA,0.00769230769230769,0.00970873786407767,NA
+"Rangitoto Island - Whites Beach","Zeacumantus subcarinatus",2004,1,0.50531326252901,0.00769230769230769,0.00970873786407767,NA
 "Raramai","Not Feeding",2004,44,NA,1,1,NA
 "Red Beach - Whangaparaoa","Atalacmea fragilis",1969,NA,NA,NA,NA,NA
 "Red Beach - Whangaparaoa","Atalacmea fragilis",2004,NA,NA,NA,NA,NA
@@ -226,17 +226,17 @@
 "Red Beach - Whangaparaoa","Cellana ornata",2004,NA,NA,NA,NA,NA
 "Red Beach - Whangaparaoa","Cellana radians",1969,NA,NA,NA,NA,1.11111111111111
 "Red Beach - Whangaparaoa","Cellana radians",2004,NA,NA,NA,NA,0.740740740740741
-"Red Beach - Whangaparaoa","Cominella adspersa",1969,1,NA,0.00216919739696312,0.0028735632183908,NA
+"Red Beach - Whangaparaoa","Cominella adspersa",1969,1,2.54763089207974,0.00216919739696312,0.0028735632183908,NA
 "Red Beach - Whangaparaoa","Cominella maculosa",1969,NA,NA,NA,NA,NA
 "Red Beach - Whangaparaoa","Cominella maculosa",2004,NA,NA,NA,NA,NA
 "Red Beach - Whangaparaoa","Cominella virgata",1969,NA,NA,NA,NA,NA
 "Red Beach - Whangaparaoa","Cominella virgata",2004,NA,NA,NA,NA,10.3703703703704
-"Red Beach - Whangaparaoa","Crassostrea gigas",1969,1,NA,0.00216919739696312,0.0028735632183908,NA
+"Red Beach - Whangaparaoa","Crassostrea gigas",1969,1,2.79329091497343,0.00216919739696312,0.0028735632183908,NA
 "Red Beach - Whangaparaoa","Diloma aethiops",1969,NA,NA,NA,NA,2.22222222222222
 "Red Beach - Whangaparaoa","Diloma aethiops",2004,NA,NA,NA,NA,32.5925925925926
 "Red Beach - Whangaparaoa","Haustrum haustorium",1969,NA,NA,NA,NA,5.55555555555556
 "Red Beach - Whangaparaoa","Haustrum haustorium",2004,NA,NA,NA,NA,1.48148148148148
-"Red Beach - Whangaparaoa","Haustrum scobina",1969,27,NA,0.0585683297180043,0.0775862068965517,83.7037037037037
+"Red Beach - Whangaparaoa","Haustrum scobina",1969,27,1.40121723373651,0.0585683297180043,0.0775862068965517,83.7037037037037
 "Red Beach - Whangaparaoa","Haustrum scobina",2004,NA,NA,NA,NA,114.074074074074
 "Red Beach - Whangaparaoa","Neothais scalaris",1969,NA,NA,NA,NA,NA
 "Red Beach - Whangaparaoa","Neothais scalaris",2004,NA,NA,NA,NA,NA
@@ -260,63 +260,63 @@
 "Red Beach - Whangaparaoa","Sypharochiton pelliserpentis",2004,NA,NA,NA,NA,51.8518518518519
 "Red Beach - Whangaparaoa","Taron dubius",1969,NA,NA,NA,NA,NA
 "Red Beach - Whangaparaoa","Taron dubius",2004,NA,NA,NA,NA,1.48148148148148
-"Red Beach - Whangaparaoa","Turbo smaragdus",1969,84,NA,0.182212581344902,0.241379310344828,57.7777777777778
-"Red Beach - Whangaparaoa","Turbo smaragdus",2004,2,NA,0.0540540540540541,0.0571428571428571,138.518518518519
+"Red Beach - Whangaparaoa","Turbo smaragdus",1969,84,3.90746010089424,0.182212581344902,0.241379310344828,57.7777777777778
+"Red Beach - Whangaparaoa","Turbo smaragdus",2004,2,3.29741236338733,0.0540540540540541,0.0571428571428571,138.518518518519
 "Red Beach Cliff","Not Feeding",2004,1,NA,1,1,NA
-"Takapuna","Diloma aethiops",1969,1,NA,0.0212765957446809,0.027027027027027,NA
-"Takapuna","Haustrum scobina",1969,2,NA,0.0425531914893617,0.0540540540540541,NA
+"Takapuna","Diloma aethiops",1969,1,1.28155900804834,0.0212765957446809,0.027027027027027,NA
+"Takapuna","Haustrum scobina",1969,2,2.0640325876032,0.0425531914893617,0.0540540540540541,NA
 "Takapuna","Not Feeding",1969,37,NA,0.787234042553192,1,NA
-"Takapuna","Turbo smaragdus",1969,7,NA,0.148936170212766,0.189189189189189,NA
-"Tapotupotu Bay West","Haustrum scobina",2004,1,NA,0.0175438596491228,0.0192307692307692,NA
+"Takapuna","Turbo smaragdus",1969,7,6.92566963274761,0.148936170212766,0.189189189189189,NA
+"Tapotupotu Bay West","Haustrum scobina",2004,1,2.02163666984531,0.0175438596491228,0.0192307692307692,NA
 "Tapotupotu Bay West","Not Feeding",2004,52,NA,0.912280701754386,1,NA
-"Tapotupotu Bay West","Patelloida corticata",2004,1,NA,0.0175438596491228,0.0192307692307692,NA
-"Tapotupotu Bay West","Siphonaria australis",2004,2,NA,0.0350877192982456,0.0384615384615385,NA
-"Tapotupotu Bay West","UNID Snail",2004,1,NA,0.0175438596491228,0.0192307692307692,NA
-"Tauranga Bay North","Cellana radians",2004,1,NA,0.0434782608695652,0.0588235294117647,NA
-"Tauranga Bay North","Haustrum scobina",2004,3,NA,0.130434782608696,0.176470588235294,NA
+"Tapotupotu Bay West","Patelloida corticata",2004,1,0.472128732858272,0.0175438596491228,0.0192307692307692,NA
+"Tapotupotu Bay West","Siphonaria australis",2004,2,0.262062892772085,0.0350877192982456,0.0384615384615385,NA
+"Tapotupotu Bay West","UNID Snail",2004,1,0.208645394350574,0.0175438596491228,0.0192307692307692,NA
+"Tauranga Bay North","Cellana radians",2004,1,0.669797146747451,0.0434782608695652,0.0588235294117647,NA
+"Tauranga Bay North","Haustrum scobina",2004,3,1.36890857631226,0.130434782608696,0.176470588235294,NA
 "Tauranga Bay North","Not Feeding",2004,17,NA,0.739130434782609,1,NA
-"Tauranga Bay North","Paratrophon patens",2004,1,NA,0.0434782608695652,0.0588235294117647,NA
-"Tauranga Bay North","UNID Diloma",2004,1,NA,0.0434782608695652,0.0588235294117647,NA
-"Tauranga Head","Cantharidella tesselata",2004,7,NA,0.0272373540856031,0.0291666666666667,NA
-"Tauranga Head","Diloma aethiops",2004,1,NA,0.00389105058365759,0.00416666666666667,NA
-"Tauranga Head","Diloma bicanaliculata",2004,1,NA,0.00389105058365759,0.00416666666666667,NA
+"Tauranga Bay North","Paratrophon patens",2004,1,2.33085151649766,0.0434782608695652,0.0588235294117647,NA
+"Tauranga Bay North","UNID Diloma",2004,1,0.077153915184073,0.0434782608695652,0.0588235294117647,NA
+"Tauranga Head","Cantharidella tesselata",2004,7,0.542427858869697,0.0272373540856031,0.0291666666666667,NA
+"Tauranga Head","Diloma aethiops",2004,1,2.26850913479976,0.00389105058365759,0.00416666666666667,NA
+"Tauranga Head","Diloma bicanaliculata",2004,1,0.347390648817714,0.00389105058365759,0.00416666666666667,NA
 "Tauranga Head","Not Feeding",2004,240,NA,0.933852140077821,1,NA
-"Tauranga Head","Patelloida corticata",2004,1,NA,0.00389105058365759,0.00416666666666667,NA
-"Tauranga Head","Plaxiphora caelata",2004,2,NA,0.00778210116731518,0.00833333333333333,NA
-"Tauranga Head","Risellopsis varia",2004,1,NA,0.00389105058365759,0.00416666666666667,NA
-"Tauranga Head","Siphonaria australis",2004,2,NA,0.00778210116731518,0.00833333333333333,NA
-"Tauranga Head","Sypharochiton pelliserpentis",2004,1,NA,0.00389105058365759,0.00416666666666667,NA
+"Tauranga Head","Patelloida corticata",2004,1,0.186903967615608,0.00389105058365759,0.00416666666666667,NA
+"Tauranga Head","Plaxiphora caelata",2004,2,1.37995542397692,0.00778210116731518,0.00833333333333333,NA
+"Tauranga Head","Risellopsis varia",2004,1,1.0620946186268,0.00389105058365759,0.00416666666666667,NA
+"Tauranga Head","Siphonaria australis",2004,2,0.150765373671172,0.00778210116731518,0.00833333333333333,NA
+"Tauranga Head","Sypharochiton pelliserpentis",2004,1,1.84340576651162,0.00389105058365759,0.00416666666666667,NA
 "Tauranga Head","UNID",2004,1,NA,0.00389105058365759,0.00416666666666667,NA
-"Tauranga Head SWcorner","Cellana radians",2004,1,NA,0.0555555555555556,0.111111111111111,NA
-"Tauranga Head SWcorner","Diloma bicanaliculata",2004,1,NA,0.0555555555555556,0.111111111111111,NA
-"Tauranga Head SWcorner","Mytilus galloprovincialis",2004,5,NA,0.277777777777778,0.555555555555556,NA
+"Tauranga Head SWcorner","Cellana radians",2004,1,0.511702185222087,0.0555555555555556,0.111111111111111,NA
+"Tauranga Head SWcorner","Diloma bicanaliculata",2004,1,0.315725899620994,0.0555555555555556,0.111111111111111,NA
+"Tauranga Head SWcorner","Mytilus galloprovincialis",2004,5,2.41754491737454,0.277777777777778,0.555555555555556,NA
 "Tauranga Head SWcorner","Not Feeding",2004,9,NA,0.5,1,NA
-"Tauranga Head SWcorner","Siphonaria australis",2004,1,NA,0.0555555555555556,0.111111111111111,NA
-"Tauranga Head SWcorner","Turbo smaragdus",2004,1,NA,0.0555555555555556,0.111111111111111,NA
-"Tauranga Head West","Diloma aethiops",2004,1,NA,0.00561797752808989,0.00591715976331361,NA
-"Tauranga Head West","Haustrum scobina",2004,2,NA,0.0112359550561798,0.0118343195266272,NA
+"Tauranga Head SWcorner","Siphonaria australis",2004,1,0.140158091592086,0.0555555555555556,0.111111111111111,NA
+"Tauranga Head SWcorner","Turbo smaragdus",2004,1,3.60719527995941,0.0555555555555556,0.111111111111111,NA
+"Tauranga Head West","Diloma aethiops",2004,1,0.132631156575187,0.00561797752808989,0.00591715976331361,NA
+"Tauranga Head West","Haustrum scobina",2004,2,2.12264427578672,0.0112359550561798,0.0118343195266272,NA
 "Tauranga Head West","Not Feeding",2004,169,NA,0.949438202247191,1,NA
-"Tauranga Head West","Patelloida corticata",2004,1,NA,0.00561797752808989,0.00591715976331361,NA
-"Tauranga Head West","Trimusculus conicus",2004,4,NA,0.0224719101123595,0.0236686390532544,NA
-"Tauranga Head West","UNID Snail",2004,1,NA,0.00561797752808989,0.00591715976331361,NA
-"Tungutu Point","Diloma aethiops",2004,1,NA,0.0142857142857143,0.0151515151515152,NA
+"Tauranga Head West","Patelloida corticata",2004,1,0.336055092216827,0.00561797752808989,0.00591715976331361,NA
+"Tauranga Head West","Trimusculus conicus",2004,4,0.576943457380932,0.0224719101123595,0.0236686390532544,NA
+"Tauranga Head West","UNID Snail",2004,1,0.0301062062183188,0.00561797752808989,0.00591715976331361,NA
+"Tungutu Point","Diloma aethiops",2004,1,0.820923596476292,0.0142857142857143,0.0151515151515152,NA
 "Tungutu Point","Not Feeding",2004,66,NA,0.942857142857143,1,NA
-"Tungutu Point","Turbo smaragdus",2004,2,NA,0.0285714285714286,0.0303030303030303,NA
-"Tungutu Point","Zeacumantus subcarinatus",2004,1,NA,0.0142857142857143,0.0151515151515152,NA
-"Waikuku Bay","Cellana radians",1969,1,NA,0.0114942528735632,0.0133333333333333,NA
-"Waikuku Bay","Diloma aethiops",1969,1,NA,0.0114942528735632,0.0133333333333333,NA
-"Waikuku Bay","Nerita atramentosa",1969,9,NA,0.103448275862069,0.12,NA
+"Tungutu Point","Turbo smaragdus",2004,2,3.48944188175227,0.0285714285714286,0.0303030303030303,NA
+"Tungutu Point","Zeacumantus subcarinatus",2004,1,0.512655598877105,0.0142857142857143,0.0151515151515152,NA
+"Waikuku Bay","Cellana radians",1969,1,0.244338005295569,0.0114942528735632,0.0133333333333333,NA
+"Waikuku Bay","Diloma aethiops",1969,1,0.136247281122792,0.0114942528735632,0.0133333333333333,NA
+"Waikuku Bay","Nerita atramentosa",1969,9,1.34352167636005,0.103448275862069,0.12,NA
 "Waikuku Bay","Not Feeding",1969,75,NA,0.862068965517241,1,NA
-"Waikuku Bay","Turbo smaragdus",1969,1,NA,0.0114942528735632,0.0133333333333333,NA
-"Waikukua Bay-2","Nerita atramentosa",1969,7,NA,0.179487179487179,0.225806451612903,NA
+"Waikuku Bay","Turbo smaragdus",1969,1,8.05223208966002,0.0114942528735632,0.0133333333333333,NA
+"Waikukua Bay-2","Nerita atramentosa",1969,7,0.677844314988693,0.179487179487179,0.225806451612903,NA
 "Waikukua Bay-2","Not Feeding",1969,31,NA,0.794871794871795,1,NA
-"Waikukua Bay-2","Turbo smaragdus",1969,1,NA,0.0256410256410256,0.032258064516129,NA
-"Ward Beach","Diloma aethiops",2004,1,NA,0.0833333333333333,0.0909090909090909,NA
+"Waikukua Bay-2","Turbo smaragdus",1969,1,3.24077974272452,0.0256410256410256,0.032258064516129,NA
+"Ward Beach","Diloma aethiops",2004,1,1.60838123790928,0.0833333333333333,0.0909090909090909,NA
 "Ward Beach","Not Feeding",2004,11,NA,0.916666666666667,1,NA
 "Whakatu Point","Not Feeding",2004,19,NA,1,1,NA
-"Whangarei","Crassostrea gigas",1969,1,NA,0.00284090909090909,0.00352112676056338,NA
-"Whangarei","Haustrum scobina",1969,6,NA,0.0170454545454545,0.0211267605633803,NA
-"Whangarei","Nerita atramentosa",1969,57,NA,0.161931818181818,0.200704225352113,NA
+"Whangarei","Crassostrea gigas",1969,1,2.56876165159124,0.00284090909090909,0.00352112676056338,NA
+"Whangarei","Haustrum scobina",1969,6,2.39495771572765,0.0170454545454545,0.0211267605633803,NA
+"Whangarei","Nerita atramentosa",1969,57,0.639003209053075,0.161931818181818,0.200704225352113,NA
 "Whangarei","Not Feeding",1969,284,NA,0.806818181818182,1,NA
-"Whangarei","Risellopsis varia",1969,1,NA,0.00284090909090909,0.00352112676056338,NA
-"Whangarei","Turbo smaragdus",1969,3,NA,0.00852272727272727,0.0105633802816901,NA
+"Whangarei","Risellopsis varia",1969,1,0.516171464381115,0.00284090909090909,0.00352112676056338,NA
+"Whangarei","Turbo smaragdus",1969,3,5.72219507232123,0.00852272727272727,0.0105633802816901,NA

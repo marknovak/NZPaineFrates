@@ -60,8 +60,10 @@ signif <- function(x){
 # Define function to calculate Mean Deviation and Mean Absolute Deviation
 # as well as overall variable mean
 # (on both natural and log10 scale)
-deviation <- function(x, y){
-  out <- list(mean = mean(c(x, y)),
+deviation <- function(x){
+  y <- x[,2]
+  x <- x[,1]
+  out <- c(mean = mean(c(x, y)),
               MD = mean(x - y),
               MAD = mean(abs(x - y)),
               mean.log10 = mean(log10(c(x,y))),
@@ -69,6 +71,16 @@ deviation <- function(x, y){
               MALD = mean(abs(log10(x/y))),
               tenMLD = 10^mean(log10(x/y)),
               tenMALD = 10^mean(abs(log10(x/y))))
+  # print(out)
+  return(out)
+}
+
+boot.deviation <- function(x, n = 10000){
+  boots <- replicate(n, deviation(x[sample(1:nrow(x), replace = TRUE),]))
+  out <- cbind(
+    mean = apply(boots, 1, mean),
+    t(apply(boots, 1, quantile, probs = c(0.025, 0.975)))
+  )
   print(out)
   return(out)
 }
@@ -106,7 +118,7 @@ f.rs <- cor.test.ratios(dat$pi_1969, dat$h.mean_1969,
                         dat$pi_2004, dat$h.mean_2004,
                         method = 'spearman')
 
-f.dev <- deviation(dat$fi_1969, dat$fi_2004)
+f.dev <- boot.deviation(cbind(dat$fi_1969, dat$fi_2004))
 
 f.range <- range(c(dat$fi_1969, dat$fi_2004), na.rm = TRUE)
 xylim <-  f.range * xymag
@@ -169,7 +181,7 @@ fplog.r <- cor.test(log10(dat$pi_1969), log10(dat$pi_2004),
 fp.rs <- cor.test(dat$pi_1969, dat$pi_2004, 
                        use = 'complete.obs', method = 'spearman')
 
-fp.dev <- deviation(dat$pi_1969, dat$pi_2004)
+fp.dev <- boot.deviation(cbind(dat$pi_1969, dat$pi_2004))
 
 fp.range <- range(c(dat$pi_1969, dat$pi_2004), na.rm = TRUE)
 xylim <-  fp.range * xymag
@@ -232,7 +244,7 @@ hlog.r <- cor.test(log10(dat$h.mean_1969), log10(dat$h.mean_2004),
 h.rs <- cor.test(dat$h.mean_1969, dat$h.mean_2004, 
                       use = 'complete.obs', method = 'spearman')
 
-h.dev <- deviation(dat$h.mean_1969, dat$h.mean_2004)
+h.dev <- boot.deviation(cbind(dat$h.mean_1969, dat$h.mean_2004))
 
 h.range <- range(c(dat$h.mean_1969, dat$h.mean_2004), na.rm = TRUE)
 
@@ -295,7 +307,7 @@ f.rs.sub <- cor.test.ratios(datsub$pi_1969, datsub$h.mean_1969,
                             datsub$pi_2004, datsub$h.mean_2004,
                             method = 'spearman')
 
-f.dev.sub <- deviation(datsub$fi_1969, datsub$fi_2004)
+f.dev.sub <- boot.deviation(cbind(datsub$fi_1969, datsub$fi_2004))
 
 f.range.sub <- range(c(datsub$fi_1969, datsub$fi_2004), na.rm = TRUE)
 xylim <- f.range.sub * xymag
@@ -348,7 +360,7 @@ fplog.r.sub <- cor.test(log10(datsub$pi_1969), log10(datsub$pi_2004),
 fp.rs.sub <- cor.test(datsub$pi_1969, datsub$pi_2004, 
                   use = 'complete.obs', method = 'spearman')
 
-fp.dev.sub <- deviation(datsub$pi_1969, datsub$pi_2004)
+fp.dev.sub <- boot.deviation(cbind(datsub$pi_1969, datsub$pi_2004))
 
 fp.range.sub <- range(c(datsub$pi_1969, datsub$pi_2004), na.rm = TRUE)
 
@@ -362,7 +374,7 @@ hlog.r.sub <- cor.test(log10(datsub$h.mean_1969), log10(datsub$h.mean_2004),
 h.rs.sub <- cor.test(datsub$h.mean_1969, datsub$h.mean_2004, 
                  use = 'complete.obs', method = 'spearman')
 
-h.dev.sub <- deviation(datsub$h.mean_1969, datsub$h.mean_2004)
+h.dev.sub <- boot.deviation(cbind(datsub$h.mean_1969, datsub$h.mean_2004))
 
 h.range.sub <- range(c(datsub$h.mean_1969, datsub$h.mean_2004), na.rm = TRUE)
 
@@ -377,7 +389,7 @@ Nlog.r.sub <- cor.test(log10(datsub$N.mean_1969), log10(datsub$N.mean_2004),
 N.rs.sub <- cor.test(datsub$N.mean_1969, datsub$N.mean_2004,
                  use = 'complete.obs', method = 'spearman')
 
-N.dev.sub <- deviation(datsub$N.mean_1969, datsub$N.mean_2004)
+N.dev.sub <- boot.deviation(cbind(datsub$N.mean_1969, datsub$N.mean_2004))
 
 N.range.sub <- range(c(datsub$N.mean_1969, datsub$N.mean_2004), na.rm = TRUE)
 
@@ -431,7 +443,7 @@ alog.r.sub <- cor.test(log10(datsub$ai_1969), log10(datsub$ai_2004),
 a.rs.sub <- cor.test(datsub$ai_1969, datsub$ai_2004, 
                  use = 'complete.obs', method = 'spearman')
 
-a.dev.sub <- deviation(datsub$ai_1969, datsub$ai_2004)
+a.dev.sub <- boot.deviation(cbind(datsub$ai_1969, datsub$ai_2004))
 
 a.range.sub <- range(c(datsub$ai_1969, datsub$ai_2004), na.rm = TRUE)
 xylim <- a.range.sub * xymag

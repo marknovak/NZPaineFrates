@@ -14,18 +14,21 @@ source('PearsonApprox.R') # load PearsonApprox() & cor.test.ratio()
 library(sfsmisc) # for eaxis
 library(dplyr)
 library(tidyr)
+library(Hmisc) # for LaTeX table export
+options(xdvicmd='open')
+library(xtable) # for LaTeX summary table export
 
 ############################
 data <- read.csv('../data/derived/NZ-1969_2004-tab_Summarized.csv')
 
 ############################
 # Feeding rates
-# f_i=n_i/n * 1/h_i
+# f_i = n_i/n * 1/h_i
 data$fi <- data$pi /data$h.mean
 
 # Attack rates
 # (only able to calculate for species that also showed up in abundance surveys)
-# a_i= n_i/n_0 * 1/(h_i*N_i)
+# a_i = n_i/n_0 * 1/(h_i*N_i)
 data$ai <- data$pi0 / (data$h.mean * data$N.mean)
 
 sum(!is.na(data$fi))
@@ -53,7 +56,7 @@ signif <- function(x){
         ifelse(p < 0.01, '**',
         ifelse(p < 0.05, '*',
         ifelse(p < 0.1, '',
-                 ' ns'))))
+                 '   '))))
   return(out)
 }
 
@@ -170,6 +173,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
+mtext('A', 3, adj = 0)
 
 #~~~~~~~~~~~~~~~~~
 # Diet proportions
@@ -184,6 +188,14 @@ fp.rs <- cor.test(dat$pi_1969, dat$pi_2004,
 fp.dev <- boot.deviation(cbind(dat$pi_1969, dat$pi_2004))
 
 fp.range <- range(c(dat$pi_1969, dat$pi_2004), na.rm = TRUE)
+
+fp.mean <- apply(cbind(dat$pi_1969, dat$pi_2004), 2, 
+                function(x){mean(x)})
+fp.sd <- apply(cbind(dat$pi_1969, dat$pi_2004), 2, 
+              function(x){sd(x)})
+fp.cv <- apply(cbind(dat$pi_1969, dat$pi_2004), 2, 
+              function(x){sd(x)/mean(x)})
+
 xylim <-  fp.range * xymag
 
 matplot(
@@ -233,6 +245,8 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
+mtext('B', 3, adj = 0)
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 # Detection/handling times
@@ -247,6 +261,14 @@ h.rs <- cor.test(dat$h.mean_1969, dat$h.mean_2004,
 h.dev <- boot.deviation(cbind(dat$h.mean_1969, dat$h.mean_2004))
 
 h.range <- range(c(dat$h.mean_1969, dat$h.mean_2004), na.rm = TRUE)
+
+h.range * 24 # Range in hours
+h.mean <- apply(cbind(dat$h.mean_1969, dat$h.mean_2004), 2, 
+              function(x){mean(x)})
+h.sd <- apply(cbind(dat$h.mean_1969, dat$h.mean_2004), 2, 
+              function(x){sd(x)})
+h.cv <- apply(cbind(dat$h.mean_1969, dat$h.mean_2004), 2, 
+              function(x){sd(x)/mean(x)})
 
 xylim <- h.range * xymag
 
@@ -287,6 +309,8 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
+mtext('C', 3, adj = 0)
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -349,6 +373,8 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
+mtext('D', 3, adj = 0)
+
 
 #~~~~~~~~~~~
 # Proportions
@@ -432,6 +458,8 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
+mtext('E', 3, adj = 0)
+
 
 #~~~~~~~~~~~~~
 # Attack rates
@@ -485,7 +513,9 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
+mtext('F', 3, adj = 0)
 dev.off()
+
 
 
 ##########################################################

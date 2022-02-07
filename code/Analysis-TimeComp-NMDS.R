@@ -24,6 +24,13 @@ mat <- as.matrix(dat)
 
 row.names(mat) <- paste0(abbreviate(abund$Site),'-',year(dmy(abund$Date)))
 
+
+colnames(mat) <- abbreviate(sub('\\.',' ',colnames(mat)), 
+                            minlength = 2, 
+                            strict = 2, 
+                            method='both.sides')
+
+
 ######################################            
 # Non-metric Multi-dimensional Scaling
 nmds <- metaMDS(mat, 
@@ -41,9 +48,9 @@ grp.cols <- c('grey20','grey80')
 
 pdf('../figs/Paine-NMDS.pdf',
     width = 8,
-    height = 4)
+    height = 8)
 par(
-  mfrow = c(1,2),
+  mfrow = c(2,2),
   pty = 's',
   cex = 0.8,
   cex.axis = 0.9,
@@ -65,7 +72,7 @@ par(
          pch = site.pch,
          pt.bg = NA,
          cex = 0.9)
-  legend('topright',
+  legend('topleft',
          legend = levels(factor(year(dmy(abund$Date)))),
          pch = 22,
          pt.bg = year.bg,
@@ -81,6 +88,26 @@ par(
            pch = site.pch[as.numeric(factor(abund$Site))], 
            bg = year.bg[as.numeric(factor(year(dmy(abund$Date))))],
            cex = 1)
+  
+  plot(1,1, 
+       type = 'n',
+       ann = FALSE,
+       axes = FALSE)
+  spp = rownames(nmds$species)
+  leg = cbind(Abbrev. = spp, Species = names(spp))
+  legend(
+    'center', ncol = 2L, 
+    legend = leg[order(leg[,1]),],
+    cex = 0.8,
+    x.intersp = -10,
+    bty = 'n'
+    )
+  
+  plot(nmds, type = "n")
+  orditorp(nmds,
+           display = "species",
+           pch = '.')
+
 dev.off()
 ####################################################################
 ####################################################################

@@ -94,7 +94,7 @@ latex(
   center = 'centering',
   first.hline.double = FALSE,
   where = "!htbp",
-  caption="Summary of Paine's 1968-9 and my 2004 feeding observations.  Observerations refers to the total number of whelks inspected. \\% feeding refers to the proportion of observed whelks that were feeding. Parentheticals are the biomial confidence interval (95\\% coverage probability) calculated using the Wilson method."
+  caption="Summary of Paine's 1968-9 and my 2004 feeding observations.  Observations refers to the total number of whelks inspected. \\% feeding refers to the proportion of observed whelks that were feeding. Parentheticals are the biomial confidence interval (95\\% coverage probability) calculated using the Wilson method."
   
 )
 #########################################################################

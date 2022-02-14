@@ -5,6 +5,85 @@
 #################################################
 require(MASS) # for mvrnorm
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Simple contrived example(s)
+xn <- c(0.3, 0.2, 0.4) # first numerator (diet proportions)
+yn <- c(0.2, 0.3, 0.1) # second numerator (diet proportions)
+xd <- c(2.5, 1, 5) # first denominator (detection times)
+yd <- c(1, 0.5, 3.5) # second denominator (detection times)
+
+xr <- xn/xd
+yr <- yn/yd
+
+corrs = round(c(n = cor(xn, yn),
+                d = cor(xd, yd),
+                r = cor(xr,yr)),
+             3)
+
+cv <- function(x){sd(x)/mean(x)} # coefficient of variation
+cvs <- round(c(xn = cv(xn),
+               yn = cv(yn),
+               xd = cv(xd),
+               yd = cv(yd)),
+             3)
+
+Spp <- paste('Prey', c(1,2,3))
+
+pdf('../figs/Example.pdf', width = 7.5, height = 2.5)
+par(mfrow = c(1,3), pty = 's', las = 1, mar = c(3.25, 3.25, 1.5, 0.1),
+    cex.lab = 1.25, tcl = -0.2, mgp = c(2, 0.3, 0))
+
+plot(xn, yn, 
+     pch = 21, bg = 'grey', 
+     xlim = c(0, 0.5), ylim = c(0, 0.5),
+     xlab = 'Survey 1',
+     ylab = 'Survey 2')
+  title(main = 'Diet proportions')
+  box(lwd = 1)
+  text(xn, yn, Spp,
+       adj = c(0.9,-1))
+  legend('topright',
+         bty = 'n',
+         cex = 1.1,
+         legend = c(as.expression(bquote(italic(r) == .(corrs['n']))),
+                    as.expression(bquote(italic(cv[1]) == .(cvs['xn']))),
+                    as.expression(bquote(italic(cv[2]) == .(cvs['yn'])))))
+  mtext('A', 3, adj = 0)
+
+plot(xd, yd, 
+     pch = 21, bg = 'grey', 
+     xlim = c(0, 6), ylim = c(0, 5),
+     xlab = 'Survey 1',
+     ylab = 'Survey 2')
+  title(main = 'Detection times')
+  text(xd, yd, Spp,
+       adj = c(0.8,-1))
+  legend('topleft',
+         bty = 'n',
+         cex = 1.1,
+         legend = c(as.expression(bquote(italic(r) == .(corrs['d']))),
+                    as.expression(bquote(italic(cv[1]) == .(cvs['xd']))),
+                    as.expression(bquote(italic(cv[2]) == .(cvs['yd'])))))
+  mtext('B', 3, adj = 0)
+
+plot(xr, yr, 
+     pch = 21, bg = 'grey', 
+     xlim = c(0.05, 0.25), ylim = c(0, 0.7),
+     xlab = 'Survey 1',
+     ylab = 'Survey 2')
+  title(main = 'Feeding rates')
+  box(lwd = 1)
+  text(xr, yr, Spp,
+       adj = c(0,-1))
+  legend('topleft',
+         inset = 0,
+         bty = 'n',
+         cex = 1.1,
+         legend = c(as.expression(bquote(italic(r) == .(corrs['r'])))))
+  mtext('C', 3, adj = 0)
+  
+dev.off()
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Multivariate-normal random variables
 # independent numerators 
 # but correlated denominators

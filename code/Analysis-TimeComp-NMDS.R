@@ -73,7 +73,8 @@ par(
          pt.bg = NA,
          cex = 0.9)
   legend('topleft',
-         legend = levels(factor(year(dmy(abund$Date)))),
+         # legend = levels(factor(year(dmy(abund$Date)))),
+         legend = c('1968-9', '2004'),
          pch = 22,
          pt.bg = year.bg,
          cex = 0.9)

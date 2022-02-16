@@ -38,17 +38,21 @@ top <- c(max(Prey$counts), max(Pred$counts))
 # KS tests on distributions
 ks.prey <- ks.test(preysizes$PreySize[preysizes$Year==1969],
                    preysizes$PreySize[preysizes$Year==2004])
-lapply(list(preysizes$PreySize[preysizes$Year==1969],
-            preysizes$PreySize[preysizes$Year==2004]), 
+lapply(list('1969'=preysizes$PreySize[preysizes$Year==1969],
+            '2004'=preysizes$PreySize[preysizes$Year==2004]), 
        function(x){c(mean = mean(x),
-                     sd = sd(x))})
+                     sd = sd(x),
+                     rng = range(x),
+                     qt = quantile(x, c(0.025,0.975)))})
 
 ks.pred <- ks.test(sizes$PredSize[sizes$Year==1969],
                    sizes$PredSize[sizes$Year==2004])
-lapply(list(sizes$PredSize[sizes$Year==1969],
-            sizes$PredSize[sizes$Year==2004]), 
+lapply(list('1969'=sizes$PredSize[sizes$Year==1969],
+            '2004'=sizes$PredSize[sizes$Year==2004]), 
        function(x){c(mean = mean(x),
-                     sd = sd(x))})
+                     sd = sd(x),
+                     rng = range(x),
+                     qt = quantile(x, c(0.025,0.975)))})
 
 # Pred-prey size selectivity
 regPredPreyYearInt <- lm(log(PredSize) ~ log(PreySize) * Year, data = preysizes)

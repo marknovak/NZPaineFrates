@@ -181,7 +181,7 @@ points(sizes$PreySize[sizes$Year==1969],
        cex = 0.7)
 legend('bottomright',
        legend = c('1968-9','2004'),
-       pch = c(21, 23),
+       pch = c(23, 21),
        pt.bg = c('grey20','grey70'),
        inset = 0.01)
 box(lwd = 1)

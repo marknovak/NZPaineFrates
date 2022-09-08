@@ -47,7 +47,7 @@ plot(xn, yn,
          legend = c(as.expression(bquote(italic(r) == .(corrs['n']))),
                     as.expression(bquote(italic(cv[1]) == .(cvs['xn']))),
                     as.expression(bquote(italic(cv[2]) == .(cvs['yn'])))))
-  mtext('A', 3, adj = 0)
+  mtext('(a)', 3, adj = 0, line = 0.1, cex = 0.8)
 
 plot(xd, yd, 
      pch = 21, bg = 'grey', 
@@ -63,7 +63,7 @@ plot(xd, yd,
          legend = c(as.expression(bquote(italic(r) == .(corrs['d']))),
                     as.expression(bquote(italic(cv[1]) == .(cvs['xd']))),
                     as.expression(bquote(italic(cv[2]) == .(cvs['yd'])))))
-  mtext('B', 3, adj = 0)
+  mtext('(b)', 3, adj = 0, line = 0.1, cex = 0.8)
 
 plot(xr, yr, 
      pch = 21, bg = 'grey', 
@@ -79,7 +79,7 @@ plot(xr, yr,
          bty = 'n',
          cex = 1.1,
          legend = c(as.expression(bquote(italic(r) == .(corrs['r'])))))
-  mtext('C', 3, adj = 0)
+  mtext('(c)', 3, adj = 0, line = 0.1, cex = 0.8)
   
 dev.off()
 

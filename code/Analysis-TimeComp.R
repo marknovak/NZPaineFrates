@@ -173,7 +173,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('A', 3, adj = 0)
+mtext('(a)', 3, adj = 0, line = 0.1, cex = 0.8)
 
 #~~~~~~~~~~~~~~~~~
 # Diet proportions
@@ -245,7 +245,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('B', 3, adj = 0)
+mtext('(b)', 3, adj = 0, line = 0.1, cex = 0.8)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -309,7 +309,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('C', 3, adj = 0)
+mtext('(c)', 3, adj = 0, line = 0.1, cex = 0.8)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -373,7 +373,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('D', 3, adj = 0)
+mtext('(d)', 3, adj = 0, line = 0.1, cex = 0.8)
 
 
 #~~~~~~~~~~~
@@ -458,7 +458,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('E', 3, adj = 0)
+mtext('(e)', 3, adj = 0, line = 0.1, cex = 0.8)
 
 
 #~~~~~~~~~~~~~
@@ -513,7 +513,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('F', 3, adj = 0)
+mtext('(f)', 3, adj = 0, line = 0.1, cex = 0.8)
 dev.off()
 
 

@@ -32,10 +32,19 @@ obs <- dat %>%
   pivot_wider(id_cols = Prey,
                        names_from = Year,
                        values_from = tot.n.obs) %>%
-  data.frame()
-obs[order(apply(obs[,-1], 1, sum, na.rm = TRUE), decreasing = TRUE),]
+  data.frame() %>%
+  replace_na(list(X1969=0, X2004=0))
+  
+obs <- obs[order(apply(obs[,-1], 1, sum), 
+                 decreasing = TRUE),]
+obs <- obs[-which(obs$X1969 == 0 & obs$X2004 == 0),]
+apply(obs[,-1], 2, sum)
 
-
+# Prey observed by Paine but not me
+obs[which(obs$X1969 > 0 & obs$X2004 == 0),]
+# Prey observed by me but not Paine
+obs[which(obs$X1969 == 0 & obs$X2004 > 0),]
+sum(obs[which(obs$X1969 == 0 & obs$X2004 > 0),]$X2004)
 
 summ <- dat %>%
   group_by(Site, Year) %>%
@@ -78,7 +87,7 @@ summ.w2 <- pivot_wider(summ,
 
 summ <- rbind(data.frame(summ.w2), summ.tot)
 
-summ <- summ[,1:5] # Drop Hs afterall
+summ <- summ[,1:5] # Drop Hs columns afterall
 
 latex(
   summ,

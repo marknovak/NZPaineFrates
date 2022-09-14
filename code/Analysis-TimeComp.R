@@ -60,8 +60,7 @@ unique(dat$Prey)
 # So let's see what happens when we remove them....
 
 dat <- dat %>%
-  filter(Site != 'Leigh - Tabletop Rocks and Boulders' &
-           Site != 'Red Beach - Whangaparaoa')
+  filter(Site != 'Red Beach - Whangaparaoa')
 
 # This reduces the number of comparisons from 17 to...
 nrow(dat)

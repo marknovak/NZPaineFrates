@@ -60,10 +60,13 @@ unique(dat$Prey)
 # So let's see what happens when we remove them....
 
 dat <- dat %>%
-  filter(Site != 'Red Beach - Whangaparaoa')
+  filter(Site != 'Leigh - Tabletop Rocks and Boulders' &
+           Site != 'Red Beach - Whangaparaoa')
 
 # This reduces the number of comparisons from 17 to...
 nrow(dat)
+# and for the abundance-surveyed sites from 10 to...
+nrow(na.omit(dat))
 
 ############################
 # Define function to place asterisk(s) for "significance"

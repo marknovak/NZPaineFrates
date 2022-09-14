@@ -48,6 +48,24 @@ dat <- data %>%
 
 nrow(dat)
 unique(dat$Prey)
+
+############################
+# Reviewer 2 questions the inclusion of my Whangaparoa surveys
+# where only two whelks were observed feeding, likely due to its
+# low sample size. The associated confidence interval overlaps 
+# most other surveys however.  The other similarly low sample size 
+# survey is by Paine at Leigh Tabletop rocks and has a confidence
+# interval that does not overlap most other surveys.  Its inclusion
+# could thus be similarly questioned.
+# So let's see what happens when we remove them....
+
+dat <- dat %>%
+  filter(Site != 'Leigh - Tabletop Rocks and Boulders' &
+           Site != 'Red Beach - Whangaparaoa')
+
+# This reduces the number of comparisons from 17 to...
+nrow(dat)
+
 ############################
 # Define function to place asterisk(s) for "significance"
 signif <- function(x){

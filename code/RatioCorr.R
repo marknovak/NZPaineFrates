@@ -28,9 +28,16 @@ cvs <- round(c(xn = cv(xn),
 
 Spp <- paste('Prey', c(1,2,3))
 
-pdf('../figs/Example.pdf', width = 7.5, height = 2.5)
-par(mfrow = c(1,3), pty = 's', las = 1, mar = c(3.25, 3.25, 1.5, 0.1),
-    cex.lab = 1.25, tcl = -0.2, mgp = c(2, 0.3, 0))
+pdf('../figs/Example.pdf', 
+    width = 18/2.54, 
+    height = 2.8)
+par(mfrow = c(1,3), 
+    pty = 's', 
+    las = 1, 
+    mar = c(2.75, 3.25, 1.5, 0.5),
+    cex.lab = 1.25, 
+    tcl = -0.2, 
+    mgp = c(1.7, 0.3, 0))
 
 plot(xn, yn, 
      pch = 21, bg = 'grey', 
@@ -45,8 +52,8 @@ plot(xn, yn,
          bty = 'n',
          cex = 1.1,
          legend = c(as.expression(bquote(italic(r) == .(corrs['n']))),
-                    as.expression(bquote(italic(cv[1]) == .(cvs['xn']))),
-                    as.expression(bquote(italic(cv[2]) == .(cvs['yn'])))))
+                    as.expression(bquote(italic(v[1]) == .(cvs['xn']))),
+                    as.expression(bquote(italic(v[2]) == .(cvs['yn'])))))
   mtext('(a)', 3, adj = 0, line = 0.1, cex = 0.8)
 
 plot(xd, yd, 
@@ -61,8 +68,8 @@ plot(xd, yd,
          bty = 'n',
          cex = 1.1,
          legend = c(as.expression(bquote(italic(r) == .(corrs['d']))),
-                    as.expression(bquote(italic(cv[1]) == .(cvs['xd']))),
-                    as.expression(bquote(italic(cv[2]) == .(cvs['yd'])))))
+                    as.expression(bquote(italic(v[1]) == .(cvs['xd']))),
+                    as.expression(bquote(italic(v[2]) == .(cvs['yd'])))))
   mtext('(b)', 3, adj = 0, line = 0.1, cex = 0.8)
 
 plot(xr, yr, 
@@ -124,7 +131,9 @@ mean(cor.spur)
 mean(cor.nonspur)
 
 # Inspect distributions of observed correlations
-pdf('../figs/CorrelationOfRatios.pdf', height = 3, width = 5)
+pdf('../figs/CorrelationOfRatios.pdf', 
+    height = 3, 
+    width = 5)
 par(
   cex = 0.8,
   cex.axis = 0.9,

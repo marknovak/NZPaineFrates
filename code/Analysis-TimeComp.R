@@ -90,12 +90,12 @@ boot.deviation <- function(x, n = 10000){
 
 ############################
 pdf('../figs/Paine-Comparisons.pdf',
-    width = 8,
-    height = 4)
+    width = 17/2.54,
+    height = 8.5/2.54)
 par(
   mfrow = c(2, 3),
   pty = 's',
-  cex = 0.8,
+  cex = 0.7,
   cex.axis = 0.9,
   cex.lab = 1,
   tcl = -0.2,
@@ -173,7 +173,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('(a)', 3, adj = 0, line = 0.1, cex = 0.8)
+mtext('(a)', 3, adj = 0, line = 0.1, cex = 0.7)
 
 #~~~~~~~~~~~~~~~~~
 # Diet proportions
@@ -245,7 +245,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('(b)', 3, adj = 0, line = 0.1, cex = 0.8)
+mtext('(b)', 3, adj = 0, line = 0.1, cex = 0.7)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -309,7 +309,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('(c)', 3, adj = 0, line = 0.1, cex = 0.8)
+mtext('(c)', 3, adj = 0, line = 0.1, cex = 0.7)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -373,7 +373,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('(d)', 3, adj = 0, line = 0.1, cex = 0.8)
+mtext('(d)', 3, adj = 0, line = 0.1, cex = 0.7)
 
 
 #~~~~~~~~~~~
@@ -458,7 +458,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('(e)', 3, adj = 0, line = 0.1, cex = 0.8)
+mtext('(e)', 3, adj = 0, line = 0.1, cex = 0.7)
 
 
 #~~~~~~~~~~~~~
@@ -513,7 +513,7 @@ legend(
   y.intersp = 1,
   cex = 0.7
 )
-mtext('(f)', 3, adj = 0, line = 0.1, cex = 0.8)
+mtext('(f)', 3, adj = 0, line = 0.1, cex = 0.7)
 dev.off()
 
 
@@ -583,8 +583,8 @@ xlim <- range(datFN$N[!is.na(datFN$fi)], na.rm = TRUE)
 ylim <- range(datFN$fi, na.rm = TRUE)
 
 pdf('../figs/Paine-FuncResp.pdf',
-    width = 4,
-    height = 3)
+    width = 8.5/2.54,
+    height = 8.5*0.75/2.54)
 par(
   cex = 0.8,
   cex.axis = 0.9,

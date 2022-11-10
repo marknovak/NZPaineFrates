@@ -124,15 +124,15 @@ sizes$PreySize[sizes$Prey=="Not Feeding" & sizes$Year==1969] <- -0.25
 
 
 pdf('../figs/Paine-Sizes.pdf',
-    width = 4,
-    height = 3)
+    width = 8.5/2.54,
+    height = 8.5*0.75/2.54)
 par(
-  cex = 0.8,
+  cex = 0.7,
   cex.axis = 0.9,
   cex.lab = 1,
   tcl = -0.2,
   mar = c(3, 4, 1, 1),
-  mgp = c(2, 0.3, 0),
+  mgp = c(1.7, 0.2, 0),
   las = 1
 )
 
@@ -183,22 +183,23 @@ legend('bottomright',
        legend = c('1968-9','2004'),
        pch = c(23, 21),
        pt.bg = c('grey20','grey70'),
-       inset = 0.01)
+       inset = 0.01,
+       bty = 'n')
 box(lwd = 1)
 
 
-par(mar = c(0,3,1,0))
+par(mar = c(0,3,0.2,0))
 barplot(Prey$counts, axes = FALSE, ylim = c(0, top[1]), space = 0,
         col = 'grey20')
-axis(2, cex.axis = 0.5)
+axis(2, cex.axis = 0.6)
 barplot(Prey04$counts, axes = FALSE, ylim = c(0, top[1]), space = 0,
         col = 'grey70', add = TRUE)
 
-par(mar = c(3,0,0,1))
+par(mar = c(3,0,0,0.2))
 barplot(Pred$counts, axes = FALSE, xlim = c(0, top[2]), space = 0, 
         horiz = TRUE,
         col = 'grey20')
-axis(1, cex.axis = 0.5, mgp = c(0, 0, 0))
+axis(1, cex.axis = 0.6, mgp = c(0, 0, 0))
 barplot(Pred04$counts, axes = FALSE, xlim = c(0, top[2]), space = 0, 
         horiz = TRUE,
         col = 'grey70', add = TRUE)
